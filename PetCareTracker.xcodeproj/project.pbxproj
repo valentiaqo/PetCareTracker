@@ -10,6 +10,10 @@
 		1ED241AB2CB2CD0B00DB035E /* PetCareTrackerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ED241AA2CB2CD0B00DB035E /* PetCareTrackerApp.swift */; };
 		1ED241AF2CB2CD0D00DB035E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1ED241AE2CB2CD0D00DB035E /* Assets.xcassets */; };
 		1ED241B22CB2CD0D00DB035E /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1ED241B12CB2CD0D00DB035E /* Preview Assets.xcassets */; };
+		1ED241DC2CB4F7F900DB035E /* Nunito-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1ED241CA2CB4F66F00DB035E /* Nunito-Bold.ttf */; };
+		1ED241DD2CB4F7F900DB035E /* Nunito-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1ED241BC2CB4F66F00DB035E /* Nunito-Regular.ttf */; };
+		1ED241DE2CB4F7F900DB035E /* Nunito-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1ED241CB2CB4F66F00DB035E /* Nunito-SemiBold.ttf */; };
+		1ED241E32CB6487A00DB035E /* Font+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ED241E22CB6487A00DB035E /* Font+Ext.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -17,6 +21,11 @@
 		1ED241AA2CB2CD0B00DB035E /* PetCareTrackerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PetCareTrackerApp.swift; sourceTree = "<group>"; };
 		1ED241AE2CB2CD0D00DB035E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1ED241B12CB2CD0D00DB035E /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		1ED241BC2CB4F66F00DB035E /* Nunito-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Nunito-Regular.ttf"; sourceTree = "<group>"; };
+		1ED241CA2CB4F66F00DB035E /* Nunito-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Nunito-Bold.ttf"; sourceTree = "<group>"; };
+		1ED241CB2CB4F66F00DB035E /* Nunito-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Nunito-SemiBold.ttf"; sourceTree = "<group>"; };
+		1ED241DF2CB4F80D00DB035E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		1ED241E22CB6487A00DB035E /* Font+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Font+Ext.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -49,8 +58,10 @@
 		1ED241A92CB2CD0B00DB035E /* PetCareTracker */ = {
 			isa = PBXGroup;
 			children = (
+				1ED241DF2CB4F80D00DB035E /* Info.plist */,
 				1ED241AA2CB2CD0B00DB035E /* PetCareTrackerApp.swift */,
-				1ED241AE2CB2CD0D00DB035E /* Assets.xcassets */,
+				1ED241E62CB64ADC00DB035E /* Utilities */,
+				1ED241BA2CB4F62D00DB035E /* Resources */,
 				1ED241B02CB2CD0D00DB035E /* Preview Content */,
 			);
 			path = PetCareTracker;
@@ -62,6 +73,41 @@
 				1ED241B12CB2CD0D00DB035E /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		1ED241BA2CB4F62D00DB035E /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				1ED241BB2CB4F64B00DB035E /* Fonts */,
+				1ED241AE2CB2CD0D00DB035E /* Assets.xcassets */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		1ED241BB2CB4F64B00DB035E /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				1ED241CA2CB4F66F00DB035E /* Nunito-Bold.ttf */,
+				1ED241BC2CB4F66F00DB035E /* Nunito-Regular.ttf */,
+				1ED241CB2CB4F66F00DB035E /* Nunito-SemiBold.ttf */,
+			);
+			path = Fonts;
+			sourceTree = "<group>";
+		};
+		1ED241E42CB64A9A00DB035E /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				1ED241E22CB6487A00DB035E /* Font+Ext.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		1ED241E62CB64ADC00DB035E /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				1ED241E42CB64A9A00DB035E /* Extensions */,
+			);
+			path = Utilities;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -122,6 +168,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1ED241DC2CB4F7F900DB035E /* Nunito-Bold.ttf in Resources */,
+				1ED241DD2CB4F7F900DB035E /* Nunito-Regular.ttf in Resources */,
+				1ED241DE2CB4F7F900DB035E /* Nunito-SemiBold.ttf in Resources */,
 				1ED241B22CB2CD0D00DB035E /* Preview Assets.xcassets in Resources */,
 				1ED241AF2CB2CD0D00DB035E /* Assets.xcassets in Resources */,
 			);
@@ -134,6 +183,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1ED241E32CB6487A00DB035E /* Font+Ext.swift in Sources */,
 				1ED241AB2CB2CD0B00DB035E /* PetCareTrackerApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -271,6 +321,7 @@
 				DEVELOPMENT_TEAM = 64UTKKPS3Y;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = PetCareTracker/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -300,6 +351,7 @@
 				DEVELOPMENT_TEAM = 64UTKKPS3Y;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = PetCareTracker/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
