@@ -8,20 +8,18 @@
 import SwiftUI
 
 enum FontWeight {
-    case regular
-    case semiBold
-    case bold
+    case regular, medium, bold
 }
 
 extension Font {
-    static let nunito: (FontWeight, CGFloat) -> Font = { fontType, size in
+    static let roboto: (FontWeight, CGFloat) -> Font = { fontType, size in
         switch fontType {
         case .regular:
-            Font.custom("Nunito", size: size)
-        case .semiBold:
-            Font.custom("Nunito-SemiBold", size: size)
+            Font.custom("Roboto-Regular", size: size)
+        case .medium:
+            Font.custom("Roboto-Medium", size: size)
         case .bold:
-            Font.custom("Nunito-Bold", size: size)
+            Font.custom("Roboto-Bold", size: size)
         }
     }
 }
