@@ -21,6 +21,9 @@
 		1EF91B262CBA8883000B3969 /* Color+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EF91B252CBA8883000B3969 /* Color+Ext.swift */; };
 		1EF91B282CBBC865000B3969 /* UserPetsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EF91B272CBBC865000B3969 /* UserPetsViewModel.swift */; };
 		1EF91B2A2CBBD462000B3969 /* Icons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EF91B292CBBD462000B3969 /* Icons.swift */; };
+		1EF91B2C2CBCE363000B3969 /* PetProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EF91B2B2CBCE363000B3969 /* PetProfileView.swift */; };
+		1EF91B482CBCEBC1000B3969 /* PetCardImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EF91B472CBCEBC1000B3969 /* PetCardImageView.swift */; };
+		1EF91B4A2CBE359F000B3969 /* Date+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EF91B492CBE359F000B3969 /* Date+Ext.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,6 +43,9 @@
 		1EF91B252CBA8883000B3969 /* Color+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Ext.swift"; sourceTree = "<group>"; };
 		1EF91B272CBBC865000B3969 /* UserPetsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserPetsViewModel.swift; sourceTree = "<group>"; };
 		1EF91B292CBBD462000B3969 /* Icons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Icons.swift; sourceTree = "<group>"; };
+		1EF91B2B2CBCE363000B3969 /* PetProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PetProfileView.swift; sourceTree = "<group>"; };
+		1EF91B472CBCEBC1000B3969 /* PetCardImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PetCardImageView.swift; sourceTree = "<group>"; };
+		1EF91B492CBE359F000B3969 /* Date+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Ext.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -121,8 +127,9 @@
 		1ED241E42CB64A9A00DB035E /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				1ED241E22CB6487A00DB035E /* Font+Ext.swift */,
 				1EF91B252CBA8883000B3969 /* Color+Ext.swift */,
+				1EF91B492CBE359F000B3969 /* Date+Ext.swift */,
+				1ED241E22CB6487A00DB035E /* Font+Ext.swift */,
 				1EF91B292CBBD462000B3969 /* Icons.swift */,
 			);
 			path = Extensions;
@@ -150,7 +157,9 @@
 				1ED241EB2CB8F9E200DB035E /* HomeView.swift */,
 				1ED241EE2CB8FBD000DB035E /* UserPetsView.swift */,
 				1EF91B272CBBC865000B3969 /* UserPetsViewModel.swift */,
+				1EF91B2B2CBCE363000B3969 /* PetProfileView.swift */,
 				1E4BC9462CBA702B00CD5D83 /* PetCardView.swift */,
+				1EF91B472CBCEBC1000B3969 /* PetCardImageView.swift */,
 			);
 			path = HomeScreen;
 			sourceTree = "<group>";
@@ -228,10 +237,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1EF91B482CBCEBC1000B3969 /* PetCardImageView.swift in Sources */,
 				1E4BC9472CBA702B00CD5D83 /* PetCardView.swift in Sources */,
 				1EF91B282CBBC865000B3969 /* UserPetsViewModel.swift in Sources */,
+				1EF91B4A2CBE359F000B3969 /* Date+Ext.swift in Sources */,
 				1EF91B262CBA8883000B3969 /* Color+Ext.swift in Sources */,
 				1ED241EC2CB8F9E200DB035E /* HomeView.swift in Sources */,
+				1EF91B2C2CBCE363000B3969 /* PetProfileView.swift in Sources */,
 				1ED241E32CB6487A00DB035E /* Font+Ext.swift in Sources */,
 				1EF91B2A2CBBD462000B3969 /* Icons.swift in Sources */,
 				1E4BC9492CBA70EE00CD5D83 /* Pet.swift in Sources */,

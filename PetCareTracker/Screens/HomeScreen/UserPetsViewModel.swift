@@ -10,4 +10,5 @@ import SwiftUI
 @Observable
 final class UserPetsViewModel {
     let columns: [GridItem] = [GridItem(.flexible())]
+    var selectedPet: Pet?
 }

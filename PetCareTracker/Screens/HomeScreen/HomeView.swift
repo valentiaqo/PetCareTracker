@@ -21,7 +21,7 @@ struct HomeView: View {
                     Spacer()
                     
                     Button {
-                        // action: open settings 
+                        // action: open settings
                     } label: {
                         Image(LinearIcons.settings.rawValue)
                     }

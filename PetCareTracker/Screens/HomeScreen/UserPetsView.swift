@@ -27,27 +27,44 @@ struct UserPetsView: View {
                         LazyHGrid(rows: viewModel.columns, spacing: 20) {
                             ForEach(MockData.samplePets) { pet in
                                 NavigationLink(value: pet) {
-                                    PetCardView(pet: pet)
-                                        .frame(width: 80)
+                                    Button {
+                                        viewModel.selectedPet = pet
+                                    } label: {
+                                        PetCardView(pet: pet)
+                                            .frame(width: 80)
+                                            .scrollTransition { effect, phase in
+                                                effect
+                                                    .scaleEffect(phase.isIdentity ? 1 : 0.7)
+                                            }
+                                    }
+                                    
                                 }
                             }
                         }
                     }
-//                    .navigationDestination(for: Pet.self) { pet in
-//                        PetProfiveView(pet: pet)
-//                    }
+                    .sheet(item: $viewModel.selectedPet) { pet in
+                        PetProfileView(pet: pet)
+                            .presentationDetents([.medium])
+                    }
+                    //                    .navigationDestination(for: Pet.self) { pet in
+                    //                        PetProfileView(pet: pet)
+                    //                    }
+                    //                    .sheet(isPresented: $isPresented) {
+                    //                        PetProfileView(pet: selectedPet!)
+                    //                            .presentationDetents([.large])
+                    //                    }
                     .scrollIndicators(.hidden)
                 }
                 
-                    
+                
                 
             }
             .padding()
             
         }
-        .frame(width: 330, height: 170)
+        .frame(width: 360, height: 170)
         .clipShape(RoundedRectangle(cornerRadius: 20))
-        .shadow(color: .softGray, radius: 10)
+//        .shadow(color: .gray, radius: 10)
         
     }
 }

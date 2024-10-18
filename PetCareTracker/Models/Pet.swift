@@ -22,19 +22,22 @@ struct Pet: Hashable, Identifiable {
     var animalType: AnimalType
     var sex: PetSex
     var birthday: Date?
-    var chip: Int?
+    var chip: String = String()
+    
+    var cardBackgroundColor: String
 }
 
 struct MockData {
-    static let samplePet = Pet(name: "Sharik", animalType: .dog, sex: .male, birthday: Date(), chip: 1234567890123456)
-
-    static let samplePets = [Pet(name: "Sobaken", animalType: .dog, sex: .male, birthday: Date(), chip: 1234567890123456),
-                      Pet(name: "Kotik", animalType: .cat, sex: .male),
-                      Pet(name: "Zabka", animalType: .frog, sex: .female),
-                      Pet(name: "Cherepashka dlinnaya", animalType: .turtle, sex: .female),
-                      Pet(name: "Yashcherica", animalType: .lizard, sex: .male),
+    static let samplePet = Pet(name: "Sharik", animalType: .dog, sex: .male, birthday: Date(), chip: "1234567890123456", cardBackgroundColor: "softBlue")
+    
+    static let samplePets = [Pet(name: "Sobaken", animalType: .dog, sex: .male, birthday: Date(), chip: "1234567890123456", cardBackgroundColor: "softGreen"),
+                             Pet(name: "Kotik", animalType: .cat, sex: .male, chip: "1234567890123456", cardBackgroundColor: "softOrange"),
+                             Pet(name: "Zabka", animalType: .frog, sex: .female, birthday: Date(), cardBackgroundColor: "softPurple"),
+                             Pet(name: "Cherepashka dlinnaya", animalType: .turtle, sex: .female, cardBackgroundColor: "softRed"),
+                             Pet(name: "Yashcherica", animalType: .lizard, sex: .male, cardBackgroundColor: "softYellow"),
     ]
 }
+//[.softBlue, .softGreen, .softOrange, .softPurple, .softRed, .softYellow, .softTeal, .softPink, .softOlive]
 
 
 
