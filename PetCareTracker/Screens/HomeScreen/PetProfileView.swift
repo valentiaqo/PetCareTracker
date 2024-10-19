@@ -39,9 +39,11 @@ struct PetProfileView: View {
     
     func calculatedHeightForPetDetailsView() -> CGFloat {
         var viewHeight: CGFloat = 240
-        if pet.birthday == nil && pet.chip == String() {
-            viewHeight = 140
-        } else if pet.birthday == nil || pet.chip == String() {
+        if pet.birthday == nil && pet.chip == String() && pet.breed == String() {
+            viewHeight = 80
+        } else if (pet.birthday == nil && pet.chip == String()) || (pet.birthday == nil && pet.breed == String()) || (pet.breed == String() && pet.chip == String()) {
+            viewHeight = 120
+        } else if pet.birthday == nil || pet.chip == String() || pet.breed == String() {
             viewHeight = 200
         }
         
@@ -79,9 +81,11 @@ struct PetDetailsView: View {
         ZStack {
             Color(.white)
             VStack(spacing: -10) {
-                PetDetailView(imageName: LinearIcons.pawPrint.rawValue, description: "Animal: \(pet.animalType.rawValue)")
+                PetDetailView(imageName: LinearIcons.pawPrint.rawValue, description: "Animal: \(pet.animalType.rawValue.capitalized), \(pet.sex.rawValue)")
                 
-                PetDetailView(imageName: pet.sex == .male ? LinearIcons.male.rawValue : LinearIcons.female.rawValue, description: "Sex: \(pet.sex.rawValue)")
+                if !pet.breed.isEmpty {
+                    PetDetailView(imageName: LinearIcons.list2.rawValue, description: "Breed: \(pet.breed)")
+                }
                 
                 if let birthday = pet.birthday {
                     PetDetailView(imageName: LinearIcons.birthday.rawValue, description: "Birthday: \(birthday.toString())")
@@ -106,7 +110,7 @@ struct PetDetailView: View {
                 .resizable()
                 .aspectRatio(contentMode: .fit)
                 .frame(width: 30, height: 30)
-            Text(description.capitalized)
+            Text(description)
                 .font(.roboto(.medium, 20))
             
             Spacer()
