@@ -16,41 +16,63 @@ struct PetProfileView: View {
                 .ignoresSafeArea()
             
             VStack {
+                
                 Rectangle()
                     .frame(width: 50, height: 5)
                     .clipShape(.rect(cornerRadius: 20))
                     .foregroundStyle(.onyx)
-                    .padding(EdgeInsets(top: -20, leading: 0, bottom: 0, trailing: 0))
+                    .padding(EdgeInsets(top: 10, leading: 0, bottom: 0, trailing: 0))
                 
-                HStack {
-                    PetCardImageView(pet: pet)
-                        .padding(.trailing)
-                    
-                    Text(pet.name)
-                        .font(.roboto(.bold, 30))
-                    
-                    Spacer()
-                    
-                    Button {
-                        
-                    } label: {
-                        Image(LinearIcons.edit.rawValue)
-                    }
-                }
-                .padding()
                 
-                PetDescriptionView(pet: pet)
+                PetTitleView(pet: pet)
                 
-                    .frame(width: 360, height: 240)
+                
+                PetDetailsView(pet: pet)
+                    .frame(width: 360, height: calculatedHeightForPetDetailsView())
                     .clipShape(RoundedRectangle(cornerRadius: 20))
-//                    .shadow(color: .gray, radius: 10)
+                
+                Spacer()
                 
             }
         }
     }
+    
+    func calculatedHeightForPetDetailsView() -> CGFloat {
+        var viewHeight: CGFloat = 240
+        if pet.birthday == nil && pet.chip == String() {
+            viewHeight = 140
+        } else if pet.birthday == nil || pet.chip == String() {
+            viewHeight = 200
+        }
+        
+        return viewHeight
+    }
 }
 
-struct PetDescriptionView: View {
+struct PetTitleView: View {
+    let pet: Pet
+    
+    var body: some View {
+        HStack {
+            PetCardImageView(pet: pet)
+                .padding(.trailing)
+            
+            Text(pet.name)
+                .font(.roboto(.bold, 30))
+            
+            Spacer()
+            
+            Button {
+                
+            } label: {
+                Image(LinearIcons.edit.rawValue)
+            }
+        }
+        .padding()
+    }
+}
+
+struct PetDetailsView: View {
     let pet: Pet
     
     var body: some View {
@@ -64,7 +86,7 @@ struct PetDescriptionView: View {
                 if let birthday = pet.birthday {
                     PetDetailView(imageName: LinearIcons.birthday.rawValue, description: "Birthday: \(birthday.toString())")
                 }
-
+                
                 if !pet.chip.isEmpty {
                     PetDetailView(imageName: LinearIcons.chip.rawValue, description: "Chip: \(pet.chip)")
                 }
