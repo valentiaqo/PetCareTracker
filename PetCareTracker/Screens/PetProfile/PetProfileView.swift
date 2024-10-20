@@ -44,7 +44,7 @@ struct PetProfileView: View {
         } else if (pet.birthday == nil && pet.chip == String()) || (pet.birthday == nil && pet.breed == String()) || (pet.breed == String() && pet.chip == String()) {
             viewHeight = 120
         } else if pet.birthday == nil || pet.chip == String() || pet.breed == String() {
-            viewHeight = 200
+            viewHeight = 180
         }
         
         return viewHeight
@@ -111,7 +111,7 @@ struct PetDetailView: View {
                 .aspectRatio(contentMode: .fit)
                 .frame(width: 30, height: 30)
             Text(description)
-                .font(.roboto(.medium, 20))
+                .font(.roboto(.regular, 20))
             
             Spacer()
             

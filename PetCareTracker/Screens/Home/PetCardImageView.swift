@@ -8,14 +8,17 @@
 import SwiftUI
 
 struct PetCardImageView: View {
-    let pet: Pet
+    let pet: Pet?
     
     var backgroundColor: Color {
+        // set a random, unique color at the beginning and then to change it if needed
         var backgroundColor = Color.gray
         
         for color in Color.softColors {
-            if Color(pet.cardBackgroundColor) == color {
-                backgroundColor = color
+            if let pet {
+                if Color(pet.cardBackgroundColor) == color {
+                    backgroundColor = color
+                }
             }
         }
         
@@ -26,10 +29,12 @@ struct PetCardImageView: View {
         ZStack {
             backgroundColor
             
-            Image(pet.animalType.rawValue)
-                .resizable()
-                .aspectRatio(contentMode: .fit)
-                .frame(width: 55, height: 55)
+            if let pet {
+                Image(pet.animalType.rawValue)
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+                    .frame(width: 55, height: 55)
+            }
         }
         .frame(width: 65, height: 65)
         .clipShape(RoundedRectangle(cornerRadius: 20))

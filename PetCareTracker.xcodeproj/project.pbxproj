@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		1E4BC9472CBA702B00CD5D83 /* PetCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E4BC9462CBA702B00CD5D83 /* PetCardView.swift */; };
 		1E4BC9492CBA70EE00CD5D83 /* Pet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E4BC9482CBA70EE00CD5D83 /* Pet.swift */; };
+		1E53A6722CC3AD3D00789D4F /* PetEditableProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E53A6712CC3AD3D00789D4F /* PetEditableProfileView.swift */; };
+		1EA63EBA2CC50C2E000917CA /* LabeledTextFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EA63EB92CC50C2E000917CA /* LabeledTextFieldView.swift */; };
 		1ED241AB2CB2CD0B00DB035E /* PetCareTrackerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ED241AA2CB2CD0B00DB035E /* PetCareTrackerApp.swift */; };
 		1ED241AF2CB2CD0D00DB035E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1ED241AE2CB2CD0D00DB035E /* Assets.xcassets */; };
 		1ED241B22CB2CD0D00DB035E /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1ED241B12CB2CD0D00DB035E /* Preview Assets.xcassets */; };
@@ -31,6 +33,8 @@
 		1E4BC9482CBA70EE00CD5D83 /* Pet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pet.swift; sourceTree = "<group>"; };
 		1E4BC94D2CBA7D2100CD5D83 /* Roboto-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Bold.ttf"; sourceTree = "<group>"; };
 		1E4BC94E2CBA7D2100CD5D83 /* Roboto-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Regular.ttf"; sourceTree = "<group>"; };
+		1E53A6712CC3AD3D00789D4F /* PetEditableProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PetEditableProfileView.swift; sourceTree = "<group>"; };
+		1EA63EB92CC50C2E000917CA /* LabeledTextFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabeledTextFieldView.swift; sourceTree = "<group>"; };
 		1ED241A72CB2CD0B00DB035E /* PetCareTracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PetCareTracker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1ED241AA2CB2CD0B00DB035E /* PetCareTrackerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PetCareTrackerApp.swift; sourceTree = "<group>"; };
 		1ED241AE2CB2CD0D00DB035E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -65,6 +69,22 @@
 				1E4BC9482CBA70EE00CD5D83 /* Pet.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		1EA63EBB2CC510DC000917CA /* PetProfile */ = {
+			isa = PBXGroup;
+			children = (
+				1EF91B2B2CBCE363000B3969 /* PetProfileView.swift */,
+			);
+			path = PetProfile;
+			sourceTree = "<group>";
+		};
+		1EA63EBC2CC5110F000917CA /* PetEditableProfile */ = {
+			isa = PBXGroup;
+			children = (
+				1E53A6712CC3AD3D00789D4F /* PetEditableProfileView.swift */,
+			);
+			path = PetEditableProfile;
 			sourceTree = "<group>";
 		};
 		1ED2419E2CB2CD0B00DB035E = {
@@ -146,22 +166,24 @@
 		1ED241ED2CB8F9EA00DB035E /* Screens */ = {
 			isa = PBXGroup;
 			children = (
-				1ED241F02CB8FBD600DB035E /* HomeScreen */,
+				1ED241F02CB8FBD600DB035E /* Home */,
+				1EA63EBC2CC5110F000917CA /* PetEditableProfile */,
+				1EA63EBB2CC510DC000917CA /* PetProfile */,
 			);
 			path = Screens;
 			sourceTree = "<group>";
 		};
-		1ED241F02CB8FBD600DB035E /* HomeScreen */ = {
+		1ED241F02CB8FBD600DB035E /* Home */ = {
 			isa = PBXGroup;
 			children = (
 				1ED241EB2CB8F9E200DB035E /* HomeView.swift */,
 				1ED241EE2CB8FBD000DB035E /* UserPetsView.swift */,
 				1EF91B272CBBC865000B3969 /* UserPetsViewModel.swift */,
-				1EF91B2B2CBCE363000B3969 /* PetProfileView.swift */,
 				1E4BC9462CBA702B00CD5D83 /* PetCardView.swift */,
 				1EF91B472CBCEBC1000B3969 /* PetCardImageView.swift */,
+				1EA63EB92CC50C2E000917CA /* LabeledTextFieldView.swift */,
 			);
-			path = HomeScreen;
+			path = Home;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -246,8 +268,10 @@
 				1EF91B2C2CBCE363000B3969 /* PetProfileView.swift in Sources */,
 				1ED241E32CB6487A00DB035E /* Font+Ext.swift in Sources */,
 				1EF91B2A2CBBD462000B3969 /* Icons.swift in Sources */,
+				1E53A6722CC3AD3D00789D4F /* PetEditableProfileView.swift in Sources */,
 				1E4BC9492CBA70EE00CD5D83 /* Pet.swift in Sources */,
 				1ED241AB2CB2CD0B00DB035E /* PetCareTrackerApp.swift in Sources */,
+				1EA63EBA2CC50C2E000917CA /* LabeledTextFieldView.swift in Sources */,
 				1ED241EF2CB8FBD000DB035E /* UserPetsView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
