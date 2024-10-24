@@ -81,7 +81,7 @@ struct PetDetailsView: View {
         ZStack {
             Color(.white)
             VStack(spacing: -10) {
-                PetDetailView(imageName: LinearIcons.pawPrint.rawValue, description: "Animal: \(pet.animalType.rawValue.capitalized), \(pet.sex.rawValue)")
+                PetDetailView(imageName: LinearIcons.pawPrint.rawValue, description: "Animal: \(pet.animalType.capitalized), \(pet.sex.lowercased())")
                 
                 if !pet.breed.isEmpty {
                     PetDetailView(imageName: LinearIcons.list2.rawValue, description: "Breed: \(pet.breed)")

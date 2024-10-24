@@ -1,5 +1,5 @@
 //
-//  LabeledTextFieldView.swift
+//  IconLabelTextField.swift
 //  PetCareTracker
 //
 //  Created by Valentyn Ponomarenko on 20/10/2024.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct LabeledTextFieldView: View {
+struct IconLabelTextField: View {
     var title: String
     
     @Binding var text: String
@@ -27,7 +27,7 @@ struct LabeledTextFieldView: View {
                 .font(.roboto(.regular, 17))
                 .overlay(
                     RoundedRectangle(cornerRadius: 10)
-                        .stroke(isActive ? .onyx : .secondary,
+                        .stroke(isActive ? .onyx : .gray,
                                 lineWidth: isActive ? 2 : 1)
                 )
             
@@ -41,12 +41,16 @@ struct LabeledTextFieldView: View {
             
             Text(title)
                 .padding(EdgeInsets(top: 15, leading: 50, bottom: 15, trailing: 0))
-                .offset(x: (isActive || !text.isEmpty) ? -50 : 0,
-                        y: (isActive || !text.isEmpty) ? -50 : 0)
+                .offset(x: (isActive || !text.isEmpty) ? -40 : 0,
+                        y: (isActive || !text.isEmpty) ? -40 : 0)
                 .font(.roboto(.medium, 17))
                 .foregroundStyle(isActive ? .onyx : .secondary)
                 .animation(.spring, value: isActive)
         }
     }
+}
+
+#Preview {
+    IconLabelTextField(title: "Name", text: .constant(""), icon: LinearIcons.heart.rawValue)
 }
 

@@ -30,7 +30,7 @@ struct PetCardImageView: View {
             backgroundColor
             
             if let pet {
-                Image(pet.animalType.rawValue)
+                Image(pet.animalType)
                     .resizable()
                     .aspectRatio(contentMode: .fit)
                     .frame(width: 55, height: 55)
