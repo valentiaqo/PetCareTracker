@@ -37,8 +37,13 @@ struct UserPetsView: View {
                                                     .scaleEffect(phase.isIdentity ? 1 : 0.7)
                                             }
                                     }
-                                    
                                 }
+                            }
+                            Button {
+                                // open a PetEditableProfileView with a new pet 
+                            } label: {
+                                AddButton()
+                                    .padding(EdgeInsets(top: 0, leading: 0, bottom: 25, trailing: 0))
                             }
                         }
                     }
@@ -46,13 +51,6 @@ struct UserPetsView: View {
                         PetProfileView(pet: pet)
                             .presentationDetents([.medium])
                     }
-                    //                    .navigationDestination(for: Pet.self) { pet in
-                    //                        PetProfileView(pet: pet)
-                    //                    }
-                    //                    .sheet(isPresented: $isPresented) {
-                    //                        PetProfileView(pet: selectedPet!)
-                    //                            .presentationDetents([.large])
-                    //                    }
                     .scrollIndicators(.hidden)
                 }
                 

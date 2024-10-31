@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct IconLabelTextField: View {
+struct LabeledIconTextField: View {
     var title: String
     
     @Binding var text: String
@@ -37,6 +37,7 @@ struct IconLabelTextField: View {
                     .aspectRatio(contentMode: .fit)
                     .frame(width: 25, height: 25)
                     .padding(EdgeInsets(top: 15, leading: 15, bottom: 15, trailing: 0))
+                    .onTapGesture { isActive = true }
             }
             
             Text(title)
@@ -45,12 +46,14 @@ struct IconLabelTextField: View {
                         y: (isActive || !text.isEmpty) ? -40 : 0)
                 .font(.roboto(.medium, 17))
                 .foregroundStyle(isActive ? .onyx : .secondary)
+                .onTapGesture { isActive = true }
                 .animation(.spring, value: isActive)
+                
         }
     }
 }
 
 #Preview {
-    IconLabelTextField(title: "Name", text: .constant(""), icon: LinearIcons.heart.rawValue)
+    LabeledIconTextField(title: "Name", text: .constant(""), icon: LinearIcons.heart.rawValue)
 }
 

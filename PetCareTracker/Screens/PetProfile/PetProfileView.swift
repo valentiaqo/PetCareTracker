@@ -56,7 +56,7 @@ struct PetTitleView: View {
     
     var body: some View {
         HStack {
-            PetCardImageView(pet: pet)
+            PetCardImageView(animalType: pet.animalType, cardBackgroundColor: pet.cardBackgroundColor)
                 .padding(.trailing)
             
             Text(pet.name)
@@ -80,7 +80,7 @@ struct PetDetailsView: View {
     var body: some View {
         ZStack {
             Color(.white)
-            VStack(spacing: -10) {
+            VStack(spacing: -15) {
                 PetDetailView(imageName: LinearIcons.pawPrint.rawValue, description: "Animal: \(pet.animalType.capitalized), \(pet.sex.lowercased())")
                 
                 if !pet.breed.isEmpty {
@@ -111,7 +111,7 @@ struct PetDetailView: View {
                 .aspectRatio(contentMode: .fit)
                 .frame(width: 30, height: 30)
             Text(description)
-                .font(.roboto(.regular, 20))
+                .font(.roboto(.regular, 18))
             
             Spacer()
             

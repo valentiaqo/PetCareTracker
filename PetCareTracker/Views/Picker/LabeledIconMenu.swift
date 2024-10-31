@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct IconLabelPicker: View {
+struct LabeledIconMenu: View {
     var title: String
     var icon: String?
     var pickerType: PickerType
@@ -43,7 +43,6 @@ struct IconLabelPicker: View {
                             .resizable()
                             .aspectRatio(contentMode: .fit)
                             .frame(width: 25, height: 25)
-                            
                     }
                     
                     ZStack {
@@ -52,7 +51,7 @@ struct IconLabelPicker: View {
                             .foregroundStyle(!selection.isEmpty ? .onyx : .secondary)
                             .offset(x: selection.isEmpty ? 0 : -40,
                                     y: selection.isEmpty ? 0 : -40)
-                            .animation(.spring, value: selection)
+                            .animation(.spring, value: selection.isEmpty)
                         
                         Text(selection)
                             .font(.roboto(.regular, 17))
@@ -64,6 +63,9 @@ struct IconLabelPicker: View {
                     Spacer()
                     
                     Image(LinearIcons.chevronCircleDown.rawValue)
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .frame(width: 25, height: 25)
                         .foregroundColor(.onyx)
                 }
                 .padding(.horizontal)
@@ -79,5 +81,5 @@ struct IconLabelPicker: View {
 
 
 #Preview {
-    IconLabelPicker(title: "Sex", icon: LinearIcons.intersex.rawValue, pickerType: .animal, selection: .constant("Dog"))
+    LabeledIconMenu(title: "Sex", icon: LinearIcons.intersex.rawValue, pickerType: .animal, selection: .constant("Dog"))
 }
