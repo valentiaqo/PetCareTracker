@@ -14,6 +14,9 @@
 		1EA63EC02CC62D38000917CA /* LabeledIconMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EA63EBF2CC62D38000917CA /* LabeledIconMenu.swift */; };
 		1EA63EC52CCB7917000917CA /* PetEditableProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EA63EC42CCB7917000917CA /* PetEditableProfileViewModel.swift */; };
 		1EA63EC72CD20B73000917CA /* AddButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EA63EC62CD20B73000917CA /* AddButton.swift */; };
+		1EA63ECA2CD369E9000917CA /* ActivityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EA63EC92CD369E9000917CA /* ActivityView.swift */; };
+		1EA63ECC2CD36D76000917CA /* Activity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EA63ECB2CD36D76000917CA /* Activity.swift */; };
+		1EA63ECE2CD89D8F000917CA /* testActivityGrid.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EA63ECD2CD89D8F000917CA /* testActivityGrid.swift */; };
 		1ED241AB2CB2CD0B00DB035E /* PetCareTrackerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ED241AA2CB2CD0B00DB035E /* PetCareTrackerApp.swift */; };
 		1ED241AF2CB2CD0D00DB035E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1ED241AE2CB2CD0D00DB035E /* Assets.xcassets */; };
 		1ED241B22CB2CD0D00DB035E /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1ED241B12CB2CD0D00DB035E /* Preview Assets.xcassets */; };
@@ -41,6 +44,9 @@
 		1EA63EBF2CC62D38000917CA /* LabeledIconMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabeledIconMenu.swift; sourceTree = "<group>"; };
 		1EA63EC42CCB7917000917CA /* PetEditableProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PetEditableProfileViewModel.swift; sourceTree = "<group>"; };
 		1EA63EC62CD20B73000917CA /* AddButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddButton.swift; sourceTree = "<group>"; };
+		1EA63EC92CD369E9000917CA /* ActivityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityView.swift; sourceTree = "<group>"; };
+		1EA63ECB2CD36D76000917CA /* Activity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Activity.swift; sourceTree = "<group>"; };
+		1EA63ECD2CD89D8F000917CA /* testActivityGrid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = testActivityGrid.swift; sourceTree = "<group>"; };
 		1ED241A72CB2CD0B00DB035E /* PetCareTracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PetCareTracker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1ED241AA2CB2CD0B00DB035E /* PetCareTrackerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PetCareTrackerApp.swift; sourceTree = "<group>"; };
 		1ED241AE2CB2CD0D00DB035E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -73,6 +79,7 @@
 			isa = PBXGroup;
 			children = (
 				1E4BC9482CBA70EE00CD5D83 /* Pet.swift */,
+				1EA63ECB2CD36D76000917CA /* Activity.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -223,6 +230,8 @@
 				1ED241EB2CB8F9E200DB035E /* HomeView.swift */,
 				1ED241EE2CB8FBD000DB035E /* UserPetsView.swift */,
 				1EF91B272CBBC865000B3969 /* UserPetsViewModel.swift */,
+				1EA63EC92CD369E9000917CA /* ActivityView.swift */,
+				1EA63ECD2CD89D8F000917CA /* testActivityGrid.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -304,10 +313,13 @@
 				1E4BC9472CBA702B00CD5D83 /* PetCardView.swift in Sources */,
 				1EF91B282CBBC865000B3969 /* UserPetsViewModel.swift in Sources */,
 				1EF91B4A2CBE359F000B3969 /* Date+Ext.swift in Sources */,
+				1EA63ECE2CD89D8F000917CA /* testActivityGrid.swift in Sources */,
 				1EA63EC52CCB7917000917CA /* PetEditableProfileViewModel.swift in Sources */,
+				1EA63ECA2CD369E9000917CA /* ActivityView.swift in Sources */,
 				1EA63EC02CC62D38000917CA /* LabeledIconMenu.swift in Sources */,
 				1EF91B262CBA8883000B3969 /* Color+Ext.swift in Sources */,
 				1ED241EC2CB8F9E200DB035E /* HomeView.swift in Sources */,
+				1EA63ECC2CD36D76000917CA /* Activity.swift in Sources */,
 				1EF91B2C2CBCE363000B3969 /* PetProfileView.swift in Sources */,
 				1ED241E32CB6487A00DB035E /* Font+Ext.swift in Sources */,
 				1EF91B2A2CBBD462000B3969 /* Icons.swift in Sources */,

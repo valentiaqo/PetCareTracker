@@ -15,7 +15,7 @@ struct HomeView: View {
             
             VStack {
                 HStack {
-                    Text("Hello, Arnelik")
+                    Text("Hello, Valentyn ")
                         .font(.roboto(.bold, 30))
                     
                     Spacer()

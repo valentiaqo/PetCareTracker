@@ -24,5 +24,5 @@ struct PetCardView: View {
 }
 
 #Preview {
-    PetCardView(pet: MockData.samplePet)
+    PetCardView(pet: PetMockData.samplePet)
 }

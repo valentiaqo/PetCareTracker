@@ -25,7 +25,7 @@ struct UserPetsView: View {
                 NavigationStack {
                     ScrollView(.horizontal) {
                         LazyHGrid(rows: viewModel.columns, spacing: 20) {
-                            ForEach(MockData.samplePets) { pet in
+                            ForEach(PetMockData.samplePets) { pet in
                                 NavigationLink(value: pet) {
                                     Button {
                                         viewModel.selectedPet = pet
@@ -39,6 +39,7 @@ struct UserPetsView: View {
                                     }
                                 }
                             }
+                            
                             Button {
                                 // open a PetEditableProfileView with a new pet 
                             } label: {

@@ -39,11 +39,11 @@ struct PetProfileView: View {
     
     func calculatedHeightForPetDetailsView() -> CGFloat {
         var viewHeight: CGFloat = 240
-        if pet.birthday == nil && pet.chip == String() && pet.breed == String() {
+        if pet.birthday == nil && pet.chip == nil && pet.breed == nil {
             viewHeight = 80
-        } else if (pet.birthday == nil && pet.chip == String()) || (pet.birthday == nil && pet.breed == String()) || (pet.breed == String() && pet.chip == String()) {
+        } else if (pet.birthday == nil && pet.chip == nil) || (pet.birthday == nil && pet.breed == nil) || (pet.breed == nil && pet.chip == nil) {
             viewHeight = 120
-        } else if pet.birthday == nil || pet.chip == String() || pet.breed == String() {
+        } else if pet.birthday == nil || pet.chip == nil || pet.breed == nil {
             viewHeight = 180
         }
         
@@ -83,16 +83,16 @@ struct PetDetailsView: View {
             VStack(spacing: -15) {
                 PetDetailView(imageName: LinearIcons.pawPrint.rawValue, description: "Animal: \(pet.animalType.capitalized), \(pet.sex.lowercased())")
                 
-                if !pet.breed.isEmpty {
-                    PetDetailView(imageName: LinearIcons.list2.rawValue, description: "Breed: \(pet.breed)")
+                if pet.breed != nil {
+                    PetDetailView(imageName: LinearIcons.list2.rawValue, description: "Breed: \(pet.breed ?? String())")
                 }
                 
                 if let birthday = pet.birthday {
-                    PetDetailView(imageName: LinearIcons.birthday.rawValue, description: "Birthday: \(birthday.toString())")
+                    PetDetailView(imageName: LinearIcons.birthday.rawValue, description: "Birthday: \(birthday.dateToString())")
                 }
                 
-                if !pet.chip.isEmpty {
-                    PetDetailView(imageName: LinearIcons.chip.rawValue, description: "Chip: \(pet.chip)")
+                if pet.chip != nil {
+                    PetDetailView(imageName: LinearIcons.chip.rawValue, description: "Chip: \(pet.chip ?? String())")
                 }
             }
         }
@@ -121,5 +121,5 @@ struct PetDetailView: View {
 }
 
 #Preview {
-    PetProfileView(pet: MockData.samplePet)
+    PetProfileView(pet: PetMockData.samplePet)
 }

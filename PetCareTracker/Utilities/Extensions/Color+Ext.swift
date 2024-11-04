@@ -28,6 +28,40 @@ extension Color {
         softColors.randomElement() ?? .gray
     }
     
+    static func backgroundCategoryColor(for category: Activity.ActivityType) -> Color {
+        var color: Color = gray
+        
+        switch category {
+        case .activity, .playtime: color = .softYellow
+        case .cleaning: color = .softBlue
+        case .feeding: color = .softGreen
+        case .grooming: color = .softOrange
+        case .medication, .vet: color = .softRed
+        case .other: color = .softOlive
+        case .training: color = .softPurple
+        case .walking: color = .softTeal
+        }
+        
+        return color
+    }
+    
+    static func foregroundCategoryColor(for category: Activity.ActivityType) -> Color {
+        var color: Color = gray
+        
+        switch category {
+        case .activity, .playtime: color = .darkYellow
+        case .cleaning: color = .darkBlue
+        case .feeding: color = .darkGgreen
+        case .grooming: color = .darkOrange
+        case .medication, .vet: color = .darkRed
+        case .other: color = .darkOlive
+        case .training: color = .darkPurple
+        case .walking: color = .darkTeal
+        }
+        
+        return color
+    }
+    
     //    static func getRandomUniqueColors(for pets: [Pet]) -> [AnimalType: Color] {
     //        var availableColors = Color.randomSoftColor.shuffled()
     //        var colorAssignment = [AnimalType: Color]()
