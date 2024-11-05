@@ -27,6 +27,7 @@ struct PetEditableProfileView: View {
                     LabeledIconMenu(title: "Sex", icon: LinearIcons.intersex.rawValue, pickerType: .sex, selection: $viewModel.sex)
                 }
                 
+                LabeledIconDatePicker(selection: $viewModel.birthday)
                 LabeledIconTextField(title: "Breed", text: $viewModel.breed, icon: LinearIcons.list2.rawValue)
                 LabeledIconTextField(title: "Chip", text: $viewModel.chip, icon: LinearIcons.chip.rawValue)
                 

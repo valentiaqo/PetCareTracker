@@ -19,4 +19,8 @@ extension Date {
         formatter.dateFormat = format
         return formatter.string(from: self)
     }
+    
+    var fiveYearsFromNow: Date {
+        Calendar.current.date(byAdding: .year, value: 5, to: Date()) ?? Date()
+    }
 }

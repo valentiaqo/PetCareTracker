@@ -14,4 +14,5 @@ class PetEditableProfileViewModel {
     var chip = String()
     var animal = String()
     var sex = String()
+    var birthday = Date()
 }
