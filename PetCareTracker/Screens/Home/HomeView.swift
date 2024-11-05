@@ -13,7 +13,7 @@ struct HomeView: View {
             Color(.cloudy)
                 .ignoresSafeArea()
             
-            VStack {
+            VStack(spacing: 20) {
                 HStack {
                     Text("Hello, Valentyn ")
                         .font(.roboto(.bold, 30))
@@ -29,10 +29,10 @@ struct HomeView: View {
                 .padding()
                 
                 UserPetsView()
+                UserActivityView()
                 
                 Spacer()
             }
-            .padding(.all)
         }
     }
 }
