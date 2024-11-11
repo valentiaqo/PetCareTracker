@@ -13,6 +13,8 @@ struct LabeledIconTextField: View {
     @Binding var text: String
     @FocusState private var isActive
     
+    @State private var keyboardObserver = KeyboardHeightObserver()
+    
     var icon: String?
     
     var body: some View {
@@ -47,8 +49,7 @@ struct LabeledIconTextField: View {
                 .font(.roboto(.medium, 17))
                 .foregroundStyle(isActive ? .onyx : .secondary)
                 .onTapGesture { isActive = true }
-                .animation(.spring, value: isActive)
-                
+                .animation(keyboardObserver.keyboardHeight <= 0 ? .none : .spring(duration: 0.5), value: isActive)
         }
     }
 }
