@@ -12,7 +12,7 @@ struct UserActivityView: View {
         ZStack {
             Color(.white)
             
-            VStack {
+            VStack(spacing: 0) {
                 HStack {
                     Text("Activity")
                         .font(.roboto(.bold, 20))
@@ -27,7 +27,7 @@ struct UserActivityView: View {
                             ForEach(ActivityMockData.sampleActivities) { activity  in
                                 ActivityView(activity: activity)
                                     .frame(height: 100)
-                                    .padding(EdgeInsets(top: 10, leading: 0, bottom: 0, trailing: 0))
+                                    .padding(EdgeInsets(top: 0, leading: 0, bottom: 5, trailing: 0))
                                     .scrollTransition { effect, phase in
                                         effect
                                             .scaleEffect(phase.isIdentity ? 1 : 0.9)

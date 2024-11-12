@@ -12,12 +12,10 @@ struct ActivityView: View {
     
     var body: some View {
         ZStack(alignment: .leading) {
-            
             Color.backgroundCategoryColor(for: activity.activityType)
                 .ignoresSafeArea()
             
             HStack(alignment: .center) {
-                
                 Text(activity.time.timeToString())
                     .padding(.leading)
                     .font(.roboto(.medium, 20))
@@ -48,6 +46,8 @@ struct ActivityDescriptionView: View {
                     .frame(width: 5, height: 5)
                 
                 Text(activity.pet)
+                    .lineLimit(0)
+                    .padding(.trailing)
             }
             .font(.roboto(.regular, 17))
             .foregroundStyle(Color.foregroundCategoryColor(for: activity.activityType))
