@@ -10,6 +10,7 @@ import SwiftUI
 enum CustomColors: String {
     case softBlue, softGreen, softOrange, softPurple, softRed, softYellow, softTeal, softPink, softOlive
     case paleBlue, paleGreen, paleOrange, palePurple, paleRed, paleYellow, paleTeal, palePink, paleOlive
+    case darkBlue, darkGreen, darkOrange, darkPurple, darkRed, darkYellow, darkTeal, darkOlive
 }
 
 extension Color {
@@ -24,8 +25,23 @@ extension Color {
                                       Color(CustomColors.softOlive.rawValue)
     ]
     
+    static var darkColors: [Color] = [Color(CustomColors.darkBlue.rawValue),
+                                      Color(CustomColors.darkGreen.rawValue),
+                                      Color(CustomColors.darkOrange.rawValue),
+                                      Color(CustomColors.darkPurple.rawValue),
+                                      Color(CustomColors.darkRed.rawValue),
+                                      Color(CustomColors.darkYellow.rawValue),
+                                      Color(CustomColors.darkTeal.rawValue),
+                                      Color(CustomColors.darkOlive.rawValue)
+    ]
+    
+    
     static var randomSoftColor: Color {
         softColors.randomElement() ?? .gray
+    }
+    
+    static var randomDarkColor: Color {
+        darkColors.randomElement() ?? .gray
     }
     
     static func backgroundCategoryColor(for category: Activity.ActivityType) -> Color {
@@ -51,7 +67,7 @@ extension Color {
         switch category {
         case .activity, .playtime: color = .darkYellow
         case .cleaning: color = .darkBlue
-        case .feeding: color = .darkGgreen
+        case .feeding: color = .darkGreen
         case .grooming: color = .darkOrange
         case .medication, .vet: color = .darkRed
         case .other: color = .darkOlive

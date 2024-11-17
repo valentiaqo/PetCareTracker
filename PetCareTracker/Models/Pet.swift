@@ -21,9 +21,9 @@ struct Pet: Hashable, Identifiable {
     var name: String
     var animalType: String
     var sex: String
-    var breed: String? = nil
+    var breed: String?
     var birthday: Date?
-    var chip: String? = nil
+    var chip: String?
     
     var cardBackgroundColor: String
 }

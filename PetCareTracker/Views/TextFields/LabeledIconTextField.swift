@@ -13,9 +13,8 @@ struct LabeledIconTextField: View {
     @Binding var text: String
     @FocusState private var isActive
     
-    @State private var keyboardObserver = KeyboardHeightObserver()
-    
     var icon: String?
+    var focusColor: Color
     
     var body: some View {
         ZStack(alignment: .leading) {
@@ -24,13 +23,12 @@ struct LabeledIconTextField: View {
                 .frame(height: 50)
                 .focused($isActive)
                 .submitLabel(.done)
-                .textInputAutocapitalization(.never)
                 .autocorrectionDisabled(true)
                 .font(.roboto(.regular, 17))
                 .overlay(
                     RoundedRectangle(cornerRadius: 10)
-                        .stroke(isActive ? .onyx : .gray,
-                                lineWidth: isActive ? 2 : 1)
+                        .stroke((isActive || !text.isEmpty) ? focusColor : .gray,
+                                lineWidth: (isActive || !text.isEmpty) ? 2.5 : 1.5)
                 )
             
             if let icon {
@@ -39,22 +37,23 @@ struct LabeledIconTextField: View {
                     .aspectRatio(contentMode: .fit)
                     .frame(width: 25, height: 25)
                     .padding(EdgeInsets(top: 15, leading: 15, bottom: 15, trailing: 0))
+                    .foregroundStyle((isActive || !text.isEmpty) ? focusColor : .onyx)
                     .onTapGesture { isActive = true }
             }
-            
+
             Text(title)
                 .padding(EdgeInsets(top: 15, leading: 50, bottom: 15, trailing: 0))
+                .foregroundColor((isActive || !text.isEmpty) ? .onyx : .secondary)
                 .offset(x: (isActive || !text.isEmpty) ? -40 : 0,
                         y: (isActive || !text.isEmpty) ? -40 : 0)
                 .font(.roboto(.medium, 17))
-                .foregroundStyle(isActive ? .onyx : .secondary)
                 .onTapGesture { isActive = true }
-                .animation(keyboardObserver.keyboardHeight <= 0 ? .none : .spring(duration: 0.5), value: isActive)
+                .animation(.spring(response: 0.3, dampingFraction: 0.6, blendDuration: 0), value: isActive)
         }
     }
 }
 
 #Preview {
-    LabeledIconTextField(title: "Name", text: .constant(""), icon: LinearIcons.heart.rawValue)
+    LabeledIconTextField(title: "Name", text: .constant(""), icon: LinearIcons.heart.rawValue, focusColor: Color.randomDarkColor)
 }
 

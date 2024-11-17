@@ -27,7 +27,7 @@ struct ActivityMockData {
     static let sampleActivities = [Activity(pet: "Daisy", activityType: Activity.ActivityType.activity, time: Date(), description: "Play fetch"),
                                    Activity(pet: "Luna", activityType: Activity.ActivityType.cleaning, time: Date(), description: "Description"),
                                    Activity(pet: "Marco", activityType: Activity.ActivityType.feeding, time: Date(), description: String()),
-                                   Activity(pet: "Gupulabupu", activityType: Activity.ActivityType.grooming, time: Date(), description: String()),
+                                   Activity(pet: "Gupulabupulabupu", activityType: Activity.ActivityType.grooming, time: Date(), description: String()),
                                    Activity(pet: "Eren", activityType: Activity.ActivityType.medication, time: Date(), description: "Desc."),
                                    Activity(pet: "Mr.Denmark", activityType: Activity.ActivityType.other, time: Date(), description: "Long description"),
                                    Activity(pet: "Gupgup", activityType: Activity.ActivityType.playtime, time: Date(), description: String()),
