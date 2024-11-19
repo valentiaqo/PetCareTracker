@@ -10,9 +10,12 @@ import SwiftUI
 @Observable
 class PetEditableProfileViewModel {
     var name = String()
+    var animal: String?
+    var sex: String?
+    
+    var birthday = Date()
     var breed = String()
     var chip = String()
-    var animal: String?
-    var sex = String()
-    var birthday = Date()
+
+    var cardBackgroundColor = Color.randomUniqueSoftColor(assignedColors: PetMockData.samplePets.map { $0.cardBackgroundColor })
 }

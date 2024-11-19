@@ -56,7 +56,7 @@ struct PetTitleView: View {
     
     var body: some View {
         HStack {
-            PetCardImageView(animalType: pet.animalType, cardBackgroundColor: pet.cardBackgroundColor)
+            PetCardImageView(animalType: pet.animal, cardBackgroundColor: Color(pet.cardBackgroundColor))
                 .padding(.trailing)
             
             Text(pet.name)
@@ -81,7 +81,7 @@ struct PetDetailsView: View {
         ZStack {
             Color(.white)
             VStack(spacing: -15) {
-                PetDetailView(imageName: LinearIcons.pawPrint.rawValue, description: "Animal: \(pet.animalType.capitalized), \(pet.sex.lowercased())")
+                PetDetailView(imageName: LinearIcons.pawPrint.rawValue, description: "Animal: \(pet.animal.rawValue.capitalized), \(pet.sex.rawValue.lowercased())")
                 
                 if pet.breed != nil {
                     PetDetailView(imageName: LinearIcons.list2.rawValue, description: "Breed: \(pet.breed ?? String())")

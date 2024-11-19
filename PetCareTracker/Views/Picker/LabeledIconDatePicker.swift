@@ -10,15 +10,13 @@ import SwiftUI
 struct LabeledIconDatePicker: View {
     @Binding var selection: Date
     
-    var focusColor: Color
-    
     var body: some View {
         HStack {
             Image(LinearIcons.calendar.rawValue)
                 .resizable()
                 .aspectRatio(contentMode: .fit)
                 .frame(width: 25, height: 25)
-                .foregroundStyle(selection.isToday ? .onyx : focusColor)
+                .foregroundStyle(.onyx)
             
             DatePicker("Birthday",
                        selection: $selection,
@@ -33,12 +31,11 @@ struct LabeledIconDatePicker: View {
         .frame(height: 50)
         .overlay(
             RoundedRectangle(cornerRadius: 10)
-                .stroke(selection.isToday ? .gray : focusColor,
-                        lineWidth: selection.isToday ? 1.5 : 2.5)
+                .stroke(.gray, lineWidth: 1.5)
         )
     }
 }
 
 #Preview {
-    LabeledIconDatePicker(selection: .constant(Date()), focusColor: .randomDarkColor)
+    LabeledIconDatePicker(selection: .constant(Date()))
 }

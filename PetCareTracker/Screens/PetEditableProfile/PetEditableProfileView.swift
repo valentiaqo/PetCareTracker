@@ -15,7 +15,7 @@ struct PetEditableProfileView: View {
     
     private var focusColors: [Color] = {
         let darkColors = Color.darkColors.shuffled()
-        return Array(darkColors.prefix(6))
+        return Array(darkColors.prefix(3))
     }()
     
     var body: some View {
@@ -25,24 +25,25 @@ struct PetEditableProfileView: View {
             
             ScrollView {
                 VStack(spacing: 40) {
-                    Spacer()
-                    
                     HStack(spacing: 15) {
-                        PetCardImageView(animalType: viewModel.animal?.lowercased(), cardBackgroundColor: pet?.cardBackgroundColor)
+                        if let animal = viewModel.animal {
+                            PetCardImageView(animalType: Pet.AnimalType(rawValue: animal.lowercased()), cardBackgroundColor: viewModel.cardBackgroundColor)
+                        }
+                        
                         LabeledIconTextField(title: "Name", text: $viewModel.name, icon: LinearIcons.heart.rawValue, focusColor: focusColors[0])
                     }
                     
                     HStack {
-                        LabeledIconMenu(title: "Animal", icon: LinearIcons.pawPrint.rawValue, pickerType: .animal, selection: $viewModel.animal.orEmpty, focusColor: focusColors[1])
-                        LabeledIconMenu(title: "Sex", icon: LinearIcons.intersex.rawValue, pickerType: .sex, selection: $viewModel.sex, focusColor: focusColors[2])
+                        LabeledIconMenu(title: "Animal", icon: LinearIcons.pawPrint.rawValue, pickerType: .animal, selection: $viewModel.animal.orEmpty)
+                        LabeledIconMenu(title: "Sex", icon: LinearIcons.intersex.rawValue, pickerType: .sex, selection: $viewModel.sex.orEmpty)
                     }
                     
                     Divider()
                         .padding(.horizontal)
                     
-                    LabeledIconDatePicker(selection: $viewModel.birthday, focusColor: focusColors[3])
-                    LabeledIconTextField(title: "Breed", text: $viewModel.breed, icon: LinearIcons.list2.rawValue, focusColor: focusColors[4])
-                    LabeledIconTextField(title: "Chip", text: $viewModel.chip, icon: LinearIcons.chip.rawValue, focusColor: focusColors[5])
+                    LabeledIconDatePicker(selection: $viewModel.birthday)
+                    LabeledIconTextField(title: "Breed", text: $viewModel.breed, icon: LinearIcons.list2.rawValue, focusColor: focusColors[1])
+                    LabeledIconTextField(title: "Chip", text: $viewModel.chip, icon: LinearIcons.chip.rawValue, focusColor: focusColors[2])
                     
                     Spacer()
 

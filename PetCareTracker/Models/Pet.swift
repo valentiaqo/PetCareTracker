@@ -19,8 +19,8 @@ struct Pet: Hashable, Identifiable {
     let id = UUID()
     
     var name: String
-    var animalType: String
-    var sex: String
+    var animal: AnimalType
+    var sex: Sex
     var breed: String?
     var birthday: Date?
     var chip: String?
@@ -29,13 +29,13 @@ struct Pet: Hashable, Identifiable {
 }
 
 struct PetMockData {
-    static let samplePet = Pet(name: "Luna", animalType: Pet.AnimalType.dog.rawValue, sex: Pet.Sex.male.rawValue, breed: "Golden retriever", birthday: Date(), chip: "1234567890123456", cardBackgroundColor: "softBlue")
+    static let samplePet = Pet(name: "Luna", animal: .dog, sex: .male, breed: "Golden retriever", birthday: Date(), chip: "1234567890123456", cardBackgroundColor: "softBlue")
     
-    static let samplePets = [Pet(name: "Luna", animalType: Pet.AnimalType.dog.rawValue, sex: Pet.Sex.male.rawValue, breed: "Golden retriever", birthday: Date(), chip: "1234567890123456", cardBackgroundColor: "softGreen"),
-                             Pet(name: "Snowflake", animalType: Pet.AnimalType.cat.rawValue, sex: Pet.Sex.female.rawValue, breed: "Sphynx", chip: "1234567890123456", cardBackgroundColor: "softOrange"),
-                             Pet(name: "Froggo baggins", animalType: Pet.AnimalType.frog.rawValue, sex: Pet.Sex.male.rawValue, birthday: Date(), cardBackgroundColor: "softPurple"),
-                             Pet(name: "Turtle", animalType: Pet.AnimalType.turtle.rawValue, sex: Pet.Sex.female.rawValue, cardBackgroundColor: "softRed"),
-                             Pet(name: "Lizzard", animalType: Pet.AnimalType.lizard.rawValue, sex: Pet.Sex.female.rawValue, cardBackgroundColor: "softYellow"),
+    static let samplePets = [Pet(name: "Luna", animal: .dog, sex: .male, breed: "Golden retriever", birthday: Date(), chip: "1234567890123456", cardBackgroundColor: "softGreen"),
+                             Pet(name: "Snowflake", animal: .cat, sex: .female, breed: "Sphynx", chip: "1234567890123456", cardBackgroundColor: "softOrange"),
+                             Pet(name: "Froggo baggins", animal: .frog, sex: .male, birthday: Date(), cardBackgroundColor: "softPurple"),
+                             Pet(name: "Turtle", animal: .turtle, sex: .female, cardBackgroundColor: "softRed"),
+                             Pet(name: "Lizzard", animal: .lizard, sex: .female, cardBackgroundColor: "softYellow"),
     ]
 }
 

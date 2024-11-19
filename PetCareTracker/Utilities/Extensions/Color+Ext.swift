@@ -11,6 +11,10 @@ enum CustomColors: String {
     case softBlue, softGreen, softOrange, softPurple, softRed, softYellow, softTeal, softPink, softOlive
     case paleBlue, paleGreen, paleOrange, palePurple, paleRed, paleYellow, paleTeal, palePink, paleOlive
     case darkBlue, darkGreen, darkOrange, darkPurple, darkRed, darkYellow, darkTeal, darkOlive
+    
+    static var softColors: [CustomColors] {
+        return [.softBlue, .softGreen, .softOrange, .softPurple, .softRed, .softYellow, .softTeal, .softPink, .softOlive]
+    }
 }
 
 extension Color {
@@ -78,38 +82,13 @@ extension Color {
         return color
     }
     
-    //    static func getRandomUniqueColors(for pets: [Pet]) -> [AnimalType: Color] {
-    //        var availableColors = Color.randomSoftColor.shuffled()
-    //        var colorAssignment = [AnimalType: Color]()
-    //
-    //        for pet in pets {
-    //            if let color = availableColors.popLast() {
-    //                colorAssignment[pet.animalType] = color
-    //            }
-    //        }
-    //        return colorAssignment
-    //    }
-    
-    //    static func assingColorForPet(_ pet: Pet) {
-    //        var availableColors = Color.randomSoftColor
-    //        var uniqueColor: Color
-    //
-    //        for pet in MockData.samplePets {
-    //            if UserDefaults.standard.string(forKey: UUID().uuidString) != nil {
-    //
-    //            }
-    //        }
-    //
-    //        var colorAssignment: [String: Color]
-    //        colorAssignment = [pet.id.uuidString: uniqueColor]
-    //
-    //    }
-    //
-    //    static func getColorForPet(_ pet: Pet) -> Color {
-    //        pet.id
-    //
-    //
-    //
-    //        return .gray
-    //    }
+    static func randomUniqueSoftColor(assignedColors: [String]) -> Color {
+        let allSoftColorStrings = CustomColors.softColors.map { $0.rawValue }
+        let availableColors = allSoftColorStrings.filter { !assignedColors.contains($0) }
+        
+        guard !availableColors.isEmpty else { return .silver }
+        
+        let randomColorName = availableColors.randomElement() ?? "silver"
+        return Color(randomColorName)
+    }
 }

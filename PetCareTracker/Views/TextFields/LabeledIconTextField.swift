@@ -27,8 +27,8 @@ struct LabeledIconTextField: View {
                 .font(.roboto(.regular, 17))
                 .overlay(
                     RoundedRectangle(cornerRadius: 10)
-                        .stroke((isActive || !text.isEmpty) ? focusColor : .gray,
-                                lineWidth: (isActive || !text.isEmpty) ? 2.5 : 1.5)
+                        .stroke(isActive ? focusColor : .gray,
+                                lineWidth: isActive ? 2.5 : 1.5)
                 )
             
             if let icon {
@@ -37,7 +37,7 @@ struct LabeledIconTextField: View {
                     .aspectRatio(contentMode: .fit)
                     .frame(width: 25, height: 25)
                     .padding(EdgeInsets(top: 15, leading: 15, bottom: 15, trailing: 0))
-                    .foregroundStyle((isActive || !text.isEmpty) ? focusColor : .onyx)
+                    .foregroundStyle(isActive ? focusColor : .onyx)
                     .onTapGesture { isActive = true }
             }
 

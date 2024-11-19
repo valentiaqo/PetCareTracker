@@ -12,7 +12,7 @@ struct PetCardView: View {
     
     var body: some View {
         VStack {
-            PetCardImageView(animalType: pet.animalType, cardBackgroundColor: pet.cardBackgroundColor)
+            PetCardImageView(animalType: pet.animal, cardBackgroundColor: Color(pet.cardBackgroundColor))
             
             Text(pet.name)
                 .font(.roboto(.medium, 17))

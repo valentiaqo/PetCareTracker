@@ -13,8 +13,6 @@ struct LabeledIconMenu: View {
     var pickerType: PickerType
     @Binding var selection: String
     
-    var focusColor: Color
-    
     enum PickerType {
         case sex, animal
     }
@@ -45,7 +43,7 @@ struct LabeledIconMenu: View {
                             .resizable()
                             .aspectRatio(contentMode: .fit)
                             .frame(width: 25, height: 25)
-                            .foregroundStyle(selection.isEmpty ? .onyx : focusColor)
+                            .foregroundStyle(.onyx)
                     }
                     
                     ZStack {
@@ -75,8 +73,7 @@ struct LabeledIconMenu: View {
                 .frame(maxWidth: .infinity, maxHeight: 50)
                 .overlay(
                     RoundedRectangle(cornerRadius: 10)
-                        .stroke(selection.isEmpty ? .gray : focusColor,
-                                lineWidth: selection.isEmpty ? 1.5 : 2.5)
+                        .stroke(.gray, lineWidth: 1.5)
                 )
             }
             .frame(height: 50)
@@ -86,5 +83,5 @@ struct LabeledIconMenu: View {
 
 
 #Preview {
-    LabeledIconMenu(title: "Sex", icon: LinearIcons.intersex.rawValue, pickerType: .animal, selection: .constant("Dog"), focusColor: .randomDarkColor)
+    LabeledIconMenu(title: "Sex", icon: LinearIcons.intersex.rawValue, pickerType: .animal, selection: .constant("Dog"))
 }
