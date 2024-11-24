@@ -11,7 +11,9 @@ import SwiftUI
 struct PetCareTrackerApp: App {
     var body: some Scene {
         WindowGroup {
-            HomeView()
+//            HomeView()
+            PetEditableProfileView()
+            
         }
     }
 }
