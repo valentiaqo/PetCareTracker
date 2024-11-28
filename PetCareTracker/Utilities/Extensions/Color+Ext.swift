@@ -39,6 +39,17 @@ extension Color {
                                       Color(CustomColors.darkOlive.rawValue)
     ]
     
+    private static let colorNameMapping: [Color: CustomColors] = [
+        Color(CustomColors.softBlue.rawValue): .softBlue,
+        Color(CustomColors.softGreen.rawValue): .softGreen,
+        Color(CustomColors.softOrange.rawValue): .softOrange,
+        Color(CustomColors.softPurple.rawValue): .softPurple,
+        Color(CustomColors.softRed.rawValue): .softRed,
+        Color(CustomColors.softYellow.rawValue): .softYellow,
+        Color(CustomColors.softTeal.rawValue): .softTeal,
+        Color(CustomColors.softPink.rawValue): .softPink,
+        Color(CustomColors.softOlive.rawValue): .softOlive,
+    ]
     
     static var randomSoftColor: Color {
         softColors.randomElement() ?? .gray
@@ -86,9 +97,13 @@ extension Color {
         let allSoftColorStrings = CustomColors.softColors.map { $0.rawValue }
         let availableColors = allSoftColorStrings.filter { !assignedColors.contains($0) }
         
-        guard !availableColors.isEmpty else { return .silver }
+        guard !availableColors.isEmpty else { return Color(allSoftColorStrings.randomElement() ?? "silver") }
         
         let randomColorName = availableColors.randomElement() ?? "silver"
         return Color(randomColorName)
+    }
+    
+    static func getColorName(of color: Color) -> String? {
+        return colorNameMapping[color]?.rawValue
     }
 }

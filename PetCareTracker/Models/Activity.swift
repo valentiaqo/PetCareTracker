@@ -18,22 +18,22 @@ struct Activity: Identifiable {
     var activityType: ActivityType
     var time: Date
     var date: Date = Date()
-    var description: String? = nil
+    var description: String?
 }
 
 struct ActivityMockData {
-    static let sampleActivity = Activity(pet: "Daisy", activityType: Activity.ActivityType.medication, time: Date(), description: "Play fetch")
+    static let sampleActivity = Activity(pet: "Daisy", activityType: .medication, time: Date(), description: "Play fetch")
     
-    static let sampleActivities = [Activity(pet: "Daisy", activityType: Activity.ActivityType.activity, time: Date(), description: "Play fetch"),
-                                   Activity(pet: "Luna", activityType: Activity.ActivityType.cleaning, time: Date(), description: "Description"),
-                                   Activity(pet: "Marco", activityType: Activity.ActivityType.feeding, time: Date(), description: String()),
-                                   Activity(pet: "Gupulabupulabupu", activityType: Activity.ActivityType.grooming, time: Date(), description: String()),
-                                   Activity(pet: "Eren", activityType: Activity.ActivityType.medication, time: Date(), description: "Desc."),
-                                   Activity(pet: "Mr.Denmark", activityType: Activity.ActivityType.other, time: Date(), description: "Long description"),
-                                   Activity(pet: "Gupgup", activityType: Activity.ActivityType.playtime, time: Date(), description: String()),
-                                   Activity(pet: "Daisy", activityType: Activity.ActivityType.training, time: Date(), description: "Very very very very very very long description"),
-                                   Activity(pet: "Daisy", activityType: Activity.ActivityType.vet, time: Date(), description: String()),
-                                   Activity(pet: "Daisy", activityType: Activity.ActivityType.walking, time: Date(), description: "Some long desctiprion")
+    static let sampleActivities = [Activity(pet: "Daisy", activityType: .activity, time: Date(), description: "Play fetch"),
+                                   Activity(pet: "Luna", activityType: .cleaning, time: Date(), description: "Description"),
+                                   Activity(pet: "Marco", activityType: .feeding, time: Date(), description: String()),
+                                   Activity(pet: "Gupulabupulabupu", activityType: .grooming, time: Date(), description: String()),
+                                   Activity(pet: "Eren", activityType: .medication, time: Date(), description: "Desc."),
+                                   Activity(pet: "Mr.Denmark", activityType: .other, time: Date(), description: "Long description"),
+                                   Activity(pet: "Gupgup", activityType: .playtime, time: Date(), description: String()),
+                                   Activity(pet: "Daisy", activityType: .training, time: Date(), description: "Very very very very very very long description"),
+                                   Activity(pet: "Daisy", activityType: .vet, time: Date(), description: String()),
+                                   Activity(pet: "Daisy", activityType: .walking, time: Date(), description: "Some long desctiprion")
     ]
 }
 

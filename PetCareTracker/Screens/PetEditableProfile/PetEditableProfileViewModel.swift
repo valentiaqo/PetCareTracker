@@ -9,13 +9,74 @@ import SwiftUI
 
 @Observable
 class PetEditableProfileViewModel {
-    var name = String()
+    var name: String?
     var animal: String?
     var sex: String?
     
     var birthday = Date()
-    var breed = String()
-    var chip = String()
-
-    var cardBackgroundColor = Color.randomUniqueSoftColor(assignedColors: PetMockData.samplePets.map { $0.cardBackgroundColor })
+    var breed: String?
+    var chip: String?
+    
+    var cardBackgroundColor: String?
+    
+    var isValidForm: Bool {
+        name != nil && animal != nil && sex != nil
+    }
+    
+    func loadFromPet(_ pet: Pet) {
+        name = pet.name
+        animal = pet.animal.rawValue
+        sex = pet.sex.rawValue
+        breed = pet.breed
+        chip = pet.chip
+        cardBackgroundColor = pet.cardBackgroundColor
+        if let birthday = pet.birthday {
+            self.birthday = birthday
+        }
+    }
+    
+    func prepareForNewPet() {
+        cardBackgroundColor = Color.getColorName(of: Color.randomUniqueSoftColor(assignedColors: PetMockData.samplePets.map { $0.cardBackgroundColor })) ?? "Gray"
+    }
+    
+    func saveChanges(for pet: inout Pet?) {
+        if isValidForm {
+            guard let name, let animal = Pet.AnimalType(rawValue: animal.orEmpty.lowercased()), let sex = Pet.Sex(rawValue: sex.orEmpty.lowercased()) else { return }
+            
+            if pet == nil {
+                pet = Pet(name: name,
+                          animal: animal,
+                          sex: sex, breed: breed,
+                          birthday: birthday,
+                          chip: chip,
+                          cardBackgroundColor: cardBackgroundColor ?? "Gray")
+            } else {
+                pet?.name = name
+                pet?.animal = animal
+                pet?.sex = sex
+                pet?.birthday = birthday
+                pet?.breed = breed
+                pet?.chip = chip
+                pet?.cardBackgroundColor = cardBackgroundColor.orEmpty
+            }
+        }
+    }
 }
+
+/*
+ var user = User()
+ var alertItem: AlertItem?
+ 
+ var isValidForm: Bool {
+ guard !user.firstName.isEmpty && !user.lastName.isEmpty && !user.email.isEmpty else {
+ alertItem = AlertContext.invalidForm
+ return false
+ }
+ 
+ guard user.email.isValidEmail else {
+ alertItem = AlertContext.invalidEmail
+ return false
+ }
+ return true
+ }
+*/

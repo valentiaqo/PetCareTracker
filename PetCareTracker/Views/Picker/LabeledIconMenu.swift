@@ -8,14 +8,14 @@
 import SwiftUI
 
 struct LabeledIconMenu: View {
+    enum PickerType {
+        case sex, animal
+    }
+    
     var title: String
     var icon: String?
     var pickerType: PickerType
     @Binding var selection: String
-    
-    enum PickerType {
-        case sex, animal
-    }
     
     var pickerOptions: [String] {
         switch pickerType {
@@ -54,11 +54,10 @@ struct LabeledIconMenu: View {
                                     y: selection.isEmpty ? 0 : -40)
                             .animation(.spring, value: selection.isEmpty)
                         
-                        Text(selection)
+                        Text(selection.capitalized)
                             .font(.roboto(.regular, 17))
                             .foregroundStyle(.onyx)
                             .opacity(selection.isEmpty ? 0 : 1)
-                            
                     }
                     
                     Spacer()
