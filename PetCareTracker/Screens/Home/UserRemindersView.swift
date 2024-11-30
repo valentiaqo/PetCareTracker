@@ -7,14 +7,14 @@
 
 import SwiftUI
 
-struct UserActivityView: View {
+struct UserRemindersView: View {
     var body: some View {
         ZStack {
             Color(.white)
             
             VStack(spacing: 0) {
                 HStack {
-                    Text("Activity")
+                    Text("Reminders")
                         .font(.roboto(.bold, 20))
                         .foregroundStyle(.onyx)
                         .padding(EdgeInsets(top: 16, leading: 16, bottom: 0, trailing: 0))
@@ -24,8 +24,8 @@ struct UserActivityView: View {
                 NavigationStack {
                     ScrollView {
                         LazyVGrid(columns: [GridItem(.flexible())]) {
-                            ForEach(ActivityMockData.sampleActivities) { activity  in
-                                ActivityView(activity: activity)
+                            ForEach(ReminderMockData.sampleReminders) { activity  in
+                                ReminderView(reminder: activity)
                                     .frame(height: 100)
                                     .padding(EdgeInsets(top: 0, leading: 0, bottom: 5, trailing: 0))
                                     .scrollTransition { effect, phase in
@@ -47,5 +47,5 @@ struct UserActivityView: View {
 }
 
 #Preview {
-    UserActivityView()
+    UserRemindersView()
 }

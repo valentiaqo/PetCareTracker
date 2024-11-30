@@ -24,14 +24,13 @@ struct HomeView: View {
                         // action: open settings
                     } label: {
                         Image(LinearIcons.settings.rawValue)
+                            .tint(.onyx)
                     }
                 }
                 .padding()
                 
                 UserPetsView()
-                UserActivityView()
-                
-                Spacer()
+                UserRemindersView()
             }
         }
     }

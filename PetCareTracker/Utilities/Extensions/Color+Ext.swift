@@ -59,7 +59,7 @@ extension Color {
         darkColors.randomElement() ?? .gray
     }
     
-    static func backgroundCategoryColor(for category: Activity.ActivityType) -> Color {
+    static func backgroundCategoryColor(for category: Reminder.ReminderType) -> Color {
         var color: Color = gray
         
         switch category {
@@ -76,7 +76,7 @@ extension Color {
         return color
     }
     
-    static func foregroundCategoryColor(for category: Activity.ActivityType) -> Color {
+    static func foregroundCategoryColor(for category: Reminder.ReminderType) -> Color {
         var color: Color = gray
         
         switch category {

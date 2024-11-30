@@ -16,6 +16,7 @@ struct AddButton: View {
                     .resizable()
                     .aspectRatio(contentMode: .fit)
                     .frame(width: 25, height: 25)
+                    .tint(.onyx)
             
         }
         .frame(width: 65, height: 65)

@@ -16,16 +16,13 @@ struct PetProfileView: View {
                 .ignoresSafeArea()
             
             VStack {
-                
                 Rectangle()
                     .frame(width: 50, height: 5)
                     .clipShape(.rect(cornerRadius: 20))
                     .foregroundStyle(.onyx)
                     .padding(EdgeInsets(top: 10, leading: 0, bottom: 0, trailing: 0))
                 
-                
                 PetTitleView(pet: pet)
-                
                 
                 PetDetailsView(pet: pet)
                     .frame(width: 360, height: calculatedHeightForPetDetailsView())
@@ -38,16 +35,21 @@ struct PetProfileView: View {
     }
     
     func calculatedHeightForPetDetailsView() -> CGFloat {
-        var viewHeight: CGFloat = 240
-        if pet.birthday == nil && pet.chip == nil && pet.breed == nil {
-            viewHeight = 80
-        } else if (pet.birthday == nil && pet.chip == nil) || (pet.birthday == nil && pet.breed == nil) || (pet.breed == nil && pet.chip == nil) {
-            viewHeight = 120
-        } else if pet.birthday == nil || pet.chip == nil || pet.breed == nil {
-            viewHeight = 180
+        let defaultHeight: CGFloat = 240
+        let minimalHeight: CGFloat = 80
+        let reducedHeight: CGFloat = 120
+        let mediumHeight: CGFloat = 180
+
+        switch (pet.birthday != nil, pet.chip != nil, pet.breed != nil) {
+        case (false, false, false):
+            return minimalHeight
+        case (false, false, true), (false, true, false), (true, false, false):
+            return reducedHeight
+        case (false, true, true), (true, false, true), (true, true, false):
+            return mediumHeight
+        default:
+            return defaultHeight
         }
-        
-        return viewHeight
     }
 }
 
@@ -68,6 +70,7 @@ struct PetTitleView: View {
                 
             } label: {
                 Image(LinearIcons.edit.rawValue)
+                    .tint(.onyx)
             }
         }
         .padding()
@@ -98,7 +101,6 @@ struct PetDetailsView: View {
         }
     }
 }
-
 
 struct PetDetailView: View {
     let imageName: String

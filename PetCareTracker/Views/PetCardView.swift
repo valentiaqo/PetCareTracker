@@ -15,7 +15,7 @@ struct PetCardView: View {
             PetCardImageView(animalType: pet.animal, cardBackgroundColor: Color(pet.cardBackgroundColor))
             
             Text(pet.name)
-                .font(.roboto(.medium, 17))
+                .font(.roboto(.regular, 17))
                 .foregroundStyle(.onyx)
         }
         
