@@ -8,7 +8,7 @@
 import SwiftUI
 
 @Observable
-class PetEditableProfileViewModel {
+class EditablePetProfileViewModel {
     var name: String?
     var animal: String?
     var sex: String?

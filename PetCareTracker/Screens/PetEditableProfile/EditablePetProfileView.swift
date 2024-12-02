@@ -7,9 +7,9 @@
 
 import SwiftUI
 
-struct PetEditableProfileView: View {
+struct EditablePetProfileView: View {
     var pet: Pet?
-    @State var viewModel: PetEditableProfileViewModel
+    @State var viewModel: EditablePetProfileViewModel
     
     @State private var keyboardObserver = KeyboardHeightObserver()
     
@@ -19,7 +19,7 @@ struct PetEditableProfileView: View {
     }()
     
     init(pet: Pet? = nil) {
-        viewModel = PetEditableProfileViewModel()
+        viewModel = EditablePetProfileViewModel()
         if let pet = pet {
             viewModel.loadFromPet(pet)
         } else {
@@ -80,11 +80,11 @@ struct PetEditableProfileView: View {
                 .padding()
                 
             }
-            .scrollDisabled(keyboardObserver.keyboardHeight == 0 ? true : false)
+//            .scrollDisabled(keyboardObserver.keyboardHeight == 0 ? true : false)
         }
     }
 }
 
 #Preview {
-    PetEditableProfileView()
+    EditablePetProfileView()
 }

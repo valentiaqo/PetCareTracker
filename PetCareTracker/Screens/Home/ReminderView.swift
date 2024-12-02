@@ -50,11 +50,13 @@ struct ActivityDescriptionView: View {
                     .lineLimit(0)
                     .padding(.trailing)
             }
+            .offset(y: -5)
             .font(.roboto(.regular, 17))
             .foregroundStyle(Color.foregroundCategoryColor(for: reminder.reminderType))
             
             Text(reminder.reminderType.rawValue.capitalized)
                 .font(.roboto(.medium, 18))
+                .offset(y: -5)
             Text(reminder.description ?? String())
                 .padding(.trailing)
                 .font(.roboto(.regular, 16))

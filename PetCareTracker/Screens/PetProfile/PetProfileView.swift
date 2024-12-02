@@ -8,28 +8,46 @@
 import SwiftUI
 
 struct PetProfileView: View {
-    let pet: Pet
+    @State var pet: Pet
     
     var body: some View {
-        ZStack {
-            Color(.cloudy)
-                .ignoresSafeArea()
-            
-            VStack {
-                Rectangle()
-                    .frame(width: 50, height: 5)
-                    .clipShape(.rect(cornerRadius: 20))
-                    .foregroundStyle(.onyx)
-                    .padding(EdgeInsets(top: 10, leading: 0, bottom: 0, trailing: 0))
+        NavigationView {
+            ZStack {
+                Color(.cloudy)
+                    .ignoresSafeArea()
                 
-                PetTitleView(pet: pet)
-                
-                PetDetailsView(pet: pet)
-                    .frame(width: 360, height: calculatedHeightForPetDetailsView())
-                    .clipShape(RoundedRectangle(cornerRadius: 20))
-                
-                Spacer()
-                
+                VStack {
+                    Rectangle()
+                        .frame(width: 50, height: 5)
+                        .clipShape(.rect(cornerRadius: 20))
+                        .foregroundStyle(.onyx)
+                        .padding(EdgeInsets(top: 10, leading: 0, bottom: 0, trailing: 0))
+                    
+                    HStack {
+                        PetCardImageView(animalType: pet.animal, cardBackgroundColor: Color(pet.cardBackgroundColor))
+                            .padding(.trailing)
+                        
+                        Text(pet.name)
+                            .font(.roboto(.bold, 30))
+                        
+                        Spacer()
+                        
+                        NavigationLink {
+                            EditablePetProfileView(pet: pet)
+                        } label: {
+                            Image(LinearIcons.edit.rawValue)
+                                .tint(.onyx)
+                        }
+                    }
+                    .padding()
+                    
+                    PetDetailsView(pet: pet)
+                        .frame(width: 360, height: calculatedHeightForPetDetailsView())
+                        .clipShape(RoundedRectangle(cornerRadius: 20))
+                    
+                    Spacer()
+                    
+                }
             }
         }
     }
@@ -50,30 +68,6 @@ struct PetProfileView: View {
         default:
             return defaultHeight
         }
-    }
-}
-
-struct PetTitleView: View {
-    let pet: Pet
-    
-    var body: some View {
-        HStack {
-            PetCardImageView(animalType: pet.animal, cardBackgroundColor: Color(pet.cardBackgroundColor))
-                .padding(.trailing)
-            
-            Text(pet.name)
-                .font(.roboto(.bold, 30))
-            
-            Spacer()
-            
-            Button {
-                
-            } label: {
-                Image(LinearIcons.edit.rawValue)
-                    .tint(.onyx)
-            }
-        }
-        .padding()
     }
 }
 

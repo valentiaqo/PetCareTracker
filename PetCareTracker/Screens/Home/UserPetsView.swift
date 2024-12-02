@@ -50,13 +50,10 @@ struct UserPetsView: View {
                     }
                     .sheet(item: $viewModel.selectedPet) { pet in
                         PetProfileView(pet: pet)
-                            .presentationDetents([.medium])
+                            .presentationDetents([.large])
                     }
                     .scrollIndicators(.hidden)
                 }
-                
-                
-                
             }
             .padding()
             
