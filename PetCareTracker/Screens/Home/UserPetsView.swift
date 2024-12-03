@@ -41,7 +41,7 @@ struct UserPetsView: View {
                             }
                             
                             Button {
-                                // open a PetEditableProfileView with a new pet 
+                                viewModel.isAddingPet = true
                             } label: {
                                 AddButton()
                                     .padding(EdgeInsets(top: 0, leading: 0, bottom: 25, trailing: 0))
@@ -50,7 +50,10 @@ struct UserPetsView: View {
                     }
                     .sheet(item: $viewModel.selectedPet) { pet in
                         PetProfileView(pet: pet)
-                            .presentationDetents([.large])
+                            .presentationDetents([.medium])
+                    }
+                    .fullScreenCover(isPresented: $viewModel.isAddingPet) {
+                        EditablePetProfileView()
                     }
                     .scrollIndicators(.hidden)
                 }
@@ -60,8 +63,6 @@ struct UserPetsView: View {
         }
         .frame(width: 360, height: 170)
         .clipShape(RoundedRectangle(cornerRadius: 20))
-//        .shadow(color: .gray, radius: 10)
-        
     }
 }
 

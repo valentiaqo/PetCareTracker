@@ -11,4 +11,5 @@ import SwiftUI
 final class UserPetsViewModel {
     let columns: [GridItem] = [GridItem(.flexible())]
     var selectedPet: Pet?
+    var isAddingPet = false
 }

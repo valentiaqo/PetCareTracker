@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct PetProfileView: View {
+    @State var viewModel = PetProfileViewModel()
     @State var pet: Pet
     
     var body: some View {
@@ -32,8 +33,8 @@ struct PetProfileView: View {
                         
                         Spacer()
                         
-                        NavigationLink {
-                            EditablePetProfileView(pet: pet)
+                        Button {
+                            viewModel.isEditingPet = true
                         } label: {
                             Image(LinearIcons.edit.rawValue)
                                 .tint(.onyx)
@@ -46,9 +47,11 @@ struct PetProfileView: View {
                         .clipShape(RoundedRectangle(cornerRadius: 20))
                     
                     Spacer()
-                    
                 }
             }
+        }
+        .fullScreenCover(isPresented: $viewModel.isEditingPet) {
+            EditablePetProfileView(pet: pet)
         }
     }
     
