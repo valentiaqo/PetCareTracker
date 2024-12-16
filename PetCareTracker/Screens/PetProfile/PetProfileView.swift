@@ -12,7 +12,7 @@ struct PetProfileView: View {
     @State var pet: Pet
     
     var body: some View {
-        NavigationView {
+        NavigationStack {
             ZStack {
                 Color(.cloudy)
                     .ignoresSafeArea()

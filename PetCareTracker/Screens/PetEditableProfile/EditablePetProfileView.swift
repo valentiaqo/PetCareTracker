@@ -9,9 +9,11 @@ import SwiftUI
 
 struct EditablePetProfileView: View {
     var pet: Pet?
+    
     @State var viewModel: EditablePetProfileViewModel
     
     @State private var keyboardObserver = KeyboardHeightObserver()
+    @State private var showAlert: Bool = false
     
     private var focusColors: [Color] = {
         let darkColors = Color.darkColors.shuffled()
@@ -28,7 +30,7 @@ struct EditablePetProfileView: View {
     }
     
     var body: some View {
-        NavigationView {
+        NavigationStack {
             ZStack {
                 Color(.cloudy)
                     .ignoresSafeArea()
@@ -63,6 +65,7 @@ struct EditablePetProfileView: View {
                                 //                            viewModel.saveChanges(for: pet)
                             } else {
                                 print("no")
+                                showAlert.toggle()
                                 // present alert
                             }
                         } label: {
@@ -90,6 +93,19 @@ struct EditablePetProfileView: View {
                     BackButton()
                 }
             }
+        }
+        .floatingBottomSheet(isPresented: $showAlert) {
+            SheetView(title: "Missing information",
+                      desctiption: "Please make sure that name, animal and sex are filled in",
+                      image: .init(
+                        title: "info",
+                        tint: .onyx,
+                        foreground: .white),
+                      button1: .init(
+                        title: "Ok",
+                        tint: .onyx,
+                        foreground: .white))
+            .presentationDetents([.height(330)])
         }
     }
 }
