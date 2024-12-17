@@ -62,7 +62,7 @@ struct EditablePetProfileView: View {
                         Button {
                             if viewModel.isValidForm {
                                 print("yes")
-                                //                            viewModel.saveChanges(for: pet)
+                                // viewModel.saveChanges(for: pet)
                             } else {
                                 print("no")
                                 showAlert.toggle()
@@ -105,7 +105,7 @@ struct EditablePetProfileView: View {
                         title: "Ok",
                         tint: .onyx,
                         foreground: .white))
-            .presentationDetents([.height(330)])
+            .presentationDetents([.height(350)])
         }
     }
 }
