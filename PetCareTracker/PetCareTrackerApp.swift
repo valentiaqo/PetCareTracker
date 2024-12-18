@@ -12,8 +12,6 @@ struct PetCareTrackerApp: App {
     var body: some Scene {
         WindowGroup {
             HomeView()
-//            PetEditableProfileView()
-            
         }
     }
 }

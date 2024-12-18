@@ -21,8 +21,8 @@ struct ReminderView: View {
                     .font(.roboto(.medium, 18))
                 
                 Divider()
-                    .padding(EdgeInsets(top: 15, leading: 5, bottom: 15, trailing: 5))
-//                    .padding()
+                    .padding(.vertical, 15)
+                    .padding(.horizontal, 5)
                 
                 ActivityDescriptionView(reminder: reminder)
             }

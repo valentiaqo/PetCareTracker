@@ -24,7 +24,7 @@ struct UserPetsView: View {
                 
                 NavigationStack {
                     ScrollView(.horizontal) {
-                        LazyHGrid(rows: viewModel.columns, spacing: 20) {
+                        LazyHGrid(rows: viewModel.rows, spacing: 20) {
                             ForEach(PetMockData.samplePets) { pet in
                                 NavigationLink(value: pet) {
                                     Button {
@@ -44,7 +44,7 @@ struct UserPetsView: View {
                                 viewModel.isAddingPet = true
                             } label: {
                                 AddButton()
-                                    .padding(EdgeInsets(top: 0, leading: 0, bottom: 25, trailing: 0))
+                                    .padding(.bottom, 25)
                             }
                         }
                     }

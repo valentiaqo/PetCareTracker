@@ -17,7 +17,7 @@ struct UserRemindersView: View {
                     Text("Reminders")
                         .font(.roboto(.bold, 20))
                         .foregroundStyle(.onyx)
-                        .padding(EdgeInsets(top: 16, leading: 16, bottom: 0, trailing: 0))
+                        .padding([.top, .leading], 16)
                     Spacer()
                 }
                 
@@ -27,7 +27,7 @@ struct UserRemindersView: View {
                             ForEach(ReminderMockData.sampleReminders) { activity  in
                                 ReminderView(reminder: activity)
                                     .frame(height: 100)
-                                    .padding(EdgeInsets(top: 0, leading: 0, bottom: 5, trailing: 0))
+                                    .padding(.bottom, 5)
                                     .scrollTransition { effect, phase in
                                         effect
                                             .scaleEffect(phase.isIdentity ? 1 : 0.9)

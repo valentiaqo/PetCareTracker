@@ -19,7 +19,8 @@ struct LabeledIconTextField: View {
     var body: some View {
         ZStack(alignment: .leading) {
             TextField(String(), text: $text)
-                .padding(EdgeInsets(top: 15, leading: 50, bottom: 15, trailing: 15))
+                .padding(.leading, 50)
+                .padding([.top, .bottom, .trailing], 15)
                 .frame(height: 50)
                 .focused($isActive)
                 .submitLabel(.done)
@@ -36,13 +37,14 @@ struct LabeledIconTextField: View {
                     .resizable()
                     .aspectRatio(contentMode: .fit)
                     .frame(width: 25, height: 25)
-                    .padding(EdgeInsets(top: 15, leading: 15, bottom: 15, trailing: 0))
+                    .padding([.leading, .top, .bottom], 15)
                     .foregroundStyle(isActive ? focusColor : .onyx)
                     .onTapGesture { isActive = true }
             }
 
             Text(title)
-                .padding(EdgeInsets(top: 15, leading: 50, bottom: 15, trailing: 0))
+                .padding(.leading, 50)
+                .padding([.top, .bottom], 15)
                 .foregroundColor((isActive || !text.isEmpty) ? .onyx : .secondary)
                 .offset(x: (isActive || !text.isEmpty) ? -40 : 0,
                         y: (isActive || !text.isEmpty) ? -40 : 0)

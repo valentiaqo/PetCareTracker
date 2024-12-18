@@ -22,7 +22,7 @@ struct PetProfileView: View {
                         .frame(width: 50, height: 5)
                         .clipShape(.rect(cornerRadius: 20))
                         .foregroundStyle(.onyx)
-                        .padding(EdgeInsets(top: 10, leading: 0, bottom: 0, trailing: 0))
+                        .padding(.top, 10)
                     
                     HStack {
                         PetCardImageView(animalType: pet.animal, cardBackgroundColor: Color(pet.cardBackgroundColor))

@@ -39,23 +39,34 @@ struct EditablePetProfileView: View {
                     VStack(spacing: 40) {
                         HStack(spacing: 15) {
                             if let animal = viewModel.animal {
-                                PetCardImageView(animalType: Pet.AnimalType(rawValue: animal.lowercased()), cardBackgroundColor: Color(viewModel.cardBackgroundColor.orEmpty))
+                                PetCardImageView(animalType: Pet.AnimalType(rawValue: animal.lowercased()),
+                                                 cardBackgroundColor: Color(viewModel.cardBackgroundColor.orEmpty))
+                                .animation(.easeInOut(duration: 0.5), value: viewModel.animal)
                             }
                             
-                            LabeledIconTextField(title: "Name", text: $viewModel.name.orEmpty, icon: LinearIcons.heart.rawValue, focusColor: focusColors[0])
+                            LabeledIconTextField(title: "Name", text: $viewModel.name.orEmpty,
+                                                 icon: LinearIcons.heart.rawValue,
+                                                 focusColor: focusColors[0])
+                            .padding(.top)
                         }
                         
                         HStack {
-                            LabeledIconMenu(title: "Animal", icon: LinearIcons.pawPrint.rawValue, pickerType: .animal, selection: $viewModel.animal.orEmpty)
-                            LabeledIconMenu(title: "Sex", icon: LinearIcons.intersex.rawValue, pickerType: .sex, selection: $viewModel.sex.orEmpty)
+                            LabeledIconMenu(title: "Animal", icon: LinearIcons.pawPrint.rawValue,
+                                            pickerType: .animal, selection: $viewModel.animal.orEmpty)
+                            LabeledIconMenu(title: "Sex", icon: LinearIcons.intersex.rawValue,
+                                            pickerType: .sex, selection: $viewModel.sex.orEmpty)
                         }
                         
                         Divider()
                             .padding(.horizontal)
                         
                         LabeledIconDatePicker(selection: $viewModel.birthday)
-                        LabeledIconTextField(title: "Breed", text: $viewModel.breed.orEmpty, icon: LinearIcons.list2.rawValue, focusColor: focusColors[1])
-                        LabeledIconTextField(title: "Chip", text: $viewModel.chip.orEmpty, icon: LinearIcons.chip.rawValue, focusColor: focusColors[2])
+                        LabeledIconTextField(title: "Breed", text: $viewModel.breed.orEmpty,
+                                             icon: LinearIcons.list2.rawValue,
+                                             focusColor: focusColors[1])
+                        LabeledIconTextField(title: "Chip", text: $viewModel.chip.orEmpty,
+                                             icon: LinearIcons.chip.rawValue,
+                                             focusColor: focusColors[2])
                         
                         Spacer()
                         
