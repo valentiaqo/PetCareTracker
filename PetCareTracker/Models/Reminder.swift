@@ -9,7 +9,7 @@ import Foundation
 
 struct Reminder: Identifiable {
     enum ReminderType: String, CaseIterable {
-        case activity, cleaning, feeding, grooming, medication, other, playtime, training, vet, walking
+        case activity, cleaning, medication, grooming, feeding, playtime, training, vet, walking, other
     }
     
     let id = UUID()
