@@ -70,26 +70,16 @@ struct EditablePetProfileView: View {
                         
                         Spacer()
                         
-                        Button {
+                        StandardButton(title: "Save") {
                             if viewModel.isValidForm {
                                 print("yes")
                                 // viewModel.saveChanges(for: pet)
                             } else {
                                 print("no")
                                 showAlert.toggle()
-                                // present alert
                             }
-                        } label: {
-                            Text("Save")
-                                .foregroundColor(.cloudy)
-                                .font(.roboto(.regular, 18))
-                                .frame(minWidth: 100)
                         }
-                        .buttonStyle(.borderedProminent)
-                        .controlSize(.large)
-                        .tint(viewModel.isValidForm ? .onyx : .onyx.opacity(0.7))
-                        .clipShape(RoundedRectangle(cornerRadius: 10))
-                        
+                        .tint(viewModel.isValidForm ? .onyx : .onyx.opacity(0.7))   
                         
                     }
                     .padding()

@@ -18,11 +18,7 @@ struct PetProfileView: View {
                     .ignoresSafeArea()
                 
                 VStack {
-                    Rectangle()
-                        .frame(width: 50, height: 5)
-                        .clipShape(.rect(cornerRadius: 20))
-                        .foregroundStyle(.onyx)
-                        .padding(.top, 10)
+                    SheetGrabberView()
                     
                     HStack {
                         PetCardImageView(animalType: pet.animal, cardBackgroundColor: Color(pet.cardBackgroundColor))

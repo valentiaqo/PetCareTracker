@@ -36,14 +36,3 @@ struct ReminderMockData {
                                    Reminder(pet: "Daisy", reminderType: .walking, time: Date(), description: "Some long desctiprion")
     ]
 }
-
-//Feeding
-//Activity
-//Playtime
-//Grooming
-//Habitat Cleaning
-//Training
-//Medication
-//Vet Visit
-//Walking
-//Other
