@@ -80,7 +80,7 @@ struct PetDetailsView: View {
                 PetDetailView(imageName: LinearIcons.pawPrint.rawValue, description: "Animal: \(pet.animal.rawValue.capitalized), \(pet.sex.rawValue.lowercased())")
                 
                 if pet.breed != nil {
-                    PetDetailView(imageName: LinearIcons.list2.rawValue, description: "Breed: \(pet.breed ?? String())")
+                    PetDetailView(imageName: LinearIcons.list.rawValue, description: "Breed: \(pet.breed ?? String())")
                 }
                 
                 if let birthday = pet.birthday {

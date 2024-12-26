@@ -9,9 +9,9 @@ import SwiftUI
 
 struct ReminderSelectionView: View {
     @Environment(\.presentationMode) var presentationMode
-    
-    @State private var viewModel = ReminderSelectionViewModel()
+
     @State private var showAlert: Bool = false
+    @Binding var selectedReminder: String?
     
     var body: some View {
         NavigationStack {
@@ -26,7 +26,7 @@ struct ReminderSelectionView: View {
                     ChipsView {
                         ForEach(reminderChips) { chip in
                             Button {
-                                viewModel.selectedReminder = Reminder.ReminderType(rawValue: chip.name.lowercased())
+                                selectedReminder = chip.name.lowercased()
                             } label: {
                                 Text(chip.name)
                                     .font(.roboto(.medium, 16))
@@ -36,7 +36,7 @@ struct ReminderSelectionView: View {
                                     .background(chip.frontColor, in: .capsule)
                                     .overlay(Capsule()
                                         .stroke(Color.onyx,
-                                                lineWidth: chip.name.lowercased() == (viewModel.selectedReminder?.rawValue ?? "") ? 2.5 : 1
+                                                lineWidth: chip.name.lowercased() == (selectedReminder ?? "") ? 2.5 : 1
                                         )
                                     )
                             }
@@ -46,13 +46,14 @@ struct ReminderSelectionView: View {
                     Spacer()
                     
                     StandardButton(title: "Add reminder") {
-                        if viewModel.selectedReminder != nil {
+                        if selectedReminder != nil {
                             presentationMode.wrappedValue.dismiss()
                         } else {
                             showAlert.toggle()
                         }
                     }
-                    .tint(viewModel.selectedReminder != nil ? .onyx : .onyx.opacity(0.7))
+                    .tint(selectedReminder != nil ? .onyx : .onyx.opacity(0.7))
+                    .frame(width: 250)
                 }
             }
             .floatingBottomSheet(isPresented: $showAlert) {
@@ -73,5 +74,5 @@ struct ReminderSelectionView: View {
 }
 
 #Preview {
-    ReminderSelectionView()
+    ReminderSelectionView(selectedReminder: .constant(Reminder.ReminderType.activity.rawValue))
 }

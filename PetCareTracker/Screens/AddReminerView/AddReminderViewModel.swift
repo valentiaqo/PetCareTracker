@@ -12,5 +12,5 @@ final class AddReminderViewModel {
     let rows: [GridItem] = [GridItem(.flexible())]
     var selectedPet: Pet?
     var isChoosingReminder = false
-    var reminderType: Reminder.ReminderType?
+    var selectedReminder: String?
 }

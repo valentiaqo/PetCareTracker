@@ -50,5 +50,5 @@ var reminderChips: [Chip] = Reminder.ReminderType.allCases.map { type in
 }
 
 #Preview {
-    ReminderSelectionView()
+    ReminderSelectionView(selectedReminder: .constant(Reminder.ReminderType.cleaning.rawValue))
 }

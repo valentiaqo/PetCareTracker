@@ -23,7 +23,6 @@ struct StandardButton: View {
         .buttonStyle(.borderedProminent)
         .controlSize(.large)
         .clipShape(RoundedRectangle(cornerRadius: 10))
-        
     }
 }
 

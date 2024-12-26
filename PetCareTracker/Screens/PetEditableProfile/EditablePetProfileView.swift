@@ -62,7 +62,7 @@ struct EditablePetProfileView: View {
                         
                         LabeledIconDatePicker(selection: $viewModel.birthday)
                         LabeledIconTextField(title: "Breed", text: $viewModel.breed.orEmpty,
-                                             icon: LinearIcons.list2.rawValue,
+                                             icon: LinearIcons.list.rawValue,
                                              focusColor: focusColors[1])
                         LabeledIconTextField(title: "Chip", text: $viewModel.chip.orEmpty,
                                              icon: LinearIcons.chip.rawValue,

@@ -11,7 +11,6 @@ struct AddReminderView: View {
     @State var viewModel = AddReminderViewModel()
     
     var body: some View {
-        
         NavigationStack {
             VStack {
                 ScrollView(.horizontal) {
@@ -34,17 +33,18 @@ struct AddReminderView: View {
                 }
                 .scrollIndicators(.hidden)
                 
-                Divider()
+//                Divider()
                 
-                Button {
-                    viewModel.isChoosingReminder = true
-                } label: {
-                    Text("Tap here")
+                LinkButton(
+                    title: viewModel.selectedReminder == nil ? "Select reminder" : "Selected remidner",
+                    icon: LinearIcons.listStar.rawValue,
+                    selection: $viewModel.selectedReminder.orEmpty) {
+                        viewModel.isChoosingReminder = true
                 }
-                
+                    .frame(width: 300)
             }
             .sheet(isPresented: $viewModel.isChoosingReminder) {
-                ReminderSelectionView()
+                ReminderSelectionView(selectedReminder: $viewModel.selectedReminder)
                     .presentationDetents([.height(350)])
             }
             .padding()
