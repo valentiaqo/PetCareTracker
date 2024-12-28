@@ -13,4 +13,5 @@ final class AddReminderViewModel {
     var selectedPet: Pet?
     var isChoosingReminder = false
     var selectedReminder: String?
+    var description: String?
 }

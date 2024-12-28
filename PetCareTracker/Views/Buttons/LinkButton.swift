@@ -28,7 +28,7 @@ struct LinkButton: View {
                             .foregroundStyle(.onyx)
                     }
                     
-                    ZStack {
+                    ZStack(alignment: .leading) {
                         Text(title)
                             .font(.roboto(.medium, 17))
                             .foregroundStyle(!selection.isEmpty ? .onyx : .secondary)
@@ -39,7 +39,6 @@ struct LinkButton: View {
                         Text(selection.capitalized)
                             .font(.roboto(.regular, 17))
                             .foregroundStyle(.onyx)
-                            .offset(x: selection.isEmpty ? 0 : -35)
                             .opacity(selection.isEmpty ? 0 : 1)
                     }
                     
@@ -60,6 +59,7 @@ struct LinkButton: View {
             }
             .frame(height: 50)
         }
+        .buttonStyle(.plain)
     }
 }
 

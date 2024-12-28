@@ -72,10 +72,8 @@ struct EditablePetProfileView: View {
                         
                         StandardButton(title: "Save") {
                             if viewModel.isValidForm {
-                                print("yes")
                                 // viewModel.saveChanges(for: pet)
                             } else {
-                                print("no")
                                 showAlert.toggle()
                             }
                         }

@@ -21,6 +21,14 @@ struct ReminderSelectionView: View {
                 VStack {
                     SheetGrabberView()
                     
+                    HStack {
+                        Text("\(selectedReminder == nil ? "Select reminder:" : "Selected remidner: \(selectedReminder.orEmpty.capitalized)")")
+                            .font(.roboto(.bold, 20))
+                            .foregroundStyle(.onyx)
+                        Spacer()
+                    }
+                    .padding()
+                    
                     Spacer()
                     
                     ChipsView {
@@ -42,10 +50,11 @@ struct ReminderSelectionView: View {
                             }
                         }
                     }
+                    .padding(.bottom)
                     
                     Spacer()
                     
-                    StandardButton(title: "Add reminder") {
+                    StandardButton(title: "Select") {
                         if selectedReminder != nil {
                             presentationMode.wrappedValue.dismiss()
                         } else {
@@ -75,4 +84,8 @@ struct ReminderSelectionView: View {
 
 #Preview {
     ReminderSelectionView(selectedReminder: .constant(Reminder.ReminderType.activity.rawValue))
+}
+
+#Preview {
+    AddReminderView()
 }

@@ -8,5 +8,5 @@
 import Foundation
 
 enum LinearIcons: String {
-    case birthday, calendar, chevronCircleDown, chevronCircleRight, chip, checkFat, edit, female, heart, info, intersex, list, male, pawPrint, plus, plusSquare, settings, listStar
+    case birthday, calendar, chevronCircleDown, chevronCircleRight, chip, checkFat, edit, female, heart, info, intersex, list, listBullets, male, pawPrint, plus, plusSquare, settings, listStar
 }

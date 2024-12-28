@@ -10,9 +10,11 @@ import SwiftUI
 struct AddReminderView: View {
     @State var viewModel = AddReminderViewModel()
     
+    private var focusColor = Color.randomDarkColor
+    
     var body: some View {
         NavigationStack {
-            VStack {
+            VStack(spacing: 40) {
                 ScrollView(.horizontal) {
                     LazyHGrid(rows: viewModel.rows, spacing: 20) {
                         ForEach(PetMockData.samplePets) { pet in
@@ -30,10 +32,9 @@ struct AddReminderView: View {
                             }
                         }
                     }
+                    .frame(height: 120)
                 }
                 .scrollIndicators(.hidden)
-                
-//                Divider()
                 
                 LinkButton(
                     title: viewModel.selectedReminder == nil ? "Select reminder" : "Selected remidner",
@@ -41,11 +42,36 @@ struct AddReminderView: View {
                     selection: $viewModel.selectedReminder.orEmpty) {
                         viewModel.isChoosingReminder = true
                 }
-                    .frame(width: 300)
+                
+                /*
+                 
+                 HStack
+                 
+                 TimePicker
+                 
+                 DatePicker
+                 */
+                
+                LabeledIconTextField(
+                    title: "Comments",
+                    text: $viewModel.description.orEmpty,
+                    icon: LinearIcons.listBullets.rawValue,
+                    focusColor: focusColor)
+                
+//                StandardButton(title: "Select") {
+//                    if viewModel.isValidForm {
+//                    } else {
+//                        showAlert.toggle()
+//                    }
+//                }
+//                .tint(viewModel.isValidForm ? .onyx : .onyx.opacity(0.7))
+//                .frame(width: 250)
+                
+                Spacer()
             }
             .sheet(isPresented: $viewModel.isChoosingReminder) {
                 ReminderSelectionView(selectedReminder: $viewModel.selectedReminder)
-                    .presentationDetents([.height(350)])
+                    .presentationDetents([.height(400)])
             }
             .padding()
             .navigationBarTitle("Add Reminder")
