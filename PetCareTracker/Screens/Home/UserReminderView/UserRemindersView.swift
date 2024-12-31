@@ -8,20 +8,33 @@
 import SwiftUI
 
 struct UserRemindersView: View {
+    @State private var isAddingReminder = false
+    
     var body: some View {
         ZStack {
             Color(.white)
             
-            VStack(spacing: 0) {
-                HStack {
-                    Text("Reminders")
-                        .font(.roboto(.bold, 20))
-                        .foregroundStyle(.onyx)
-                        .padding([.top, .leading], 16)
-                    Spacer()
-                }
-                
-                NavigationStack {
+            NavigationStack {
+                VStack(spacing: 0) {
+                    HStack {
+                        Text("Reminders")
+                            .font(.roboto(.bold, 20))
+                            .foregroundStyle(.onyx)
+                            .padding([.top, .leading], 16)
+                        Spacer()
+                        
+                        Button {
+                            isAddingReminder.toggle()
+                        } label: {
+                            Image(LinearIcons.plus.rawValue)
+                                .resizable()
+                                .aspectRatio(contentMode: .fill)
+                                .frame(width: 30, height: 30)
+                                .tint(.onyx)
+                        }
+                        .padding([.top, .trailing], 16)
+                    }
+                    
                     ScrollView {
                         LazyVGrid(columns: [GridItem(.flexible())]) {
                             ForEach(ReminderMockData.sampleReminders) { activity  in
@@ -38,8 +51,12 @@ struct UserRemindersView: View {
                     }
                     .scrollIndicators(.never)
                     .padding()
+                    
                 }
             }
+        }
+        .fullScreenCover(isPresented: $isAddingReminder) {
+            AddReminderView()
         }
         .frame(width: 360)
         .clipShape(RoundedRectangle(cornerRadius: 20))

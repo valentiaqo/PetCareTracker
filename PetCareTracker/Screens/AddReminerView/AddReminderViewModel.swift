@@ -13,5 +13,11 @@ final class AddReminderViewModel {
     var selectedPet: Pet?
     var isChoosingReminder = false
     var selectedReminder: String?
+    var selectedDate: Date = Date()
+    var selectedTime: Date = Date()
     var description: String?
+    
+    var isValidForm: Bool {
+        selectedPet != nil && selectedReminder != nil
+    }
 }

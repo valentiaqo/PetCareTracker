@@ -8,6 +8,13 @@
 import SwiftUI
 
 struct LabeledIconDatePicker: View {
+    enum PickerType {
+        case date, time
+    }
+    
+    var title: String
+    var pickerType: PickerType
+    
     @Binding var selection: Date
     
     var body: some View {
@@ -18,13 +25,15 @@ struct LabeledIconDatePicker: View {
                 .frame(width: 25, height: 25)
                 .foregroundStyle(.onyx)
             
-            DatePicker("Birthday",
+            DatePicker(title,
                        selection: $selection,
                        in: Date().twentyYearsAgo...Date(),
-                       displayedComponents: .date)
+                       displayedComponents: pickerType == .date ? .date : .hourAndMinute)
             
             .font(.roboto(.medium, 17))
-            .foregroundStyle(!selection.isToday ? .onyx : .secondary)
+            .foregroundStyle((pickerType == .time && !selection.isNow) ||
+                             (pickerType == .date && !selection.isToday) ? .onyx : .secondary
+                        )
             .tint(.onyx)
         }
         .padding(.horizontal)
@@ -37,5 +46,5 @@ struct LabeledIconDatePicker: View {
 }
 
 #Preview {
-    LabeledIconDatePicker(selection: .constant(Date()))
+    LabeledIconDatePicker(title: "Birthday", pickerType: .date,selection: .constant(Date()))
 }
