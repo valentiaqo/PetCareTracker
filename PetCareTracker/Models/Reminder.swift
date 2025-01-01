@@ -22,17 +22,17 @@ struct Reminder: Identifiable {
 }
 
 struct ReminderMockData {
-    static let sampleReminder = Reminder(pet: "Daisy", reminderType: .medication, time: Date(), description: "Play fetch")
+    static let sampleReminder = Reminder(pet: "Daisy", reminderType: .medication, time: Date(), description: nil)
     
     static let sampleReminders = [Reminder(pet: "Daisy", reminderType: .activity, time: Date(), description: "Play fetch"),
                                    Reminder(pet: "Luna", reminderType: .cleaning, time: Date(), description: "Description"),
-                                   Reminder(pet: "Marco", reminderType: .feeding, time: Date(), description: String()),
+                                   Reminder(pet: "Marco", reminderType: .feeding, time: Date()),
                                    Reminder(pet: "Gupulabupulabupu", reminderType: .grooming, time: Date(), description: String()),
-                                   Reminder(pet: "Eren", reminderType: .medication, time: Date(), description: "Desc."),
+                                   Reminder(pet: "Eren", reminderType: .medication, time: Date()),
                                    Reminder(pet: "Mr.Denmark", reminderType: .other, time: Date(), description: "Long description"),
-                                   Reminder(pet: "Gupgup", reminderType: .playtime, time: Date(), description: String()),
+                                   Reminder(pet: "Gupgup", reminderType: .playtime, time: Date()),
                                    Reminder(pet: "Gupulabupulabupu", reminderType: .training, time: Date(), description: "Very very very very very very long description"),
-                                   Reminder(pet: "Daisy", reminderType: .vet, time: Date(), description: String()),
+                                   Reminder(pet: "Daisy", reminderType: .vet, time: Date()),
                                    Reminder(pet: "Daisy", reminderType: .walking, time: Date(), description: "Some long desctiprion")
     ]
 }

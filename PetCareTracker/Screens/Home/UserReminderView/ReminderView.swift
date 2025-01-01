@@ -57,10 +57,13 @@ struct ActivityDescriptionView: View {
             Text(reminder.reminderType.rawValue.capitalized)
                 .font(.roboto(.medium, 18))
                 .offset(y: -5)
-            Text(reminder.description ?? String())
-                .padding(.trailing)
-                .font(.roboto(.regular, 16))
-                .lineLimit(0)
+            
+            if let description = reminder.description, description != String() {
+                Text(description)
+                    .padding(.trailing)
+                    .font(.roboto(.regular, 16))
+                    .lineLimit(0)
+            }
         }
     }
 }
