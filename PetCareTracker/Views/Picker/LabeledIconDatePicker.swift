@@ -19,7 +19,7 @@ struct LabeledIconDatePicker: View {
     
     var body: some View {
         HStack {
-            Image(LinearIcons.calendar.rawValue)
+            Image(pickerType == .date ? LinearIcons.calendar.rawValue : LinearIcons.clock.rawValue)
                 .resizable()
                 .aspectRatio(contentMode: .fit)
                 .frame(width: 25, height: 25)

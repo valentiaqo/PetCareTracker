@@ -24,7 +24,7 @@ struct ReminderView: View {
                     .padding(.vertical, 15)
                     .padding(.horizontal, 5)
                 
-                ActivityDescriptionView(reminder: reminder)
+                ReminderDescriptionView(reminder: reminder)
             }
         }
         .overlay(
@@ -35,7 +35,7 @@ struct ReminderView: View {
     }
 }
 
-struct ActivityDescriptionView: View {
+struct ReminderDescriptionView: View {
     let reminder: Reminder
     
     var body: some View {

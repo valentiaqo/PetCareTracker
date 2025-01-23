@@ -16,13 +16,13 @@ struct Reminder: Identifiable {
     
     var pet: String
     var reminderType: ReminderType
-    var time: Date
+    var time: Date = Date()
     var date: Date = Date()
     var description: String?
 }
 
 struct ReminderMockData {
-    static let sampleReminder = Reminder(pet: "Daisy", reminderType: .medication, time: Date(), description: nil)
+    static let sampleReminder = Reminder(pet: "Daisy", reminderType: .medication, time: Date(), description: "description")
     
     static let sampleReminders = [Reminder(pet: "Daisy", reminderType: .activity, time: Date(), description: "Play fetch"),
                                    Reminder(pet: "Luna", reminderType: .cleaning, time: Date(), description: "Description"),

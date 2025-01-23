@@ -9,6 +9,8 @@ import SwiftUI
 
 struct UserRemindersView: View {
     @State private var isAddingReminder = false
+    @State private var reminders: [Reminder] = ReminderMockData.sampleReminders
+    @State private var selectedReminder: Reminder?
     
     var body: some View {
         ZStack {
@@ -37,15 +39,20 @@ struct UserRemindersView: View {
                     
                     ScrollView {
                         LazyVGrid(columns: [GridItem(.flexible())]) {
-                            ForEach(ReminderMockData.sampleReminders) { activity  in
-                                ReminderView(reminder: activity)
-                                    .frame(height: 100)
-                                    .padding(.bottom, 5)
-                                    .scrollTransition { effect, phase in
-                                        effect
-                                            .scaleEffect(phase.isIdentity ? 1 : 0.9)
-                                            .opacity(phase.isIdentity ? 1 : 0.5)
-                                    }
+                            ForEach($reminders) { $reminder in
+                                Button {
+                                    selectedReminder = reminder
+                                } label: {
+                                    ReminderView(reminder: reminder)
+                                        .frame(height: 100)
+                                        .padding(.bottom, 5)
+                                        .tint(.onyx)
+                                        .scrollTransition { effect, phase in
+                                            effect
+                                                .scaleEffect(phase.isIdentity ? 1 : 0.9)
+                                                .opacity(phase.isIdentity ? 1 : 0.5)
+                                        }
+                                }
                             }
                         }
                     }
@@ -54,6 +61,16 @@ struct UserRemindersView: View {
                     
                 }
             }
+        }
+        .sheet(item: $selectedReminder) { reminder in
+            ReminderDetailsView(reminder: Binding(get: {
+                reminder
+            }, set: { newValue in
+                if let index = reminders.firstIndex(where: { $0.id == reminder.id }) {
+                    reminders[index] = newValue
+                }
+            }))
+            .presentationDetents([.height(400)])
         }
         .fullScreenCover(isPresented: $isAddingReminder) {
             AddReminderView()
