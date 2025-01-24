@@ -8,10 +8,16 @@
 import SwiftUI
 
 struct AddReminderView: View {
-    @State var viewModel = AddReminderViewModel()
+    @State var viewModel: AddReminderViewModel
     @State private var showAlert: Bool = false
+    let isEditingReminder: Bool
     
     private var focusColor = Color.randomDarkColor
+    
+    init(viewModel: AddReminderViewModel, isEditingReminder: Bool = false) {
+        self._viewModel = State(initialValue: viewModel)
+        self.isEditingReminder = isEditingReminder
+    }
     
     var body: some View {
         NavigationStack {
@@ -68,7 +74,7 @@ struct AddReminderView: View {
                                          icon: LinearIcons.listBullets.rawValue,
                                          focusColor: focusColor)
                     
-                    StandardButton(title: "Add reminder") {
+                    StandardButton(title: isEditingReminder ? "Update reminder" : "Add reminder") {
                         if viewModel.isValidForm {
                         } else {
                             showAlert.toggle()
@@ -82,7 +88,7 @@ struct AddReminderView: View {
                 Spacer()
             }
             .sheet(isPresented: $viewModel.isChoosingReminder) {
-                ReminderSelectionView(selectedReminder: $viewModel.selectedReminder)
+                ReminderTypeSelectionView(selectedReminder: $viewModel.selectedReminder)
                     .presentationDetents([.height(400)])
             }
             .floatingBottomSheet(isPresented: $showAlert) {
@@ -111,5 +117,5 @@ struct AddReminderView: View {
 }
 
 #Preview {
-    AddReminderView()
+    AddReminderView(viewModel: AddReminderViewModel())
 }

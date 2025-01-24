@@ -29,7 +29,7 @@ struct Pet: Hashable, Identifiable {
 }
 
 struct PetMockData {
-    static var samplePet = Pet(name: "Luna", animal: .dog, sex: .male, breed: "Golden retriever", birthday: Date(), chip: "1234567890123456", cardBackgroundColor: "softBlue")
+    static var samplePet = Pet(name: "Luna", animal: .dog, sex: .male, breed: "Golden retriever", birthday: Date(), chip: "1234567890123456", cardBackgroundColor: "softGreen")
     
     static var samplePets = [Pet(name: "Luna", animal: .dog, sex: .male, breed: "Golden retriever", birthday: Date(), chip: "1234567890123456", cardBackgroundColor: "softGreen"),
                              Pet(name: "Snowflake", animal: .cat, sex: .female, breed: "Sphynx", chip: "1234567890123456", cardBackgroundColor: "softOrange"),

@@ -73,7 +73,7 @@ struct UserRemindersView: View {
             .presentationDetents([.height(400)])
         }
         .fullScreenCover(isPresented: $isAddingReminder) {
-            AddReminderView()
+            AddReminderView(viewModel: AddReminderViewModel())
         }
         .frame(width: 360)
         .clipShape(RoundedRectangle(cornerRadius: 20))

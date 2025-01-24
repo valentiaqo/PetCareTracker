@@ -64,8 +64,5 @@ struct LinkButton: View {
 }
 
 #Preview {
-    AddReminderView()
-//    LinkButton(title: "Select a reminder", selection: .constant("")) {
-//        //
-//    }
+    AddReminderView(viewModel: AddReminderViewModel())
 }

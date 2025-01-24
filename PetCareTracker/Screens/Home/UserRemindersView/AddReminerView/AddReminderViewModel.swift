@@ -20,4 +20,14 @@ final class AddReminderViewModel {
     var isValidForm: Bool {
         selectedPet != nil && selectedReminder != nil
     }
+    
+    init() {}
+    
+    init(from reminder: Reminder) {
+        self.selectedPet = PetMockData.samplePets.first(where: { $0.name == reminder.pet })
+        self.selectedReminder = reminder.reminderType.rawValue
+        self.selectedDate = reminder.date
+        self.selectedTime = reminder.time
+        self.description = reminder.description
+    }
 }

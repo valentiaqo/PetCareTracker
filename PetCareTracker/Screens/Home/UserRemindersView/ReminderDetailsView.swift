@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct ReminderDetailsView: View {
+    @State var viewModel = ReminderDetailsViewModel()
     @Binding var reminder: Reminder
     
     var body: some View {
@@ -18,22 +19,25 @@ struct ReminderDetailsView: View {
                 
                 VStack {
                     SheetGrabberView()
-                    //                        .offset(y: 5)
                     
                     Spacer()
                     
-                    HStack {
-                        Text("Reminder details: \(reminder.reminderType.rawValue.capitalized) for \(reminder.pet)")
-                            .font(.roboto(.bold, 18))
+                    HStack(spacing: 0) {
+                        Text("Reminder details: ")
+                            .foregroundColor(.onyx)
                         
-                        Text("Scheduled")
-                            .font(.caption)
-                            .padding(5)
-                            .background(Color.backgroundCategoryColor(for: reminder.reminderType))
-                            .foregroundColor(.foregroundCategoryColor(for: reminder.reminderType))
-                            .cornerRadius(10)
+                        Text(reminder.reminderType.rawValue.capitalized)
+                            .foregroundColor(Color.foregroundCategoryColor(for: reminder.reminderType))
+                        
+                        Text(" for \(reminder.pet)")
+                            .foregroundColor(.onyx)
                     }
-                    .padding(.horizontal, 10)
+                    .font(.roboto(.bold, 18))
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .padding(.horizontal, 20)
+                    
+                    
+                    Spacer()
                     
                     DetailsSectionView(reminder: reminder)
                         .background(Color.white)
@@ -42,8 +46,13 @@ struct ReminderDetailsView: View {
                     
                     Spacer()
                     
-                    ButtonsSectionView()
+                    ButtonsSectionView(onComplete: viewModel.onComplete,
+                                       onEdit: viewModel.onEdit,
+                                       onDelete: viewModel.onDelete)
                 }
+            }
+            .fullScreenCover(isPresented: $viewModel.isEditing) {
+                AddReminderView(viewModel: AddReminderViewModel(from: reminder), isEditingReminder: true)
             }
         }
     }
@@ -72,10 +81,14 @@ struct DetailsSectionView: View {
 }
 
 struct ButtonsSectionView: View {
+    let onComplete: () -> Void
+    let onEdit: () -> Void
+    let onDelete: () -> Void
+    
     var body: some View {
         HStack(spacing: 50) {
             Button {
-                //                viewModel.onComplete()
+                onComplete()
             } label: {
                 Image(LinearIcons.checkSquare.rawValue)
                     .resizable()
@@ -84,7 +97,7 @@ struct ButtonsSectionView: View {
             }
             
             Button {
-                //                viewModel.onEdit()
+                onEdit()
             } label: {
                 Image(LinearIcons.noteEdit.rawValue)
                     .resizable()
@@ -93,7 +106,7 @@ struct ButtonsSectionView: View {
             }
             
             Button {
-                //                viewModel.onDetele()
+                onDelete()
             } label: {
                 Image(LinearIcons.xSquare.rawValue)
                     .resizable()

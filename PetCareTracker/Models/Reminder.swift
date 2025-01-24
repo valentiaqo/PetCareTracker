@@ -22,7 +22,7 @@ struct Reminder: Identifiable {
 }
 
 struct ReminderMockData {
-    static let sampleReminder = Reminder(pet: "Daisy", reminderType: .medication, time: Date(), description: "description")
+    static let sampleReminder = Reminder(pet: "Luna", reminderType: .cleaning, time: Date(), description: "Description")
     
     static let sampleReminders = [Reminder(pet: "Daisy", reminderType: .activity, time: Date(), description: "Play fetch"),
                                    Reminder(pet: "Luna", reminderType: .cleaning, time: Date(), description: "Description"),

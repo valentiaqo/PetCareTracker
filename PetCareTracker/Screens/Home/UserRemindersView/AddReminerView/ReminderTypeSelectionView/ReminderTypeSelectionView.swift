@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct ReminderSelectionView: View {
+struct ReminderTypeSelectionView: View {
     @Environment(\.presentationMode) var presentationMode
 
     @State private var showAlert: Bool = false
@@ -83,9 +83,9 @@ struct ReminderSelectionView: View {
 }
 
 #Preview {
-    ReminderSelectionView(selectedReminder: .constant(Reminder.ReminderType.activity.rawValue))
+    ReminderTypeSelectionView(selectedReminder: .constant(Reminder.ReminderType.activity.rawValue))
 }
 
 #Preview {
-    AddReminderView()
+    AddReminderView(viewModel: AddReminderViewModel())
 }
