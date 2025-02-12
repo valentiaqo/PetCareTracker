@@ -50,6 +50,7 @@ struct LabeledIconMenu: View {
                         Text(title)
                             .font(.roboto(.medium, 17))
                             .foregroundStyle(!selection.isEmpty ? .onyx : .secondary)
+                            .frame(maxWidth: .infinity, alignment: .leading)
                             .offset(x: selection.isEmpty ? 0 : -40,
                                     y: selection.isEmpty ? 0 : -40)
                             .animation(.spring, value: selection.isEmpty)
@@ -58,6 +59,7 @@ struct LabeledIconMenu: View {
                             .font(.roboto(.regular, 17))
                             .foregroundStyle(.onyx)
                             .opacity(selection.isEmpty ? 0 : 1)
+                            .offset(x: -20)
                     }
                     
                     Spacer()
@@ -82,5 +84,5 @@ struct LabeledIconMenu: View {
 
 
 #Preview {
-    LabeledIconMenu(title: "Sex", icon: LinearIcons.intersex.rawValue, pickerType: .animal, selection: .constant("Dog"))
+    LabeledIconMenu(title: "Animal", icon: LinearIcons.intersex.rawValue, pickerType: .animal, selection: .constant("Dog"))
 }

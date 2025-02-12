@@ -18,7 +18,7 @@ struct ReminderView: View {
             HStack(alignment: .center) {
                 Text(reminder.time.timeToString())
                     .padding(.leading)
-                    .font(.roboto(.medium, 18))
+                    .font(.roboto(.medium, 17))
                 
                 Divider()
                     .padding(.vertical, 15)
@@ -51,17 +51,17 @@ struct ReminderDescriptionView: View {
                     .padding(.trailing)
             }
             .offset(y: -5)
-            .font(.roboto(.regular, 17))
+            .font(.roboto(.regular, 16))
             .foregroundStyle(Color.foregroundCategoryColor(for: reminder.reminderType))
             
             Text(reminder.reminderType.rawValue.capitalized)
-                .font(.roboto(.medium, 18))
+                .font(.roboto(.medium, 17))
                 .offset(y: -5)
             
             if let description = reminder.description, description != String() {
                 Text(description)
                     .padding(.trailing)
-                    .font(.roboto(.regular, 16))
+                    .font(.roboto(.regular, 15))
                     .lineLimit(0)
             }
         }

@@ -44,7 +44,7 @@ struct UserRemindersView: View {
                                     selectedReminder = reminder
                                 } label: {
                                     ReminderView(reminder: reminder)
-                                        .frame(height: 100)
+                                        .frame(height: 90)
                                         .padding(.bottom, 5)
                                         .tint(.onyx)
                                         .scrollTransition { effect, phase in

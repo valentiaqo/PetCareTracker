@@ -106,4 +106,8 @@ extension Color {
     static func getColorName(of color: Color) -> String? {
         return colorNameMapping[color]?.rawValue
     }
+    
+    static func randomDarkColors(count: Int) -> [Color] {
+        return Array(darkColors.shuffled().prefix(count))
+    }
 }

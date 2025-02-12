@@ -15,10 +15,7 @@ struct EditablePetProfileView: View {
     @State private var keyboardObserver = KeyboardHeightObserver()
     @State private var showAlert: Bool = false
     
-    private var focusColors: [Color] = {
-        let darkColors = Color.darkColors.shuffled()
-        return Array(darkColors.prefix(3))
-    }()
+    private var focusColors: [Color] = Color.randomDarkColors(count: 3)
     
     init(pet: Pet? = nil) {
         viewModel = EditablePetProfileViewModel()
@@ -50,7 +47,7 @@ struct EditablePetProfileView: View {
                             .padding(.top)
                         }
                         
-                        HStack {
+                        HStack(spacing: 5) {
                             LabeledIconMenu(title: "Animal", icon: LinearIcons.pawPrint.rawValue,
                                             pickerType: .animal, selection: $viewModel.animal.orEmpty)
                             LabeledIconMenu(title: "Sex", icon: LinearIcons.intersex.rawValue,
