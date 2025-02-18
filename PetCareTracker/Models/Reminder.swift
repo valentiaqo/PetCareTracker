@@ -26,13 +26,13 @@ struct ReminderMockData {
     
     static let sampleReminders = [Reminder(pet: "Daisy", reminderType: .activity, time: Date(), description: "Play fetch"),
                                    Reminder(pet: "Luna", reminderType: .cleaning, time: Date(), description: "Description"),
-                                   Reminder(pet: "Marco", reminderType: .feeding, time: Date()),
+                                  Reminder(pet: "Marco", reminderType: .feeding, time: Date(), description: "1234567890123456"),
                                    Reminder(pet: "Gupulabupulabupu", reminderType: .grooming, time: Date(), description: String()),
                                    Reminder(pet: "Eren", reminderType: .medication, time: Date()),
-                                   Reminder(pet: "Mr.Denmark", reminderType: .other, time: Date(), description: "Long description"),
+                                   Reminder(pet: "Mr.Denmark", reminderType: .other, time: Date(), description: "Just long description"),
                                    Reminder(pet: "Gupgup", reminderType: .playtime, time: Date()),
                                    Reminder(pet: "Gupulabupulabupu", reminderType: .training, time: Date(), description: "Very very very very very very long description"),
                                    Reminder(pet: "Daisy", reminderType: .vet, time: Date()),
-                                   Reminder(pet: "Daisy", reminderType: .walking, time: Date(), description: "Some long desctiprion")
+                                   Reminder(pet: "Daisy", reminderType: .walking, time: Date(), description: "Some long long long long long long long long long long long long long desctiprion")
     ]
 }

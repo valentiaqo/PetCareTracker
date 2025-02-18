@@ -26,7 +26,7 @@ struct PetCardView: View {
             }
             
             Text(pet.name)
-                .font(.roboto(.regular, 17))
+                .font(.roboto(.regular, 16))
                 .foregroundStyle(.onyx)
                 .lineLimit(1)
         }

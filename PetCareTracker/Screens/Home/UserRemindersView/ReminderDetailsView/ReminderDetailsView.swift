@@ -11,6 +11,19 @@ struct ReminderDetailsView: View {
     @State var viewModel = ReminderDetailsViewModel()
     @Binding var reminder: Reminder
     
+    var attributedTitle: AttributedString {
+        var text = AttributedString("Reminder details: ")
+        text.foregroundColor = .onyx
+        
+        var type = AttributedString(reminder.reminderType.rawValue.capitalized)
+        type.foregroundColor = Color.foregroundCategoryColor(for: reminder.reminderType)
+        
+        var pet = AttributedString(" for \(reminder.pet)")
+        pet.foregroundColor = .onyx
+        
+        return text + type + pet
+    }
+    
     var body: some View {
         NavigationStack {
             ZStack {
@@ -21,23 +34,17 @@ struct ReminderDetailsView: View {
                     SheetGrabberView()
                     
                     Spacer()
+                        .frame(maxHeight: 15)
                     
-                    HStack(spacing: 0) {
-                        Text("Reminder details: ")
-                            .foregroundColor(.onyx)
-                        
-                        Text(reminder.reminderType.rawValue.capitalized)
-                            .foregroundColor(Color.foregroundCategoryColor(for: reminder.reminderType))
-                        
-                        Text(" for \(reminder.pet)")
-                            .foregroundColor(.onyx)
-                    }
-                    .font(.roboto(.bold, 18))
-                    .frame(maxWidth: .infinity, alignment: .leading)
-                    .padding(.horizontal, 20)
-                    
+                    Text(attributedTitle)
+                        .font(.roboto(.bold, 18))
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                        .padding(.horizontal, 20)
+                        .lineLimit(1)
+                        .minimumScaleFactor(0.8)
                     
                     Spacer()
+                        .frame(maxHeight: 15)
                     
                     DetailsSectionView(reminder: reminder)
                         .background(Color.white)
@@ -60,8 +67,23 @@ struct ReminderDetailsView: View {
 
 struct DetailsSectionView: View {
     let reminder: Reminder
+    @State private var isReadingComment = false
     
     var body: some View {
+        Group {
+            if let description = reminder.description, !description.isEmpty {
+                ScrollView {
+                    content
+                }
+                .scrollDisabled(!isReadingComment)
+                .scrollIndicators(.never)
+            } else {
+                content
+            }
+        }
+    }
+    
+    var content: some View {
         VStack(spacing: -15) {
             ReminderDetailView(imageName: LinearIcons.pawPrint.rawValue,
                                description: "Pet: \(reminder.pet)")
@@ -72,9 +94,29 @@ struct DetailsSectionView: View {
             ReminderDetailView(imageName: LinearIcons.calendar.rawValue,
                                description: "Date: \(reminder.date.dateToString())")
             
-            if reminder.description != nil && reminder.description != String() {
-                ReminderDetailView(imageName: LinearIcons.listBullets.rawValue,
-                                   description: "Comment: \(reminder.description.orEmpty)")
+            if let description = reminder.description, !description.isEmpty {
+                let shouldShowReadMore = description.count > 16
+                
+                HStack(spacing: -15) {
+                    ReminderDetailView(imageName: LinearIcons.listBullets.rawValue,
+                                       description: "Comment: \(description)")
+                    .lineLimit(isReadingComment ? nil : 1)
+                    .animation(.interactiveSpring, value: isReadingComment)
+                    
+                    if shouldShowReadMore {
+                        Button {
+                            isReadingComment.toggle()
+                        } label: {
+                            Text("Read more")
+                                .offset(x: -10)
+                                .font(.roboto(.regular, 14))
+                                .tint(.onyx)
+                                .opacity(0.7)
+                        }
+                        .disabled(isReadingComment)
+                        .opacity(isReadingComment ? 0 : 1)
+                    }
+                }
             }
         }
     }
