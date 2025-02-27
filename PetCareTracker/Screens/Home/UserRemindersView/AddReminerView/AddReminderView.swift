@@ -21,100 +21,111 @@ struct AddReminderView: View {
     
     var body: some View {
         NavigationStack {
-            VStack(spacing: 0) {
-                HStack {
-                    Text("Choose pet")
-                        .font(.roboto(.bold, 20))
-                        .foregroundStyle(.onyx)
-                    Spacer()
-                }
-                .padding(.bottom, 8)
+            ZStack {
+                Color(.cloudy)
+                    .ignoresSafeArea()
                 
-                ScrollView(.horizontal) {
-                    LazyHGrid(rows: viewModel.rows, spacing: 20) {
-                        ForEach(PetMockData.samplePets) { pet in
-                            Button {
-                                viewModel.selectedPet = pet
-                            } label: {
-                                PetCardView(pet: pet,
-                                            isSelected: viewModel.selectedPet?.id == pet.id,
-                                            isSelectable: true)
-                                .frame(width: 80)
-                                .scrollTransition { effect, phase in
-                                    effect
-                                        .scaleEffect(phase.isIdentity ? 1 : 0.7)
+                ScrollView {
+                    VStack(spacing: 0) {
+                        HStack {
+                            Text("Choose pet")
+                                .font(.roboto(.bold, 20))
+                                .foregroundStyle(.onyx)
+                            Spacer()
+                        }
+                        .padding(.bottom, 8)
+                        
+                        ScrollView(.horizontal) {
+                            LazyHGrid(rows: viewModel.rows, spacing: 20) {
+                                ForEach(PetMockData.samplePets) { pet in
+                                    Button {
+                                        viewModel.selectedPet = pet
+                                    } label: {
+                                        PetCardView(pet: pet,
+                                                    isSelected: viewModel.selectedPet?.id == pet.id,
+                                                    isSelectable: true)
+                                        .frame(width: 80)
+                                        .scrollTransition { effect, phase in
+                                            effect
+                                                .scaleEffect(phase.isIdentity ? 1 : 0.7)
+                                        }
+                                    }
                                 }
                             }
+                            .frame(height: 120)
                         }
-                    }
-                    .frame(height: 120)
-                }
-                .scrollIndicators(.hidden)
-                
-                Divider()
-                    .padding(.top, 8)
-                
-                Group {
-                    LinkButton(title: viewModel.selectedReminder == nil ? "Select reminder" : "Selected remidner",
-                               icon: LinearIcons.listStar.rawValue,
-                               selection: $viewModel.selectedReminder.orEmpty) {
-                        viewModel.isChoosingReminder = true
-                    }
-                    
-                    LabeledIconDatePicker(title: "Time",
-                                          pickerType: .time,
-                                          selection: $viewModel.selectedTime)
-                    
-                    LabeledIconDatePicker(title: "Date",
-                                          pickerType: .date,
-                                          selection: $viewModel.selectedDate)
-                    
-                    LabeledIconTextField(title: "Comments",
-                                         text: $viewModel.description.orEmpty,
-                                         icon: LinearIcons.listBullets.rawValue,
-                                         focusColor: focusColor)
-                    
-                    StandardButton(title: isEditingReminder ? "Update reminder" : "Add reminder") {
-                        if viewModel.isValidForm {
-                        } else {
-                            showAlert.toggle()
+                        .scrollIndicators(.hidden)
+                        
+                        Divider()
+                            .padding(.top, 8)
+                        
+                        Group {
+                            LinkButton(title: viewModel.selectedReminder == nil ? "Select reminder" : "Selected remidner",
+                                       icon: LinearIcons.listStar.rawValue,
+                                       selection: $viewModel.selectedReminder.orEmpty) {
+                                viewModel.isChoosingReminder = true
+                            }
+                            
+                            LabeledIconDatePicker(title: "Time",
+                                                  pickerType: .time,
+                                                  selection: $viewModel.selectedTime)
+                            
+                            LabeledIconDatePicker(title: "Date",
+                                                  pickerType: .date,
+                                                  selection: $viewModel.selectedDate)
+                            
+                            LabeledIconTextField(title: "Comments",
+                                                 fieldType: .editor,
+                                                 text: $viewModel.description.orEmpty,
+                                                 icon: LinearIcons.listBullets.rawValue,
+                                                 focusColor: focusColor)
+                            
+                            StandardButton(title: isEditingReminder ? "Update reminder" : "Add reminder") {
+                                if viewModel.isValidForm {
+                                } else {
+                                    showAlert.toggle()
+                                }
+                            }
+                            .tint(viewModel.isValidForm ? .onyx : .onyx.opacity(0.7))
+                            .frame(width: 250)
                         }
+                        .padding(.top, 35)
+                        .padding(.horizontal, 1)
+                        
+                        Spacer()
                     }
-                    .tint(viewModel.isValidForm ? .onyx : .onyx.opacity(0.7))
-                    .frame(width: 250)
                 }
-                .padding(.top, 35)
-                
-                Spacer()
-            }
-            .sheet(isPresented: $viewModel.isChoosingReminder) {
-                ReminderTypeSelectionView(selectedReminder: $viewModel.selectedReminder)
-                    .presentationDetents([.height(400)])
-            }
-            .floatingBottomSheet(isPresented: $showAlert) {
-                SheetView(title: "Missing information",
-                          desctiption: "Please make sure that pet and reminder are selected",
-                          image: .init(
-                            title: "info",
-                            tint: .onyx,
-                            foreground: .white),
-                          button1: .init(
-                            title: "Ok",
-                            tint: .onyx,
-                            foreground: .white))
-                .presentationDetents([.height(350)])
-            }
-            .padding()
-            .navigationBarTitle("Add Reminder")
-            .navigationBarTitleDisplayMode(.inline)
-            .toolbar {
-                ToolbarItem(placement: .navigationBarLeading) {
-                    BackButton()
+                .sheet(isPresented: $viewModel.isChoosingReminder) {
+                    ReminderTypeSelectionView(selectedReminder: $viewModel.selectedReminder)
+                        .presentationDetents([.height(400)])
+                }
+                .floatingBottomSheet(isPresented: $showAlert) {
+                    SheetView(title: "Missing information",
+                              desctiption: "Please make sure that pet and reminder are selected",
+                              image: .init(
+                                title: "info",
+                                tint: .onyx,
+                                foreground: .white),
+                              button1: .init(
+                                title: "Ok",
+                                tint: .onyx,
+                                foreground: .white))
+                    .presentationDetents([.height(350)])
+                }
+                .scrollIndicators(.never)
+                .padding()
+                .navigationBarTitle("Add Reminder")
+                .navigationBarTitleDisplayMode(.inline)
+                .toolbar {
+                    ToolbarItem(placement: .navigationBarLeading) {
+                        BackButton()
+                    }
                 }
             }
         }
     }
 }
+
 
 #Preview {
     AddReminderView(viewModel: AddReminderViewModel())

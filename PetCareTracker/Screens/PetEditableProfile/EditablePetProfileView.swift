@@ -41,17 +41,22 @@ struct EditablePetProfileView: View {
                                 .animation(.easeInOut(duration: 0.5), value: viewModel.animal)
                             }
                             
-                            LabeledIconTextField(title: "Name", text: $viewModel.name.orEmpty,
+                            LabeledIconTextField(title: "Name",
+                                                 text: $viewModel.name.orEmpty,
                                                  icon: LinearIcons.heart.rawValue,
                                                  focusColor: focusColors[0])
                             .padding(.top)
                         }
                         
                         HStack(spacing: 5) {
-                            LabeledIconMenu(title: "Animal", icon: LinearIcons.pawPrint.rawValue,
-                                            pickerType: .animal, selection: $viewModel.animal.orEmpty)
-                            LabeledIconMenu(title: "Sex", icon: LinearIcons.intersex.rawValue,
-                                            pickerType: .sex, selection: $viewModel.sex.orEmpty)
+                            LabeledIconMenu(title: "Animal",
+                                            icon: LinearIcons.pawPrint.rawValue,
+                                            pickerType: .animal,
+                                            selection: $viewModel.animal.orEmpty)
+                            LabeledIconMenu(title: "Sex",
+                                            icon: LinearIcons.intersex.rawValue,
+                                            pickerType: .sex,
+                                            selection: $viewModel.sex.orEmpty)
                         }
                         
                         Divider()
@@ -60,10 +65,12 @@ struct EditablePetProfileView: View {
                         LabeledIconDatePicker(title: "Birthday",
                                               pickerType: .date,
                                               selection: $viewModel.birthday)
-                        LabeledIconTextField(title: "Breed", text: $viewModel.breed.orEmpty,
+                        LabeledIconTextField(title: "Breed",
+                                             text: $viewModel.breed.orEmpty,
                                              icon: LinearIcons.list.rawValue,
                                              focusColor: focusColors[1])
-                        LabeledIconTextField(title: "Chip", text: $viewModel.chip.orEmpty,
+                        LabeledIconTextField(title: "Chip",
+                                             text: $viewModel.chip.orEmpty,
                                              icon: LinearIcons.chip.rawValue,
                                              focusColor: focusColors[2])
                         

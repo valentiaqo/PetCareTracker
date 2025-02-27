@@ -61,6 +61,7 @@ struct ReminderTypeSelectionView: View {
                             showAlert.toggle()
                         }
                     }
+                    .padding(.bottom, 10)
                     .tint(selectedReminder != nil ? .onyx : .onyx.opacity(0.7))
                     .frame(width: 250)
                 }
