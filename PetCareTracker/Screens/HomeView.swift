@@ -27,11 +27,11 @@ struct HomeView: View {
                             .tint(.onyx)
                     }
                 }
-                .padding()
                 
                 UserPetsView()
                 UserRemindersView()
             }
+            .padding()
         }
     }
 }

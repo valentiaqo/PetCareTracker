@@ -90,6 +90,7 @@ struct EditablePetProfileView: View {
                     
                 }
                 .scrollDisabled(keyboardObserver.keyboardHeight == 0 ? true : false)
+                .scrollIndicators(.never)
             }
             .navigationTitle("Pet profile")
             .navigationBarTitleDisplayMode(.inline)

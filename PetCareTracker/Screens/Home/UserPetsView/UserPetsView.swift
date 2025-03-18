@@ -50,7 +50,7 @@ struct UserPetsView: View {
                     }
                     .sheet(item: $viewModel.selectedPet) { pet in
                         PetProfileView(pet: pet)
-                            .presentationDetents([.medium])
+                            .presentationDetents([.height(370)])
                     }
                     .fullScreenCover(isPresented: $viewModel.isAddingPet) {
                         EditablePetProfileView()
@@ -61,7 +61,7 @@ struct UserPetsView: View {
             .padding()
             
         }
-        .frame(width: 360, height: 170)
+        .frame(height: 170)
         .clipShape(RoundedRectangle(cornerRadius: 20))
     }
 }
