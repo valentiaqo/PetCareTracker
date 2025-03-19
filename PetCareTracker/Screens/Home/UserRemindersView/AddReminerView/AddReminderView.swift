@@ -85,18 +85,8 @@ struct AddReminderView: View {
                                                      icon: LinearIcons.listBullets.rawValue,
                                                      focusColor: focusColor)
                                 .padding(.top, isCommentFocused ? 10 : 0)
-                                .animation(.easeIn(duration: 1), value: isCommentFocused)
-                                .focused($isCommentFocused)
-                                .id("commentsSection")
-                                .onChange(of: isCommentFocused) {
-                                    if isCommentFocused {
-                                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
-                                            withAnimation {
-                                                proxy.scrollTo("commentsSection", anchor: .top)
-                                            }
-                                        }
-                                    }
-                                }
+                                .animation(.easeIn(duration: 0.8), value: isCommentFocused)
+                                .scrollOnFocus(isFocused: $isCommentFocused, id: "commentsSection", proxy: proxy)
                                 
                                 StandardButton(title: isEditingReminder ? "Update reminder" : "Add reminder") {
                                     if viewModel.isValidForm {
@@ -113,6 +103,7 @@ struct AddReminderView: View {
                             Spacer()
                         }
                     }
+                    .scrollBounceBehavior(.basedOnSize, axes: [.vertical])
                 }
                 .sheet(isPresented: $viewModel.isChoosingReminder) {
                     ReminderTypeSelectionView(selectedReminder: $viewModel.selectedReminder)
