@@ -21,13 +21,15 @@ struct LabeledIconTextField: View {
     var icon: String?
     var focusColor: Color
     
+    @State private var height: CGFloat = 50
+    
     var body: some View {
         ZStack(alignment: .leading) {
             if fieldType == .text {
                 TextField(String(), text: $text)
                     .padding(.leading, 50)
                     .padding([.top, .bottom, .trailing], 15)
-                    .frame(height: 50)
+                    .frame(height: height)
                     .focused($isActive)
                     .submitLabel(.done)
                     .autocorrectionDisabled(true)
@@ -41,7 +43,7 @@ struct LabeledIconTextField: View {
                 TextEditor(text: $text)
                     .padding(.leading, 50)
                     .padding([.top, .bottom, .trailing], 15)
-                    .frame(height: 100)
+                    .frame(height: height)
                     .focused($isActive)
                     .submitLabel(.return)
                     .autocorrectionDisabled(true)
@@ -63,6 +65,9 @@ struct LabeledIconTextField: View {
                             }
                         }
                     }
+                    .onChange(of: text) {
+                        updateTextEditorHeight(for: text)
+                    }
             }
             
             
@@ -81,11 +86,44 @@ struct LabeledIconTextField: View {
                 .padding([.top, .bottom], 15)
                 .foregroundColor((isActive || !text.isEmpty) ? .onyx : .secondary)
                 .offset(x: (isActive || !text.isEmpty) ? -40 : 0,
-                        y: (isActive || !text.isEmpty) ? (fieldType == .text ? -40 : -65) : 0)
+                        y: (isActive || !text.isEmpty) ? (fieldType == .text ? -40 : textEditorOffset(for: text)) : 0)
                 .font(.roboto(.medium, 17))
                 .onTapGesture { isActive = true }
                 .animation(.spring(response: 0.3, dampingFraction: 0.6, blendDuration: 0), value: isActive)
         }
+    }
+    
+    private func updateTextEditorHeight(for text: String) {
+        let lines = text.components(separatedBy: .newlines)
+        let lineCount = lines.count
+
+        withAnimation(.smooth(duration: 0.6)) {
+            switch lineCount {
+            case 1:
+                height = 50
+            case 2:
+                height = 75
+            default:
+                height = 100
+            }
+        }
+    }
+    
+    private func textEditorOffset(for text: String) -> CGFloat {
+        var offset: CGFloat = 0
+        let lines = text.components(separatedBy: .newlines).count
+        
+        withAnimation(.smooth(duration: 0.6)) {
+            switch lines {
+            case 1:
+                offset = -40
+            case 2:
+                offset = -55
+            default:
+                offset = -65
+            }
+        }
+        return offset
     }
 }
 
