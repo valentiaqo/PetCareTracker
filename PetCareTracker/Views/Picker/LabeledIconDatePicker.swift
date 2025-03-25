@@ -9,7 +9,7 @@ import SwiftUI
 
 struct LabeledIconDatePicker: View {
     enum PickerType {
-        case date, time
+        case birthday, date, time
     }
     
     var title: String
@@ -27,8 +27,10 @@ struct LabeledIconDatePicker: View {
             
             DatePicker(title,
                        selection: $selection,
-                       in: Date().twentyYearsAgo...Date(),
-                       displayedComponents: pickerType == .date ? .date : .hourAndMinute)
+                       in: pickerType == .birthday ? Date.distantPast...Date() :
+                                                     Date()...Date.distantFuture,
+                       displayedComponents: pickerType == .date ||
+                                            pickerType == .birthday ? .date : .hourAndMinute)
             
             .font(.roboto(.medium, 17))
             .foregroundStyle((pickerType == .time && !selection.isNow) ||

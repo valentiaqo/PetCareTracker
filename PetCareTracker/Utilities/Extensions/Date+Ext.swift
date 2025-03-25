@@ -8,14 +8,6 @@
 import Foundation
 
 extension Date {
-    var fiveYearsFromNow: Date {
-        Calendar.current.date(byAdding: .year, value: 5, to: Date()) ?? Date()
-    }
-    
-    var twentyYearsAgo: Date {
-        Calendar.current.date(byAdding: .year, value: -20, to: Date()) ?? Date()
-    }
-    
     var isToday: Bool {
         Calendar.current.isDateInToday(self)
     }
