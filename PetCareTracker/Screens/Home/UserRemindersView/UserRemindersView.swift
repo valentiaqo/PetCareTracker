@@ -37,6 +37,8 @@ struct UserRemindersView: View {
                         .padding([.top, .trailing], 16)
                     }
                     
+                    CalendarStripeView()
+                    
                     ScrollView {
                         LazyVGrid(columns: [GridItem(.flexible())]) {
                             ForEach($reminders) { $reminder in
