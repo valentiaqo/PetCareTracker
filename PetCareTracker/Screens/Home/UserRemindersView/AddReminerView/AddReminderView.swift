@@ -10,7 +10,6 @@ import SwiftUI
 struct AddReminderView: View {
     @State var viewModel: AddReminderViewModel
     @State private var showAlert: Bool = false
-    @State private var keyboardObserver = KeyboardHeightObserver()
     
     @FocusState private var isCommentFocused: Bool
     

@@ -44,7 +44,7 @@ struct ReminderTypeSelectionView: View {
                                     .background(chip.frontColor, in: .capsule)
                                     .overlay(Capsule()
                                         .stroke(Color.onyx,
-                                                lineWidth: chip.name.lowercased() == (selectedReminder ?? "") ? 2.5 : 0
+                                                lineWidth: chip.name.lowercased() == (selectedReminder ?? "") ? 2 : 0
                                         )
                                     )
                             }
