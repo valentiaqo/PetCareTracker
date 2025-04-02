@@ -51,10 +51,11 @@ struct WeekView: View {
                     Text(dayFormatter.string(from: date))
                     Text(dateFormatter.string(from: date))
                 }
-                .font(.roboto(.regular, 17))
+                .font(.roboto(.regular, 15))
                 .frame(maxWidth: .infinity)
                 .frame(height: 50)
                 .background(Date.isSameDay(date, selectedDate) ? Color.onyx : Color.clear)
+                .background(date.isToday ? Color.onyx.opacity(0.15) : Color.clear)
                 .foregroundStyle(Date.isSameDay(date, selectedDate) ? .white : .onyx)
                 .cornerRadius(15)
                 .onTapGesture {
