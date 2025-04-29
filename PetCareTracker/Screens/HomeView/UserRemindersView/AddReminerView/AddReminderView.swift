@@ -154,8 +154,7 @@ struct ReminderFormView: View {
                              text: $viewModel.description.orEmpty,
                              icon: LinearIcons.listBullets.rawValue,
                              focusColor: focusColor)
-        .padding(.top, isCommentFocused ? 10 : 0)
-        .animation(.easeIn(duration: 0.8), value: isCommentFocused)
+        .padding(.top, 5)
         .scrollOnFocus(isFocused: $isCommentFocused, id: "commentsSection", proxy: proxy)
     }
 }

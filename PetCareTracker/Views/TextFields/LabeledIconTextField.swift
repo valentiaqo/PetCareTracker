@@ -21,7 +21,7 @@ struct LabeledIconTextField: View {
     var icon: String?
     var focusColor: Color
     
-    @State private var height: CGFloat = 50
+    @State private var height: CGFloat = 65
     
     var body: some View {
         ZStack(alignment: .leading) {
@@ -29,7 +29,7 @@ struct LabeledIconTextField: View {
                 TextField(String(), text: $text)
                     .padding(.leading, 50)
                     .padding([.top, .bottom, .trailing], 15)
-                    .frame(height: height)
+                    .frame(height: height - 15)
                     .focused($isActive)
                     .submitLabel(.done)
                     .autocorrectionDisabled(true)
@@ -53,6 +53,7 @@ struct LabeledIconTextField: View {
                             .stroke(isActive ? focusColor : .gray,
                                     lineWidth: isActive ? 2.5 : 1.5)
                     )
+                    .scrollDisabled(height == 50)
                     .scrollContentBackground(.hidden)
                     .background(.clear)
                     .toolbar {
@@ -96,16 +97,14 @@ struct LabeledIconTextField: View {
     private func updateTextEditorHeight(for text: String) {
         let lines = text.components(separatedBy: .newlines)
         let lineCount = lines.count
-
-        withAnimation(.smooth(duration: 0.6)) {
-            switch lineCount {
-            case 1:
-                height = 50
-            case 2:
-                height = 75
-            default:
-                height = 100
-            }
+        
+        switch lineCount {
+        case 1:
+            height = 65
+        case 2:
+            height = 75
+        default:
+            height = 100
         }
     }
     
@@ -113,15 +112,13 @@ struct LabeledIconTextField: View {
         var offset: CGFloat = 0
         let lines = text.components(separatedBy: .newlines).count
         
-        withAnimation(.smooth(duration: 0.6)) {
-            switch lines {
-            case 1:
-                offset = -40
-            case 2:
-                offset = -55
-            default:
-                offset = -65
-            }
+        switch lines {
+        case 1:
+            offset = -45
+        case 2:
+            offset = -50
+        default:
+            offset = -62
         }
         return offset
     }

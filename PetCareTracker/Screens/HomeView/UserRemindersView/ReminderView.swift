@@ -58,7 +58,7 @@ struct ReminderDescriptionView: View {
                 .font(.roboto(.medium, 17))
                 .offset(y: -5)
             
-            if let description = reminder.description, description != String() {
+            if let description = reminder.comment, description != String() {
                 Text(description)
                     .padding(.trailing)
                     .font(.roboto(.regular, 15))

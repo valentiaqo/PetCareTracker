@@ -71,7 +71,7 @@ struct DetailsSectionView: View {
     
     var body: some View {
         Group {
-            if let description = reminder.description, !description.isEmpty {
+            if let description = reminder.comment, !description.isEmpty {
                 ScrollView {
                     content
                 }
@@ -94,7 +94,7 @@ struct DetailsSectionView: View {
             ReminderDetailView(imageName: LinearIcons.calendar.rawValue,
                                description: "Date: \(reminder.date.dateToString())")
             
-            if let description = reminder.description, !description.isEmpty {
+            if let description = reminder.comment, !description.isEmpty {
                 let shouldShowReadMore = description.count > 16
                 
                 HStack(spacing: -15) {

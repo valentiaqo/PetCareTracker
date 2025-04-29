@@ -28,6 +28,6 @@ final class AddReminderViewModel {
         self.selectedReminder = reminder.reminderType.rawValue
         self.selectedDate = reminder.date
         self.selectedTime = reminder.time
-        self.description = reminder.description
+        self.description = reminder.comment
     }
 }
