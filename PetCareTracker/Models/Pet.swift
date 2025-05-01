@@ -27,46 +27,45 @@ class Pet: Identifiable, Hashable, Equatable {
     var birthday: Date?
     var chip: String?
     var cardBackgroundColor: String
-    
-    init(id: UUID = UUID(), name: String, animal: String, sex: String, breed: String? = nil, birthday: Date? = nil, chip: String? = nil, cardBackgroundColor: String) {
+
+    var animalType: AnimalType {
+        get { AnimalType(rawValue: animal) ?? .none }
+        set { animal = newValue.rawValue }
+    }
+
+    var sexType: Sex {
+        get { Sex(rawValue: sex) ?? .none }
+        set { sex = newValue.rawValue }
+    }
+
+    init(id: UUID = UUID(), name: String, animal: AnimalType, sex: Sex, breed: String? = nil, birthday: Date? = nil, chip: String? = nil, cardBackgroundColor: String) {
         self.id = id
         self.name = name
-        self.animal = animal
-        self.sex = sex
+        self.animal = animal.rawValue
+        self.sex = sex.rawValue
         self.breed = breed
         self.birthday = birthday
         self.chip = chip
         self.cardBackgroundColor = cardBackgroundColor
     }
+
     static func == (lhs: Pet, rhs: Pet) -> Bool {
         lhs.id == rhs.id
     }
-    
+
     func hash(into hasher: inout Hasher) {
         hasher.combine(id)
     }
 }
 
-extension Pet {
-    var animalType: AnimalType? {
-        get { AnimalType(rawValue: animal) }
-        set { animal = newValue?.rawValue ?? String() }
-    }
-    
-    var sexEnum: Sex? {
-        get { Sex(rawValue: sex) }
-        set { sex = newValue?.rawValue ?? String() }
-    }
-}
-
 struct PetMockData {
-    static var samplePet = Pet(name: "Luna", animal: "dog", sex: "male", breed: "Golden retriever", birthday: Date(), chip: "1234567890123456", cardBackgroundColor: "softGreen")
-    
+    static var samplePet = Pet(name: "Luna", animal: .dog, sex: .male, breed: "Golden Retriever", birthday: Date(), chip: "1234567890123456", cardBackgroundColor: "softGreen")
+
     static var samplePets = [
-        Pet(name: "Luna", animal: "dog", sex: "male", breed: "Golden retriever", birthday: Date(), chip: "1234567890123456", cardBackgroundColor: "softGreen"),
-        Pet(name: "Snowflake", animal: "cat", sex: "female", breed: "Sphynx", chip: "1234567890123456", cardBackgroundColor: "softOrange"),
-        Pet(name: "Froggo baggins", animal: "frog", sex: "male", birthday: Date(), cardBackgroundColor: "softPurple"),
-        Pet(name: "Turtle", animal: "turtle", sex: "female", cardBackgroundColor: "softRed"),
-        Pet(name: "Lizzard", animal: "lizard", sex: "female", cardBackgroundColor: "softYellow")
+        Pet(name: "Luna", animal: .dog, sex: .male, breed: "Golden Retriever", birthday: Date(), chip: "1234567890123456", cardBackgroundColor: "softGreen"),
+        Pet(name: "Snowflake", animal: .cat, sex: .female, breed: "Sphynx", chip: "1234567890123456", cardBackgroundColor: "softOrange"),
+        Pet(name: "Froggo Baggins", animal: .frog, sex: .male, birthday: Date(), cardBackgroundColor: "softPurple"),
+        Pet(name: "Turtle", animal: .turtle, sex: .female, cardBackgroundColor: "softRed"),
+        Pet(name: "Lizzard", animal: .lizard, sex: .female, cardBackgroundColor: "softYellow")
     ]
 }

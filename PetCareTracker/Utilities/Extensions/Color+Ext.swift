@@ -59,7 +59,7 @@ extension Color {
         darkColors.randomElement() ?? .gray
     }
     
-    static func backgroundCategoryColor(for category: Reminder.ReminderType) -> Color {
+    static func backgroundCategoryColor(for category: ReminderType) -> Color {
         var color: Color = gray
         
         switch category {
@@ -71,12 +71,13 @@ extension Color {
         case .other: color = .softOlive
         case .training: color = .softPurple
         case .walking: color = .softTeal
+        case .none: break
         }
         
         return color
     }
     
-    static func foregroundCategoryColor(for category: Reminder.ReminderType) -> Color {
+    static func foregroundCategoryColor(for category: ReminderType) -> Color {
         var color: Color = gray
         
         switch category {
@@ -88,6 +89,7 @@ extension Color {
         case .other: color = .darkOlive
         case .training: color = .darkPurple
         case .walking: color = .darkTeal
+        case .none: break
         }
         
         return color

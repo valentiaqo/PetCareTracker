@@ -45,10 +45,11 @@ struct Chip: Identifiable {
     }
 }
 
-var reminderChips: [Chip] = Reminder.ReminderType.allCases.map { type in
-    Chip(name: type.rawValue.capitalized, frontColor: Color.foregroundCategoryColor(for: type))
+var reminderChips: [Chip] = ReminderType.allCases.compactMap { type in
+    guard type != .none else { return nil }
+    return Chip(name: type.rawValue.capitalized, frontColor: Color.foregroundCategoryColor(for: type))
 }
 
 #Preview {
-    ReminderTypeSelectionView(selectedReminder: .constant(Reminder.ReminderType.cleaning.rawValue))
+    ReminderTypeSelectionView(selectedReminder: .constant(ReminderType.cleaning.rawValue))
 }

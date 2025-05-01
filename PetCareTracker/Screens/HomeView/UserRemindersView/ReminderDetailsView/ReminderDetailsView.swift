@@ -15,7 +15,7 @@ struct ReminderDetailsView: View {
         var text = AttributedString("Reminder details: ")
         text.foregroundColor = .onyx
         
-        var type = AttributedString(reminder.reminderType.rawValue.capitalized)
+        var type = AttributedString(reminder.type.capitalized)
         type.foregroundColor = Color.foregroundCategoryColor(for: reminder.reminderType)
         
         var pet = AttributedString(" for \(reminder.pet)")
@@ -88,7 +88,7 @@ struct DetailsSectionView: View {
             ReminderDetailView(imageName: LinearIcons.pawPrint.rawValue,
                                description: "Pet: \(reminder.pet)")
             ReminderDetailView(imageName: LinearIcons.listStar.rawValue,
-                               description: "Category: \(reminder.reminderType.rawValue.capitalized)")
+                               description: "Category: \(reminder.type.capitalized)")
             ReminderDetailView(imageName: LinearIcons.clock.rawValue,
                                description: "Time: \(reminder.time.timeToString())")
             ReminderDetailView(imageName: LinearIcons.calendar.rawValue,

@@ -33,5 +33,5 @@ struct PetCardImageView: View {
 }
 
 #Preview {
-    PetCardImageView(animalType: PetMockData.samplePet.animalType ?? .none, cardBackgroundColor: Color.softRed)
+    PetCardImageView(animalType: PetMockData.samplePet.animalType, cardBackgroundColor: Color.softRed)
 }

@@ -45,8 +45,9 @@ class EditablePetProfileViewModel {
             
             if pet == nil {
                 pet = Pet(name: name,
-                          animal: animal,
-                          sex: sex, breed: breed,
+                          animal: AnimalType(rawValue: animal) ?? .none,
+                          sex: Sex(rawValue: sex) ?? .none,
+                          breed: breed,
                           birthday: birthday,
                           chip: chip,
                           cardBackgroundColor: cardBackgroundColor ?? "Gray")

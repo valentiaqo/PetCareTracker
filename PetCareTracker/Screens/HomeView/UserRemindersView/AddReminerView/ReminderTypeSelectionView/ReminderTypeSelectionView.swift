@@ -84,7 +84,7 @@ struct ReminderTypeSelectionView: View {
 }
 
 #Preview {
-    ReminderTypeSelectionView(selectedReminder: .constant(Reminder.ReminderType.activity.rawValue))
+    ReminderTypeSelectionView(selectedReminder: .constant(ReminderType.activity.rawValue))
 }
 
 #Preview {

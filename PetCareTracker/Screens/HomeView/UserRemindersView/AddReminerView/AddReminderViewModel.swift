@@ -25,7 +25,7 @@ final class AddReminderViewModel {
     
     init(from reminder: Reminder) {
         self.selectedPet = PetMockData.samplePets.first(where: { $0.name == reminder.pet })
-        self.selectedReminder = reminder.reminderType.rawValue
+        self.selectedReminder = reminder.type
         self.selectedDate = reminder.date
         self.selectedTime = reminder.time
         self.description = reminder.comment

@@ -21,7 +21,7 @@ struct PetProfileView: View {
                     SheetGrabberView()
                     
                     HStack {
-                        PetCardImageView(animalType: pet.animalType ?? .none, cardBackgroundColor: Color(pet.cardBackgroundColor))
+                        PetCardImageView(animalType: pet.animalType, cardBackgroundColor: Color(pet.cardBackgroundColor))
                             .padding(.trailing)
                         
                         Text(pet.name)
