@@ -20,9 +20,13 @@ struct LabeledIconMenu: View {
     var pickerOptions: [String] {
         switch pickerType {
         case .sex:
-            return Pet.Sex.allCases.map { $0.rawValue.capitalized }
+            return Sex.allCases
+                .filter { $0 != .none }
+                .map { $0.rawValue.capitalized }
         case .animal:
-            return Pet.AnimalType.allCases.map { $0.rawValue.capitalized }
+            return AnimalType.allCases
+                .filter { $0 != .none }
+                .map { $0.rawValue.capitalized }
         }
     }
     

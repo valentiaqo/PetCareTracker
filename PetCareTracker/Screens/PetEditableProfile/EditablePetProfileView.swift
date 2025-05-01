@@ -99,8 +99,8 @@ struct RequiredPetInfoView: View {
     var body: some View {
         HStack(spacing: 15) {
             if let animal = viewModel.animal {
-                PetCardImageView(animalType: Pet.AnimalType(rawValue: animal.lowercased()),
-                                 cardBackgroundColor: Color(viewModel.cardBackgroundColor.orEmpty))
+                PetCardImageView(animalType: AnimalType(rawValue: animal.lowercased()) ?? .none,
+                                                        cardBackgroundColor: Color(viewModel.cardBackgroundColor.orEmpty))
                 .animation(.easeInOut(duration: 0.5), value: viewModel.animal)
             }
             

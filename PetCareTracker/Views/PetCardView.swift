@@ -15,7 +15,7 @@ struct PetCardView: View {
     var body: some View {
         VStack {
             ZStack {
-                PetCardImageView(animalType: pet.animal, cardBackgroundColor: Color(pet.cardBackgroundColor))
+                PetCardImageView(animalType: pet.animalType ?? .none, cardBackgroundColor: Color(pet.cardBackgroundColor))
                     .opacity(isSelectable ? (isSelected ? 1 : 0.6) : 1)
                 
                 Image(LinearIcons.checkFat.rawValue)

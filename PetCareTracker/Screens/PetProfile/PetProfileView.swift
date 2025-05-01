@@ -21,7 +21,7 @@ struct PetProfileView: View {
                     SheetGrabberView()
                     
                     HStack {
-                        PetCardImageView(animalType: pet.animal, cardBackgroundColor: Color(pet.cardBackgroundColor))
+                        PetCardImageView(animalType: pet.animalType ?? .none, cardBackgroundColor: Color(pet.cardBackgroundColor))
                             .padding(.trailing)
                         
                         Text(pet.name)
@@ -77,7 +77,7 @@ struct PetDetailsView: View {
         ZStack {
             Color(.white)
             VStack(spacing: -15) {
-                PetDetailView(imageName: LinearIcons.pawPrint.rawValue, description: "Animal: \(pet.animal.rawValue.capitalized), \(pet.sex.rawValue.lowercased())")
+                PetDetailView(imageName: LinearIcons.pawPrint.rawValue, description: "Animal: \(pet.animal.capitalized), \(pet.sex.lowercased())")
                 
                 if pet.breed != nil {
                     PetDetailView(imageName: LinearIcons.list.rawValue, description: "Breed: \(pet.breed ?? String())")

@@ -8,8 +8,13 @@
 import SwiftUI
 
 struct PetCardImageView: View {
-    let animalType: Pet.AnimalType?
+    let animalType: AnimalType?
     let cardBackgroundColor: Color?
+    
+    init(animalType: AnimalType, cardBackgroundColor: Color?) {
+        self.animalType = animalType
+        self.cardBackgroundColor = cardBackgroundColor
+    }
     
     var body: some View {
         ZStack {
@@ -28,5 +33,5 @@ struct PetCardImageView: View {
 }
 
 #Preview {
-    PetCardImageView(animalType: Pet.AnimalType.cat, cardBackgroundColor: Color.softRed)
+    PetCardImageView(animalType: PetMockData.samplePet.animalType ?? .none, cardBackgroundColor: Color.softRed)
 }

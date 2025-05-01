@@ -25,8 +25,8 @@ class EditablePetProfileViewModel {
     
     func loadFromPet(_ pet: Pet) {
         name = pet.name
-        animal = pet.animal.rawValue
-        sex = pet.sex.rawValue
+        animal = pet.animal
+        sex = pet.sex
         breed = pet.breed
         chip = pet.chip
         cardBackgroundColor = pet.cardBackgroundColor
@@ -41,7 +41,7 @@ class EditablePetProfileViewModel {
     
     func saveChanges(for pet: inout Pet?) {
         if isValidForm {
-            guard let name, let animal = Pet.AnimalType(rawValue: animal.orEmpty.lowercased()), let sex = Pet.Sex(rawValue: sex.orEmpty.lowercased()) else { return }
+            guard let name, let animal = animal?.lowercased(), let sex = sex?.lowercased() else { return }
             
             if pet == nil {
                 pet = Pet(name: name,
