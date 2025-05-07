@@ -18,6 +18,7 @@ enum Sex: String, CaseIterable {
     case none
 }
 
+@Model
 class Pet: Identifiable, Hashable, Equatable {
     var id: UUID
     var name: String

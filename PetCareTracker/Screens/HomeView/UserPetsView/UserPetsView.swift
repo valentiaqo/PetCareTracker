@@ -8,24 +8,26 @@
 import SwiftUI
 
 struct UserPetsView: View {
+    @Environment(\.modelContext) var context
     @State var viewModel = UserPetsViewModel()
     
     var body: some View {
-        ZStack {
-            Color(.white)
-            
-            VStack {
-                HStack {
-                    Text("Your Pets")
-                        .font(.roboto(.bold, 20))
-                        .foregroundStyle(.onyx)
-                    Spacer()
-                }
+        NavigationStack {
+            ZStack {
+                Color(.white)
                 
-                NavigationStack {
+                VStack {
+                    HStack {
+                        Text("Your Pets")
+                            .font(.roboto(.bold, 20))
+                            .foregroundStyle(.onyx)
+                        Spacer()
+                    }
+                    .padding(.top, 20)
+                    
                     ScrollView(.horizontal) {
                         LazyHGrid(rows: viewModel.rows, spacing: 20) {
-                            ForEach(PetMockData.samplePets) { pet in
+                            ForEach(viewModel.pets) { pet in
                                 NavigationLink(value: pet) {
                                     Button {
                                         viewModel.selectedPet = pet
@@ -45,24 +47,34 @@ struct UserPetsView: View {
                             } label: {
                                 AddButton()
                                     .padding(.bottom, 25)
+                                    .padding(.leading, 5)
                             }
                         }
                     }
+                    .frame(height: 100)
                     .sheet(item: $viewModel.selectedPet) { pet in
                         PetProfileView(pet: pet)
                             .presentationDetents([.height(370)])
                     }
                     .fullScreenCover(isPresented: $viewModel.isAddingPet) {
-                        EditablePetProfileView()
+                        EditablePetProfileView(pet: viewModel.selectedPet)
                     }
                     .scrollIndicators(.hidden)
                 }
+                .padding()
             }
-            .padding()
-            
         }
         .frame(height: 170)
         .clipShape(RoundedRectangle(cornerRadius: 20))
+        .onAppear {
+            viewModel.initializeDataManager(context: context)
+            viewModel.fetchPets()
+        }
+        .onChange(of: viewModel.isAddingPet) {
+            if !viewModel.isAddingPet {
+                viewModel.fetchPets()
+            }
+        }
     }
 }
 

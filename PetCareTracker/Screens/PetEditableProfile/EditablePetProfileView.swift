@@ -6,12 +6,20 @@
 //
 
 import SwiftUI
+import SwiftData
+
+// MARK: - EditablePetProfileView
+enum EditMode {
+    case add
+    case edit(Pet)
+}
 
 struct EditablePetProfileView: View {
     var pet: Pet?
     
-    @State var viewModel: EditablePetProfileViewModel
-    
+    @Environment(\.modelContext) var context
+    @Environment(\.dismiss) var dismiss
+    @State private var viewModel: EditablePetProfileViewModel
     @State private var showAlert: Bool = false
     
     @FocusState private var isBreedFocused: Bool
@@ -20,12 +28,8 @@ struct EditablePetProfileView: View {
     private let focusColors: [Color] = Color.randomDarkColors(count: 3)
     
     init(pet: Pet? = nil) {
-        viewModel = EditablePetProfileViewModel()
-        if let pet = pet {
-            viewModel.loadFromPet(pet)
-        } else {
-            viewModel.prepareForNewPet()
-        }
+        self.pet = pet
+        self._viewModel = State(initialValue: EditablePetProfileViewModel())
     }
     
     var body: some View {
@@ -53,7 +57,8 @@ struct EditablePetProfileView: View {
                             
                             StandardButton(title: "Save") {
                                 if viewModel.isValidForm {
-                                    // viewModel.saveChanges(for: pet)
+                                    viewModel.saveChanges()
+                                    dismiss()
                                 } else {
                                     showAlert.toggle()
                                 }
@@ -89,9 +94,18 @@ struct EditablePetProfileView: View {
                         foreground: .white))
             .presentationDetents([.height(350)])
         }
+        .onAppear {
+            initializeViewModel()
+        }
+    }
+    
+    private func initializeViewModel() {
+        let currentMode: EditMode = pet.map { .edit($0) } ?? .add
+        viewModel.setup(context: context, mode: currentMode)
     }
 }
 
+// MARK: - RequiredPetInfoView
 struct RequiredPetInfoView: View {
     @Binding var viewModel: EditablePetProfileViewModel
     var focusColor: Color
@@ -100,7 +114,7 @@ struct RequiredPetInfoView: View {
         HStack(spacing: 15) {
             if let animal = viewModel.animal {
                 PetCardImageView(animalType: AnimalType(rawValue: animal.lowercased()) ?? .none,
-                                                        cardBackgroundColor: Color(viewModel.cardBackgroundColor.orEmpty))
+                                 cardBackgroundColor: Color(viewModel.cardBackgroundColor.orEmpty))
                 .animation(.easeInOut(duration: 0.5), value: viewModel.animal)
             }
             
@@ -124,6 +138,7 @@ struct RequiredPetInfoView: View {
     }
 }
 
+// MARK: - OptionalPetInfoView
 struct OptionalPetInfoView: View {
     @Binding var viewModel: EditablePetProfileViewModel
     @FocusState.Binding var isBreedFocused: Bool

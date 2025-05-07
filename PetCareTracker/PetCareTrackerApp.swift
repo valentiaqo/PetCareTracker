@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import SwiftData
 
 @main
 struct PetCareTrackerApp: App {
@@ -13,5 +14,6 @@ struct PetCareTrackerApp: App {
         WindowGroup {
             HomeView()
         }
+        .modelContainer(for: [Pet.self, Reminder.self])
     }
 }

@@ -13,7 +13,8 @@ enum ReminderType: String, CaseIterable {
     case none
 }
 
-class Reminder: Identifiable, Equatable, Hashable {
+@Model
+class Reminder: Identifiable {
     var id: UUID
     var pet: String
     var type: String
@@ -33,14 +34,6 @@ class Reminder: Identifiable, Equatable, Hashable {
         self.time = time
         self.date = date
         self.comment = comment
-    }
-
-    static func == (lhs: Reminder, rhs: Reminder) -> Bool {
-        lhs.id == rhs.id
-    }
-
-    func hash(into hasher: inout Hasher) {
-        hasher.combine(id)
     }
 }
 

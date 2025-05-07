@@ -33,9 +33,10 @@ struct LabeledIconDatePicker: View {
                                             pickerType == .birthday ? .date : .hourAndMinute)
             
             .font(.roboto(.medium, 17))
-            .foregroundStyle((pickerType == .time && !selection.isNow) ||
-                             (pickerType == .date && !selection.isToday) ? .onyx : .secondary
-                        )
+            .foregroundStyle(
+                (pickerType == .time && !selection.isNow) ||
+                ((pickerType == .date || pickerType == .birthday) && !selection.isToday)
+                ? .onyx : .secondary)
             .tint(.onyx)
         }
         .padding(.horizontal)
