@@ -10,23 +10,27 @@ import SwiftData
 
 @MainActor
 @Observable
-final class UserPetsViewModel {
+final class UserPetsViewModel: DataManagerInitializable {
     let rows: [GridItem] = [GridItem(.flexible())]
     
     var pets: [Pet] = []
     var selectedPet: Pet?
     var isAddingPet = false
     
-    private var dataManager: SwiftDataManager? = nil
+    internal var dataManager: SwiftDataManager? = nil
     
-    func initializeDataManager(context: ModelContext) {
-        if dataManager == nil {
-            dataManager = SwiftDataManager(context: context)
-        }
-    }
-    
-    func fetchPets() {
+    private func fetchPets() {
         pets = dataManager?.fetchAllPets() ?? []
     }
     
+    func setup(context: ModelContext) {
+        initializeDataManager(context: context)
+        fetchPets()
+    }
+    
+    func refreshPetsIfNeeded() {
+        if !isAddingPet {
+            fetchPets()
+        }
+    }
 }

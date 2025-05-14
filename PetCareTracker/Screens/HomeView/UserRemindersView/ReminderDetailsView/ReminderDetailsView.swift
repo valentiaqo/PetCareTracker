@@ -6,9 +6,12 @@
 //
 
 import SwiftUI
+import UIKit
 
 struct ReminderDetailsView: View {
-    @State var viewModel = ReminderDetailsViewModel()
+    @Environment(\.modelContext) var context
+
+    @State var viewModel: ReminderDetailsViewModel
     @Binding var reminder: Reminder
     
     var attributedTitle: AttributedString {
@@ -22,6 +25,11 @@ struct ReminderDetailsView: View {
         pet.foregroundColor = .onyx
         
         return text + type + pet
+    }
+    
+    init(reminder: Binding<Reminder>) {
+        self._viewModel = State(initialValue: ReminderDetailsViewModel())
+        self._reminder = reminder
     }
     
     var body: some View {
@@ -53,13 +61,18 @@ struct ReminderDetailsView: View {
                     
                     Spacer()
                     
-                    ButtonsSectionView(onComplete: viewModel.onComplete,
-                                       onEdit: viewModel.onEdit,
-                                       onDelete: viewModel.onDelete)
+                    ButtonsSectionView(
+                        onComplete: {viewModel.onComplete(reminder)},
+                        onEdit: {viewModel.onEdit()},
+                        onDelete: {viewModel.onDelete(reminder)}
+                    )
                 }
             }
             .fullScreenCover(isPresented: $viewModel.isEditing) {
-                AddReminderView(viewModel: AddReminderViewModel(from: reminder), isEditingReminder: true)
+                AddReminderView(isEditingReminder: true, reminder: reminder)
+            }
+            .onAppear {
+                viewModel.setup(context: context)
             }
         }
     }
@@ -123,16 +136,22 @@ struct DetailsSectionView: View {
 }
 
 struct ButtonsSectionView: View {
+    @Environment(\.dismiss) var dismiss
+    
     let onComplete: () -> Void
     let onEdit: () -> Void
     let onDelete: () -> Void
+    
+    let generator = UINotificationFeedbackGenerator()
     
     var body: some View {
         HStack(spacing: 50) {
             Button {
                 onComplete()
+                generator.notificationOccurred(.success)
+                dismiss()
             } label: {
-                Image(LinearIcons.checkSquare.rawValue)
+                Image(LinearIcons.checkCircle.rawValue)
                     .resizable()
                     .frame(width: 40, height: 40)
                     .tint(.darkGreen)
@@ -140,8 +159,9 @@ struct ButtonsSectionView: View {
             
             Button {
                 onEdit()
+                dismiss()
             } label: {
-                Image(LinearIcons.noteEdit.rawValue)
+                Image(LinearIcons.editCircle.rawValue)
                     .resizable()
                     .frame(width: 40, height: 40)
                     .tint(.onyx)
@@ -149,8 +169,9 @@ struct ButtonsSectionView: View {
             
             Button {
                 onDelete()
+                dismiss()
             } label: {
-                Image(LinearIcons.xSquare.rawValue)
+                Image(LinearIcons.xCircle.rawValue)
                     .resizable()
                     .frame(width: 40, height: 40)
                     .tint(.darkRed)

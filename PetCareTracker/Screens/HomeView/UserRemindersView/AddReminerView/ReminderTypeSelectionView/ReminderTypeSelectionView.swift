@@ -88,5 +88,5 @@ struct ReminderTypeSelectionView: View {
 }
 
 #Preview {
-    AddReminderView(viewModel: AddReminderViewModel())
+    AddReminderView()
 }

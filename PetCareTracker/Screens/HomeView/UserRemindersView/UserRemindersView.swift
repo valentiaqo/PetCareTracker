@@ -1,5 +1,5 @@
 //
-//  UserActivityView.swift
+//  UserRemindersView.swift
 //  PetCareTracker
 //
 //  Created by Valentyn Ponomarenko on 05/11/2024.
@@ -8,9 +8,12 @@
 import SwiftUI
 
 struct UserRemindersView: View {
-    @State private var isAddingReminder = false
-    @State private var reminders: [Reminder] = ReminderMockData.sampleReminders
-    @State private var selectedReminder: Reminder?
+    @Environment(\.modelContext) var context
+    @State private var viewModel: UserRemindersViewModel
+    
+    init() {
+        self._viewModel = State(initialValue: UserRemindersViewModel())
+    }
     
     var body: some View {
         ZStack {
@@ -26,7 +29,7 @@ struct UserRemindersView: View {
                         Spacer()
                         
                         Button {
-                            isAddingReminder.toggle()
+                            viewModel.isAddingReminder.toggle()
                         } label: {
                             Image(LinearIcons.plus.rawValue)
                                 .resizable()
@@ -37,13 +40,13 @@ struct UserRemindersView: View {
                         .padding([.top, .trailing], 16)
                     }
                     
-                    CalendarStripeView()
+                    CalendarStripeView(selectedDate: $viewModel.selectedDate)
                     
                     ScrollView {
                         LazyVGrid(columns: [GridItem(.flexible())]) {
-                            ForEach($reminders) { $reminder in
+                            ForEach(viewModel.filteredReminders) { reminder in
                                 Button {
-                                    selectedReminder = reminder
+                                    viewModel.selectedReminder = reminder
                                 } label: {
                                     ReminderView(reminder: reminder)
                                         .frame(height: 90)
@@ -54,6 +57,7 @@ struct UserRemindersView: View {
                                                 .scaleEffect(phase.isIdentity ? 1 : 0.9)
                                                 .opacity(phase.isIdentity ? 1 : 0.5)
                                         }
+                                    
                                 }
                             }
                         }
@@ -64,20 +68,29 @@ struct UserRemindersView: View {
                 }
             }
         }
-        .sheet(item: $selectedReminder) { reminder in
+        .clipShape(RoundedRectangle(cornerRadius: 20))
+        .sheet(item: $viewModel.selectedReminder) { reminder in
             ReminderDetailsView(reminder: Binding(get: {
                 reminder
             }, set: { newValue in
-                if let index = reminders.firstIndex(where: { $0.id == reminder.id }) {
-                    reminders[index] = newValue
+                if let index = viewModel.reminders.firstIndex(where: { $0.id == reminder.id }) {
+                    viewModel.reminders[index] = newValue
                 }
             }))
             .presentationDetents([.height(400)])
         }
-        .sheet(isPresented: $isAddingReminder) {
-            AddReminderView(viewModel: AddReminderViewModel())
+        .sheet(isPresented: $viewModel.isAddingReminder) {
+            AddReminderView()
         }
-        .clipShape(RoundedRectangle(cornerRadius: 20))
+        .onAppear {
+            viewModel.setup(context: context)
+        }
+        .onChange(of: viewModel.isAddingReminder) {
+            viewModel.refreshRemindersIfNeeded()
+        }
+        .onChange(of: viewModel.selectedReminder) {
+            viewModel.refreshRemindersIfNeeded()
+        }
     }
 }
 

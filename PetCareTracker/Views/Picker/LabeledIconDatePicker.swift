@@ -27,8 +27,7 @@ struct LabeledIconDatePicker: View {
             
             DatePicker(title,
                        selection: $selection,
-                       in: pickerType == .birthday ? Date.distantPast...Date() :
-                                                     Date()...Date.distantFuture,
+                       in: dateRange(),
                        displayedComponents: pickerType == .date ||
                                             pickerType == .birthday ? .date : .hourAndMinute)
             
@@ -45,6 +44,17 @@ struct LabeledIconDatePicker: View {
             RoundedRectangle(cornerRadius: 10)
                 .stroke(.gray, lineWidth: 1.5)
         )
+    }
+    
+    private func dateRange() -> ClosedRange<Date> {
+        switch pickerType {
+        case .birthday:
+            return Date.distantPast...Date()
+        case .date:
+            return Date()...Date.distantFuture
+        case .time:
+            return Date.distantPast...Date.distantFuture
+        }
     }
 }
 

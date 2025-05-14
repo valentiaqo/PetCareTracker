@@ -9,21 +9,22 @@ import SwiftUI
 import SwiftData
 
 // MARK: - EditablePetProfileView
-enum EditMode {
+enum EditModePet {
     case add
     case edit(Pet)
 }
 
 struct EditablePetProfileView: View {
-    var pet: Pet?
-    
     @Environment(\.modelContext) var context
     @Environment(\.dismiss) var dismiss
+    
     @State private var viewModel: EditablePetProfileViewModel
     @State private var showAlert: Bool = false
     
     @FocusState private var isBreedFocused: Bool
     @FocusState private var isChipFocused: Bool
+    
+    var pet: Pet?
     
     private let focusColors: [Color] = Color.randomDarkColors(count: 3)
     
@@ -57,7 +58,7 @@ struct EditablePetProfileView: View {
                             
                             StandardButton(title: "Save") {
                                 if viewModel.isValidForm {
-                                    viewModel.saveChanges()
+                                    viewModel.saveData()
                                     dismiss()
                                 } else {
                                     showAlert.toggle()
@@ -100,7 +101,7 @@ struct EditablePetProfileView: View {
     }
     
     private func initializeViewModel() {
-        let currentMode: EditMode = pet.map { .edit($0) } ?? .add
+        let currentMode: EditModePet = pet.map { .edit($0) } ?? .add
         viewModel.setup(context: context, mode: currentMode)
     }
 }

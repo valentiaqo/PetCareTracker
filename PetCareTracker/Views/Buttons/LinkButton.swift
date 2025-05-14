@@ -64,5 +64,5 @@ struct LinkButton: View {
 }
 
 #Preview {
-    AddReminderView(viewModel: AddReminderViewModel())
+    AddReminderView()
 }

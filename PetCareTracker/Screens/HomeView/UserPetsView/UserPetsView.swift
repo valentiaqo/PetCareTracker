@@ -67,13 +67,10 @@ struct UserPetsView: View {
         .frame(height: 170)
         .clipShape(RoundedRectangle(cornerRadius: 20))
         .onAppear {
-            viewModel.initializeDataManager(context: context)
-            viewModel.fetchPets()
+            viewModel.setup(context: context)
         }
         .onChange(of: viewModel.isAddingPet) {
-            if !viewModel.isAddingPet {
-                viewModel.fetchPets()
-            }
+            viewModel.refreshPetsIfNeeded()
         }
     }
 }

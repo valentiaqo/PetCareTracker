@@ -11,8 +11,8 @@ import SwiftData
 // MARK: - EditablePetProfileViewModel
 @MainActor
 @Observable
-class EditablePetProfileViewModel {
-    var mode: EditMode = .add
+final class EditablePetProfileViewModel: DataManagerInitializable {
+    var mode: EditModePet = .add
     
     var name: String?
     var animal: String?
@@ -28,7 +28,19 @@ class EditablePetProfileViewModel {
         name != nil && animal != nil && sex != nil
     }
     
-    private var dataManager: SwiftDataManager? = nil
+    internal var dataManager: SwiftDataManager? = nil
+    
+    func setup(context: ModelContext, mode: EditModePet) {
+        self.mode = mode
+        initializeDataManager(context: context)
+        
+        switch mode {
+        case .add:
+            prepareForNewPet()
+        case .edit(let pet):
+            loadFromPet(pet)
+        }
+    }
     
     func loadFromPet(_ pet: Pet) {
         name = pet.name
@@ -48,7 +60,7 @@ class EditablePetProfileViewModel {
         }
     }
     
-    func saveChanges() {
+    func saveData() {
         guard isValidForm,
               let name,
               let animal = animal?.lowercased(),
@@ -75,25 +87,6 @@ class EditablePetProfileViewModel {
                              chip: chip,
                              cardBackgroundColor: cardBackgroundColor ?? "Gray")
             dataManager?.addPet(newPet)
-        }
-    }
-    
-    
-    func setup(context: ModelContext, mode: EditMode) {
-        self.mode = mode
-        initializeDataManager(context: context)
-        
-        switch mode {
-        case .add:
-            prepareForNewPet()
-        case .edit(let pet):
-            loadFromPet(pet)
-        }
-    }
-    
-    func initializeDataManager(context: ModelContext) {
-        if dataManager == nil {
-            dataManager = SwiftDataManager(context: context)
         }
     }
 }

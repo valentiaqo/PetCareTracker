@@ -63,6 +63,17 @@ struct SwiftDataManager {
     func updateReminder(_ reminder: Reminder) {
         saveContext(for: .updateReminder)
     }
+    
+    func fetchAllReminders() -> [Reminder] {
+        let descriptor = FetchDescriptor<Reminder>()
+        
+        do {
+            return try context.fetch(descriptor)
+        } catch {
+            print("Failed to fetch pets: \(error)")
+            return []
+        }
+    }
 
     // MARK: - Helper
     private func saveContext(for action: DataAction) {
@@ -70,6 +81,21 @@ struct SwiftDataManager {
             try context.save()
         } catch {
             print("Failed to \(action.rawValue): \(error.localizedDescription)")
+        }
+    }
+}
+
+//MARK: - DataManagerInitializable
+@MainActor
+protocol DataManagerInitializable: AnyObject {
+    var dataManager: SwiftDataManager? { get set }
+    func initializeDataManager(context: ModelContext)
+}
+
+extension DataManagerInitializable {
+    func initializeDataManager(context: ModelContext) {
+        if dataManager == nil {
+            dataManager = SwiftDataManager(context: context)
         }
     }
 }

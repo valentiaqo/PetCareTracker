@@ -8,8 +8,9 @@
 import SwiftUI
 
 struct CalendarStripeView: View {
+    @Binding var selectedDate: Date
+    
     @State private var currentWeekOffset = 0
-    @State private var selectedDate = Date()
     
     let weeksRange = -104...104
     

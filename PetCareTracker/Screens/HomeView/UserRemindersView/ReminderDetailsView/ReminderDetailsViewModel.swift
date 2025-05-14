@@ -6,21 +6,28 @@
 //
 
 import Foundation
+import SwiftData
 
+@MainActor
 @Observable
-final class ReminderDetailsViewModel {
+final class ReminderDetailsViewModel: DataManagerInitializable {
     var isEditing = false
     
-    func onComplete() {
-        print("Reminder completed")
+    internal var dataManager: SwiftDataManager? = nil
+    
+    func onComplete(_ reminder: Reminder) {
+        dataManager?.deleteReminder(reminder)
     }
     
     func onEdit() {
         isEditing.toggle()
-        print("Edit action triggered")
     }
     
-    func onDelete() {
-        print("Delete action triggered")
+    func onDelete(_ reminder: Reminder) {
+        dataManager?.deleteReminder(reminder)
+    }
+    
+    func setup(context: ModelContext) {
+        initializeDataManager(context: context)
     }
 }

@@ -6,9 +6,15 @@
 //
 
 import SwiftUI
+import SwiftData
 
+// MARK: - AddReminderViewModel
+
+@MainActor
 @Observable
-final class AddReminderViewModel {
+final class AddReminderViewModel: DataManagerInitializable {
+    var mode: EditModeReminder = .add
+    
     let rows: [GridItem] = [GridItem(.flexible())]
     var selectedPet: Pet?
     var isChoosingReminder = false
@@ -21,13 +27,50 @@ final class AddReminderViewModel {
         selectedPet != nil && selectedReminder != nil
     }
     
-    init() {}
+    var pets: [Pet] = []
     
-    init(from reminder: Reminder) {
-        self.selectedPet = PetMockData.samplePets.first(where: { $0.name == reminder.pet })
-        self.selectedReminder = reminder.type
-        self.selectedDate = reminder.date
-        self.selectedTime = reminder.time
-        self.description = reminder.comment
+    internal var dataManager: SwiftDataManager? = nil
+    
+    func setup(context: ModelContext, mode: EditModeReminder) {
+        self.mode = mode
+        initializeDataManager(context: context)
+        
+        pets = dataManager?.fetchAllPets() ?? []
+        
+        switch mode {
+        case .add:
+            break
+        case .edit(let reminder):
+            selectedPet = pets.first(where: { $0.name == reminder.pet })
+            selectedReminder = reminder.type
+            selectedDate = reminder.date
+            selectedTime = reminder.time
+            description = reminder.comment ?? ""
+        }
+    }
+    
+    func saveData() {
+        guard isValidForm,
+              let pet = selectedPet,
+              let type = selectedReminder else { return }
+        
+        switch mode {
+        case .add:
+            let newReminder = Reminder(
+                pet: pet.name,
+                type: ReminderType(rawValue: type) ?? .none,
+                time: selectedTime,
+                date: selectedDate,
+                comment: description
+            )
+            dataManager?.addReminder(newReminder)
+        case .edit(let reminder):
+            reminder.pet = pet.name
+            reminder.type = type
+            reminder.time = selectedTime
+            reminder.date = selectedDate
+            reminder.comment = description
+            dataManager?.updateReminder(reminder)
+        }
     }
 }

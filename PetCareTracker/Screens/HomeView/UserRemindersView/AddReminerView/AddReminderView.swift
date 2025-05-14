@@ -7,19 +7,30 @@
 
 import SwiftUI
 
+//MARK: - AddReminderView
+enum EditModeReminder {
+    case add
+    case edit(Reminder)
+}
+
 struct AddReminderView: View {
+    @Environment(\.modelContext) var context
+    @Environment(\.dismiss) var dismiss
+    
     @State var viewModel: AddReminderViewModel
     @State private var showAlert: Bool = false
     
     @FocusState private var isCommentFocused: Bool
     
+    var reminder: Reminder?
     var isEditingReminder: Bool
     
     private var focusColor = Color.randomDarkColor
     
-    init(viewModel: AddReminderViewModel, isEditingReminder: Bool = false) {
-        self._viewModel = State(initialValue: viewModel)
+    init(isEditingReminder: Bool = false, reminder: Reminder? = nil) {
+        self._viewModel = State(initialValue: AddReminderViewModel())
         self.isEditingReminder = isEditingReminder
+        self.reminder = reminder
     }
  
     var body: some View {
@@ -45,7 +56,8 @@ struct AddReminderView: View {
                                 
                                 StandardButton(title: isEditingReminder ? "Update reminder" : "Add reminder") {
                                     if viewModel.isValidForm {
-                                        // save the reminder
+                                        viewModel.saveData()
+                                        dismiss()
                                     } else {
                                         showAlert.toggle()
                                     }
@@ -61,37 +73,48 @@ struct AddReminderView: View {
                     }
                     .scrollBounceBehavior(.basedOnSize, axes: [.vertical])
                 }
-                .navigationBarTitle("Add Reminder")
-                .navigationBarTitleDisplayMode(.inline)
-                .toolbar {
-                    ToolbarItem(placement: .navigationBarLeading) {
-                        BackButton()
-                    }
-                }
-                .padding()
-                .scrollIndicators(.never)
-                .sheet(isPresented: $viewModel.isChoosingReminder) {
-                    ReminderTypeSelectionView(selectedReminder: $viewModel.selectedReminder)
-                        .presentationDetents([.height(400)])
-                }
-                .floatingBottomSheet(isPresented: $showAlert) {
-                    SheetView(title: "Missing information",
-                              desctiption: "Please make sure that pet and reminder are selected",
-                              image: .init(
-                                title: "info",
-                                tint: .onyx,
-                                foreground: .white),
-                              button1: .init(
-                                title: "Ok",
-                                tint: .onyx,
-                                foreground: .white))
-                    .presentationDetents([.height(350)])
+            }
+            .navigationBarTitle("Add Reminder")
+            .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                ToolbarItem(placement: .navigationBarLeading) {
+                    BackButton()
                 }
             }
+            .padding()
+            .scrollIndicators(.never)
+            .background(Color(.cloudy).ignoresSafeArea())
         }
+        .sheet(isPresented: $viewModel.isChoosingReminder) {
+            ReminderTypeSelectionView(selectedReminder: $viewModel.selectedReminder)
+                .presentationDetents([.height(400)])
+        }
+        .floatingBottomSheet(isPresented: $showAlert) {
+            SheetView(title: "Missing information",
+                      desctiption: "Please make sure that pet and reminder are selected",
+                      image: .init(
+                        title: "info",
+                        tint: .onyx,
+                        foreground: .white),
+                      button1: .init(
+                        title: "Ok",
+                        tint: .onyx,
+                        foreground: .white))
+            .presentationDetents([.height(350)])
+        }
+        .onAppear {
+            initializeViewModel()
+        }
+    }
+    
+    private func initializeViewModel() {
+        let currentMode: EditModeReminder = reminder.map { .edit($0) } ?? .add
+        viewModel.setup(context: context, mode: currentMode)
     }
 }
 
+
+//MARK: - PetSelectionView
 struct PetSelectionView: View {
     @Binding var viewModel: AddReminderViewModel
     
@@ -106,7 +129,7 @@ struct PetSelectionView: View {
         
         ScrollView(.horizontal) {
             LazyHGrid(rows: viewModel.rows, spacing: 20) {
-                ForEach(PetMockData.samplePets) { pet in
+                ForEach(viewModel.pets) { pet in
                     Button {
                         viewModel.selectedPet = pet
                     } label: {
@@ -126,6 +149,7 @@ struct PetSelectionView: View {
     }
 }
 
+//MARK: - ReminderFormView
 struct ReminderFormView: View {
     @Binding var viewModel: AddReminderViewModel
     @FocusState.Binding var isCommentFocused: Bool
@@ -161,5 +185,5 @@ struct ReminderFormView: View {
 
 
 #Preview {
-    AddReminderView(viewModel: AddReminderViewModel())
+    AddReminderView()
 }
