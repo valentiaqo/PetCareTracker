@@ -34,8 +34,12 @@ final class UserRemindersViewModel: DataManagerInitializable {
     }
     
     func refreshRemindersIfNeeded() {
-        if !isAddingReminder {
-            fetchReminders()
+        fetchReminders()
+    }
+    
+    func updateSelectedDate(to newDate: Date) {
+        if selectedDate.stripTime() != newDate.stripTime() {
+            selectedDate = newDate
         }
     }
 }

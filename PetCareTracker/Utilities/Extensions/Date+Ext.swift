@@ -13,15 +13,15 @@ extension Date {
     }
     
     var isNow: Bool {
-           let now = Date()
-           let calendar = Calendar.current
-           
-           let nowComponents = calendar.dateComponents([.hour, .minute], from: now)
-           let selfComponents = calendar.dateComponents([.hour, .minute], from: self)
-           
-           return nowComponents.hour == selfComponents.hour &&
-                  nowComponents.minute == selfComponents.minute
-       }
+        let now = Date()
+        let calendar = Calendar.current
+        
+        let nowComponents = calendar.dateComponents([.hour, .minute], from: now)
+        let selfComponents = calendar.dateComponents([.hour, .minute], from: self)
+        
+        return nowComponents.hour == selfComponents.hour &&
+        nowComponents.minute == selfComponents.minute
+    }
     
     static func getWeekDates(for offset: Int) -> [Date] {
         let calendar = Calendar.current
@@ -29,7 +29,7 @@ extension Date {
         
         let startOfCurrentWeek = calendar.dateInterval(of: .weekOfYear, for: today)?.start ?? today
         let startOfWeek = calendar.date(byAdding: .weekOfYear, value: offset, to: startOfCurrentWeek) ?? today
-
+        
         return (0..<7).compactMap { calendar.date(byAdding: .day, value: $0, to: startOfWeek) }
     }
     
@@ -50,5 +50,9 @@ extension Date {
         let formatter = DateFormatter()
         formatter.dateFormat = format
         return formatter.string(from: self)
+    }
+    
+    func stripTime() -> Date {
+        Calendar.current.startOfDay(for: self)
     }
 }
