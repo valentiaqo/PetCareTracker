@@ -74,6 +74,7 @@ struct UserRemindersView: View {
                                     }
                                 }
                             }
+                            .animation(.spring(response: 0.4, dampingFraction: 0.7), value: viewModel.filteredReminders)
                         }
                     }
                     .scrollIndicators(.never)

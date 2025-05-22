@@ -142,13 +142,11 @@ struct ButtonsSectionView: View {
     let onEdit: () -> Void
     let onDelete: () -> Void
     
-    let generator = UINotificationFeedbackGenerator()
-    
     var body: some View {
         HStack(spacing: 50) {
             Button {
                 onComplete()
-                generator.notificationOccurred(.success)
+                HapticManager.shared.notify(.success)
                 dismiss()
             } label: {
                 Image(LinearIcons.checkCircle.rawValue)
