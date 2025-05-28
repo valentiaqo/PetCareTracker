@@ -3,21 +3,26 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 56;
+	objectVersion = 70;
 	objects = {
-
-/* Begin PBXBuildFile section */
-		1ED241AB2CB2CD0B00DB035E /* PetCareTrackerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ED241AA2CB2CD0B00DB035E /* PetCareTrackerApp.swift */; };
-		1ED241AF2CB2CD0D00DB035E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1ED241AE2CB2CD0D00DB035E /* Assets.xcassets */; };
-		1ED241B22CB2CD0D00DB035E /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1ED241B12CB2CD0D00DB035E /* Preview Assets.xcassets */; };
-/* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		1ED241A72CB2CD0B00DB035E /* PetCareTracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PetCareTracker.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		1ED241AA2CB2CD0B00DB035E /* PetCareTrackerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PetCareTrackerApp.swift; sourceTree = "<group>"; };
-		1ED241AE2CB2CD0D00DB035E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		1ED241B12CB2CD0D00DB035E /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		1EEC67BD2CE1F00D00680EEC /* PBXFileSystemSynchronizedBuildFileExceptionSet */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = 1ED241A62CB2CD0B00DB035E /* PetCareTracker */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		1EEC67A02CE1F00D00680EEC /* PetCareTracker */ = {isa = PBXFileSystemSynchronizedRootGroup; exceptions = (1EEC67BD2CE1F00D00680EEC /* PBXFileSystemSynchronizedBuildFileExceptionSet */, ); explicitFileTypes = {}; explicitFolders = (); path = PetCareTracker; sourceTree = "<group>"; };
+/* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		1ED241A42CB2CD0B00DB035E /* Frameworks */ = {
@@ -33,7 +38,7 @@
 		1ED2419E2CB2CD0B00DB035E = {
 			isa = PBXGroup;
 			children = (
-				1ED241A92CB2CD0B00DB035E /* PetCareTracker */,
+				1EEC67A02CE1F00D00680EEC /* PetCareTracker */,
 				1ED241A82CB2CD0B00DB035E /* Products */,
 			);
 			sourceTree = "<group>";
@@ -44,24 +49,6 @@
 				1ED241A72CB2CD0B00DB035E /* PetCareTracker.app */,
 			);
 			name = Products;
-			sourceTree = "<group>";
-		};
-		1ED241A92CB2CD0B00DB035E /* PetCareTracker */ = {
-			isa = PBXGroup;
-			children = (
-				1ED241AA2CB2CD0B00DB035E /* PetCareTrackerApp.swift */,
-				1ED241AE2CB2CD0D00DB035E /* Assets.xcassets */,
-				1ED241B02CB2CD0D00DB035E /* Preview Content */,
-			);
-			path = PetCareTracker;
-			sourceTree = "<group>";
-		};
-		1ED241B02CB2CD0D00DB035E /* Preview Content */ = {
-			isa = PBXGroup;
-			children = (
-				1ED241B12CB2CD0D00DB035E /* Preview Assets.xcassets */,
-			);
-			path = "Preview Content";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -78,6 +65,9 @@
 			buildRules = (
 			);
 			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				1EEC67A02CE1F00D00680EEC /* PetCareTracker */,
 			);
 			name = PetCareTracker;
 			productName = PetCareTracker;
@@ -122,8 +112,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1ED241B22CB2CD0D00DB035E /* Preview Assets.xcassets in Resources */,
-				1ED241AF2CB2CD0D00DB035E /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -134,7 +122,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1ED241AB2CB2CD0B00DB035E /* PetCareTrackerApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -271,11 +258,13 @@
 				DEVELOPMENT_TEAM = 64UTKKPS3Y;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = PetCareTracker/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -300,11 +289,13 @@
 				DEVELOPMENT_TEAM = 64UTKKPS3Y;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = PetCareTracker/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

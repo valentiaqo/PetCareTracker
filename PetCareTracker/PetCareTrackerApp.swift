@@ -6,11 +6,14 @@
 //
 
 import SwiftUI
+import SwiftData
 
 @main
 struct PetCareTrackerApp: App {
     var body: some Scene {
         WindowGroup {
+            HomeView()
         }
+        .modelContainer(for: [Pet.self, Reminder.self])
     }
 }
